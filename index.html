@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>CleanSlate</title>
+		<link rel="stylesheet" href="styles/stylesheet.css" type="text/css">
+		<link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400' rel='stylesheet' type='text/css'>
+	</head>
+	<body ng-app='CleanSlateApp' ng-controller="CleanSlateController">
+		<!-- Background Image -->
+		<div id="background-img"></div>
+		<!-- Top Bar -->
+		<header id="top-bar">
+			<h1>Step 2: Fill out your AP test scores
+				<button id="prev-step" class="step-button">Prev</button>
+				<button id="next-step" class="step-button">Next</button>
+			</h1>
+		</header>
+		<!-- App Container -->
+		<main id="app-container">
+			<!-- User Input Section (Top Half of UI) -->
+			<section id="input-component">
+				<nav>
+					<ul>
+						<li class="select-this-nav"><a href="#">AP Credit</a></li>
+						<li><a href="#">Transfer Credit</a></li>
+						<li><a href="#">Previous Experience</a></li>
+					</ul>
+				</nav>
+			</section>
+			<!-- Output Section (Bottom Half of UI)-->
+			<section id="output-component">
+				<ul id="quarter-titles">
+					<li>Fall</li>
+					<li>Winter</li>
+					<li>Spring</li>
+				</ul>
+				<ul id="courses">
+					<ul id="fall-quarter" class="quarter">
+						<li class="course" ng-class="assignCSSCourseClass()" ng-repeat="course in Schedule.fall_quarter">
+							<h3 class="course-title">{{course.name}}</h3>
+							<h6 class="course-units">{{course.units}} units</h6>
+							<h6 class="course-description">{{course.description}}</h6>
+						</li>
+					</ul>
+					<ul id="winter-quarter" class="quarter">
+						<li class="course" ng-class="assignCSSCourseClass()" ng-repeat="course in Schedule.winter_quarter">
+							<h3 class="course-title">{{course.name}}</h3>
+							<h6 class="course-units">{{course.units}} units</h6>
+							<h6 class="course-description">{{course.description}}</h6>
+						</li>
+					</ul>
+					<ul id="spring-quarter" class="quarter">
+						<li class="course" ng-class="assignCSSCourseClass()" ng-repeat="course in Schedule.spring_quarter">
+							<h3 class="course-title">{{course.name}}</h3>
+							<h6 class="course-units">{{course.units}} units</h6>
+							<h6 class="course-description">{{course.description}}</h6>
+						</li>
+					</ul>
+				</ul>
+				<ul id="key">
+					<li><div id="engineering-key"></div>Engineering</li>
+					<li><div id="math-key"></div>Math & Science</li>
+					<li><div id="humanities-key"></div>Humanities & Social Science</li>
+					<li><div id="other-key"></div>Other</li>
+				</ul>
+				<button id="print-button" ng-click='testScheduleUpdate()'>Print</button>
+			</section>	
+		</main>
+
+		<!-- Angular & jQuery -->
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+		<script src="js/view_controller.js"></script>
+		<script src="js/compute_new_schedule.js"></script>
+	</body>
+</html>
