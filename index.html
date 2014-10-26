@@ -11,25 +11,55 @@
 		<div id="background-img"></div>
 		<!-- Top Bar -->
 		<header id="top-bar">
-			<h1>Step 2: Fill out your AP test scores
-				<button id="prev-step" class="step-button">Prev</button>
-				<button id="next-step" class="step-button">Next</button>
+			<h1>Step {{ CurrentStep.step_number }}: {{ CurrentStep.description }} &nbsp; 
+				<button id="prev-step" class="step-button" ng-click="goToPrevStep()" ng-show="CurrentStep.prev_button === 'true'">Prev</button>
+				<button id="next-step" class="step-button" ng-click="goToNextStep()" ng-show="CurrentStep.next_button === 'true'">Next</button>
 			</h1>
 		</header>
 		<!-- App Container -->
 		<main id="app-container">
-			<!-- User Input Section (Top Half of UI) -->
-			<section id="input-component">
+			<!-- Step 1 (Choose a major) -->
+			<ul id="choose-major" ng-show="CurrentStep.view === 'initial'">
+				<li ng-click="setMajor('cse')">Computer Science & Engineering</li>
+				<li ng-click="setMajor('wde')">Web Design & Enginnering</li>
+			</ul>
+			<!-- Steps 2-5 User Input Section (Top Half of UI) -->
+			<section id="input-component" ng-show="CurrentStep.view === 'main'">
 				<nav>
 					<ul>
-						<li class="select-this-nav"><a href="#">AP Credit</a></li>
-						<li><a href="#">Transfer Credit</a></li>
-						<li><a href="#">Previous Experience</a></li>
+						<li ng-click="skipToStep(1)"><a href="#">AP Credit</a></li>
+						<li ng-click="skipToStep(2)"><a href="#">Transfer Credit</a></li>
+						<li ng-click="skipToStep(3)"><a href="#">Previous Experience</a></li>
 					</ul>
 				</nav>
+				<h2 id="input-label">AP Credit: </h2>
+				<select>
+					<option> Test 1 </option>
+					<option> Test 2 </option>
+					<option> Test 3 </option>
+					<option> Test 4 </option>
+					<option> Test 5 </option>
+				</select>
+				<p id="selection-description"> Differentiation and applications, introduction to integration</p>
+				<ul id="ap-test-score">
+					<li class="selected-ap-test-score">3</li>
+					<li>4</li>
+					<li>5</li>
+				</ul>
+				<button id="add-selection">Add</button>
+				<div id="added-selections">
+					<h2>Your Added AP Scores</h2>
+					<ul>
+						<li>Chemistry (Score: 4)<button>Remove</button></li>
+						<li>Biology (Score: 5)<button>Remove</button></li>
+						<li>Calculus AB (Score: 5)<button>Remove</button></li>
+						<li>Chemistry (Score: 4)<button>Remove</button></li>
+						<li>Biology (Score: 5)<button>Remove</button></li>
+					</ul>
+				</div>
 			</section>
-			<!-- Output Section (Bottom Half of UI)-->
-			<section id="output-component">
+			<!-- Steps 2-5 Output Section (Bottom Half of UI)-->
+			<section id="output-component" ng-show="CurrentStep.view === 'main'">
 				<ul id="quarter-titles">
 					<li>Fall</li>
 					<li>Winter</li>
@@ -72,6 +102,7 @@
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 		<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
 		<script src="js/view_controller.js"></script>
+		<script src="js/objects.js"></script>
 		<script src="js/compute_new_schedule.js"></script>
 	</body>
 </html>

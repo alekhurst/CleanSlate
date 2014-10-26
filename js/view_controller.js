@@ -4,7 +4,11 @@ $(document).ready( function() {
 	$("#input-component nav ul li").click( function() {
 		$(this).siblings().removeClass('select-this-nav');
 		$(this).addClass('select-this-nav');
-	})
+	});
+	$("#choose-major li").click( function() {
+		$(this).siblings().removeClass('selected-major');
+		$(this).addClass('selected-major');
+	});
 })
 
 var CleanSlateApp = angular.module('CleanSlateApp', []);
@@ -17,12 +21,17 @@ CleanSlateApp.controller('CleanSlateController', function ($scope) {
 		winter_quarter : [],  
 		spring_quarter : []   
 	}; 
-
 	$scope.StudentInput = {
 		ap_credit : [],
 		transfer_credit : [],
 		previous_experience : []
 	};  
+	$scope.CurrentStep = {};
+	$scope.APTests = [];
+
+	/* View Controller Variable Initialization */
+	$scope.CurrentStep = window.Steps[0];
+	$scope.APTests = window.APTests;
 
 	/* Event listeners */
 	$scope.$watch('StudentInput', function() {
@@ -32,100 +41,15 @@ CleanSlateApp.controller('CleanSlateController', function ($scope) {
 			$scope.updateScheduleWithNewInput();
 	}, true);
 
-	/* Variable Initialization */
-	$scope.Schedule = {
-		fall_quarter : [
-			{
-				name : 'University Core',
-				description : 'Critical Thinking & Writing I',
-				units : '4',
-				category : 'humanities_and_social_science'
-			},
-			{
-				name : 'Math 11',
-				description : 'Calculus I',
-				units : '4',
-				category : 'math_and_science'
-			},
-			{
-				name : 'CHEM 11',
-				description : 'Chemistry I',
-				units : '4',
-				category : 'math_and_science'
-			},
-			{
-				name : 'COEN 10',
-				description : 'Introduction to Programming',
-				units : '4',
-				category: 'engineering'
-			},
-			{
-				name : 'ENGR 1',
-				description : 'Introduction to Engineering',
-				units : '1',
-				category: 'engineering'
-			}
-		],
-		
-		winter_quarter : [
-			{
-				name : 'University Core',
-				description : 'Critical Thinking & Writing 2',
-				units : '4',
-				category : 'humanities_and_social_science'
-			},
-			{
-				name : 'Math 12',
-				description : 'Calculus II',
-				units : '4',
-				category : 'math_and_science'
-			},
-			{
-				name : 'PHYS 31',
-				description : 'Physics I',
-				units : '4',
-				category : 'math_and_science'
-			},
-			{
-				name : 'COEN 11',
-				description : 'Advanced Programming',
-				units : '4',
-				category: 'engineering'
-			}
-		],
-		
-		spring_quarter : [
-			{
-				name : 'COEN 19',
-				description : 'Discrete Math',
-				units : '4',
-				category : 'math_and_science'
-			},
-			{
-				name : 'Math 13',
-				description : 'Calculus III',
-				units : '4',
-				category : 'math_and_science'
-			},
-			{
-				name : 'PHYS 32',
-				description : 'Physics II',
-				units : '4',
-				category : 'math_and_science'
-			},
-			{
-				name : 'COEN 12',
-				description : 'Data Structures',
-				units : '4',
-				category: 'engineering'
-			}
-		]
-	};
+	$scope.$watch('CurrentStep', function() {
+		if(initializing)
+			initializing = false;
+		else 
+			$scope.decideWhichNavToSelect();
+	}, true);
 
-
-
+	
 	/* Methods */
-
 
 	/**
 	 * This function is called on change of the StudentInput object. 
@@ -157,16 +81,69 @@ CleanSlateApp.controller('CleanSlateController', function ($scope) {
 	};
 
 	/**
+	 * Sets a default schedule during step 1 when a user clicks a major
+	 *
+	 * @param{String} major - either cse wde
+	 */
+	$scope.setMajor = function(major) {
+		if(major === 'cse')
+			$scope.Schedule = window.DefaultScheduleCSE; // in js/objects.js
+		else if(major === 'wde')
+			$scope.Schedule = window.DefaultScheduleWDE; // in js/objects.js
+	}
+
+	/**
+	 * Goes to the previous step in the application
+	 */
+	$scope.goToPrevStep = function() {
+		var prev_step_index = $scope.CurrentStep.step_number - 2;
+		$scope.CurrentStep = window.Steps[prev_step_index];
+	}
+
+	/**
+	 * Goes to the next step in the application
+	 */
+	$scope.goToNextStep = function() {
+		var next_step_index = $scope.CurrentStep.step_number;
+		$scope.CurrentStep = window.Steps[next_step_index];
+	}
+
+	/**
+	 * Skips to a step if a user clicks directly on a button in the nav
+	 *
+	 * @param {Number} step - step # to skip to
+	 */
+	$scope.skipToStep = function(step) {
+		$scope.CurrentStep = window.Steps[step];
+	}
+
+	/**
+	 * Decides which nav (AP Credit, Transfer Credit, or Previous Experience)
+	 * should be selected based on the current step
+	 */
+	$scope.decideWhichNavToSelect = function() {
+		var child_to_select = $scope.CurrentStep.step_number - 1;
+		if($scope.CurrentStep.step_number > 1 && $scope.CurrentStep.step_number < 5) {
+			$("#input-component nav ul li").removeClass('select-this-nav');
+			$("#input-component nav ul li:nth-child(" + child_to_select + ")").addClass('select-this-nav');
+		}
+	}
+
+	/**
 	 * I used this function to test if the updateScheduleWithNewInput() function
 	 * is called on change of the StudentInput object. I also tested if the file
 	 * js > compute_new_schedule.js was linked correctly and the ComputeNewSchedule()
 	 * function was called with the correct data.
 	 *
-	 * This function is called when you click on "transfer credit" in the nav
+	 * This function is called when you click on "print"
 	 *
 	 * UPDATE ------ EVERYTHING WORKS
 	 */
 	$scope.testScheduleUpdate = function() {
 		$scope.StudentInput.ap_credit[0] += 'lalalala';
+	}
+
+	$scope.showDescription = function() {
+		$('#selection-description').text(test.description)
 	}
 });
