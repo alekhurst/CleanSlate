@@ -1,11 +1,11 @@
 window.AllCourses = {
-	math_courses = [
+	math_courses : [
 		{
 			name : "Calculus & Analytic Geometry 1",
 			department : "MATH",
 			course_number : "11",
 			description : "something",
-			offering : ["F", "W", "S"],
+			offering : ["fall_quarter", "winter_quarter", "spring_quarter"],
 			co_requisite : "",
 			credit : "NO",
 			category : "math_and_science"
@@ -16,7 +16,7 @@ window.AllCourses = {
 			department : "MATH",
 			course_number : "12",
 			description : "something",
-			offering : ["F", "W", "S"],
+			offering : ["fall_quarter", "winter_quarter", "spring_quarter"],
 			co_requisite : "",
 			credit : "NO",
 			category : "math_and_science"
@@ -27,7 +27,7 @@ window.AllCourses = {
 			department : "MATH",
 			course_number : "13",
 			description : "something",
-			offering : ["F", "W", "S"],
+			offering : ["fall_quarter", "winter_quarter", "spring_quarter"],
 			co_requisite : "",
 			credit : "NO",
 			category : "math_and_science"
@@ -38,7 +38,7 @@ window.AllCourses = {
 			department : "MATH",
 			course_number : "14",
 			description : "something",
-			offering : ["F", "W", "S"],
+			offering : ["fall_quarter", "winter_quarter", "spring_quarter"],
 			co_requisite : "",
 			credit : "NO",
 			category : "math_and_science"
@@ -49,7 +49,7 @@ window.AllCourses = {
 			department : "MATH",
 			course_number : "53",
 			description : "something",
-			offering : ["F", "W", "S"],
+			offering : ["fall_quarter", "winter_quarter", "spring_quarter"],
 			co_requisite : "",
 			credit : "NO",
 			category : "math_and_science"
@@ -60,7 +60,7 @@ window.AllCourses = {
 			department : "AMTH",
 			course_number : "106",
 			description : "something",
-			offering : ["F", "W", "S"],
+			offering : ["fall_quarter", "winter_quarter", "spring_quarter"],
 			co_requisite : "",
 			credit : "NO",
 			category : "math_and_science"
@@ -71,20 +71,20 @@ window.AllCourses = {
 			department : "AMTH",
 			course_number : "108",
 			description : "something",
-			offering : ["F", "W", "S"],
+			offering : ["fall_quarter", "winter_quarter", "spring_quarter"],
 			co_requisite : "",
 			credit : "NO",
 			category : "math_and_science"
 		}
 	],
 
-	science_courses = [
+	science_courses : [
 		{
 			name : "General Chemistry 1",
 			department : "CHEM",
 			course_number : "11",
 			description : "something",
-			offering : ["F"],
+			offering : ["fall_quarter"],
 			co_requisite : "LAB",
 			credit : "NO",
 			category : "math_and_science"
@@ -95,7 +95,7 @@ window.AllCourses = {
 			department : "PHYS",
 			course_number : "31",
 			description : "something",
-			offering : ["W"],
+			offering : ["winter_quarter"],
 			co_requisite : "LAB",
 			credit : "NO",
 			category : "math_and_science"
@@ -106,7 +106,7 @@ window.AllCourses = {
 			department : "PHYS",
 			course_number : "32",
 			description : "something",
-			offering : ["S"],
+			offering : ["spring_quarter"],
 			co_requisite : "LAB",
 			credit : "NO",
 			category : "math_and_science"
@@ -117,20 +117,20 @@ window.AllCourses = {
 			department : "PHYS",
 			course_number : "33",
 			description : "something",
-			offering : ["F"],
+			offering : ["fall_quarter"],
 			co_requisite : "LAB",
 			credit : "NO",
 			category : "math_and_science"
 		}
 	],
 
-	coen_courses = [
+	coen_courses : [
 		{
 			name : "Introduction to Programming",
 			department : "COEN",
 			course_number : "10",
 			description : "something",
-			offering : ["F", "W"],
+			offering : ["fall_quarter", "winter_quarter"],
 			co_requisite : "LAB",
 			credit : "NO",
 			category : "engineering"
@@ -141,7 +141,7 @@ window.AllCourses = {
 			department : "COEN",
 			course_number : "11",
 			description : "something",
-			offering : ["F", "W", "S"],
+			offering : ["fall_quarter", "winter_quarter", "spring_quarter"],
 			co_requisite : "LAB",
 			credit : "NO",
 			category : "engineering"
@@ -152,7 +152,7 @@ window.AllCourses = {
 			department : "COEN",
 			course_number : "12",
 			description : "something",
-			offering : ["F", "W", "S"],
+			offering : ["fall_quarter", "winter_quarter", "spring_quarter"],
 			co_requisite : "LAB",
 			credit : "NO",
 			category : "engineering"
@@ -163,8 +163,8 @@ window.AllCourses = {
 			department : "COEN",
 			course_number : "19",
 			description : "something",
-			offering : ["F", "S"],
-			co_requisite : "NO",
+			offering : ["fall_quarter", "spring_quarter"],
+			co_requisite : "",
 			credit : "NO",
 			category : "engineering"
 		},
@@ -174,8 +174,8 @@ window.AllCourses = {
 			department : "COEN",
 			course_number : "20",
 			description : "something",
-			offering : ["F", "S"],
-			co_requisite : "NO",
+			offering : ["fall_quarter", "spring_quarter"],
+			co_requisite : "",
 			credit : "NO",
 			category : "engineering"
 		},
@@ -185,7 +185,7 @@ window.AllCourses = {
 			department : "COEN",
 			course_number : "21",
 			description : "something",
-			offering : ["F", "W", "S"],
+			offering : ["fall_quarter", "winter_quarter", "spring_quarter"],
 			co_requisite : "LAB",
 			credit : "NO",
 			category : "engineering"
@@ -196,21 +196,33 @@ window.AllCourses = {
 			department : "COEN",
 			course_number : "70",
 			description : "something",
-			offering : ["W"]
+			offering : ["winter_quarter"],
 			co_requisite : "LAB",
 			credit : "NO",
 			category : "engineering"
 		}
 	],
 
+	core_courses : [
+		{
+			name : "University Core",
+			department : "",
+			course_number : "",
+			description : "something",
+			offering : ["fall_quarter", "winter_quarter", "spring_quarter"],
+			co_requisite : "",
+			credit : "NO",
+			category : "humanities_and_social_science"
+		}
+	],
 
-	core_courses = [
+	required_courses : [
 		{
 			name : "Critical Thinking & Writing 1",
 			department : "CTW",
 			course_number : "1",
 			description : "Critical Thinking & Writing I",
-			offering : ["F", "W"],
+			offering : ["fall_quarter", "winter_quarter"],
 			co_requisite : "",
 			credit : "NO",
 			category : "humanities_and_social_science"
@@ -221,7 +233,7 @@ window.AllCourses = {
 			department : "CTW",
 			course_number : "2",
 			description : "something",
-			offering : ["W", "S"],
+			offering : ["winter_quarter", "spring_quarter"],
 			co_requisite : "",
 			credit : "NO",
 			category : "humanities_and_social_science"
@@ -232,7 +244,7 @@ window.AllCourses = {
 			department : "C&I",
 			course_number : "1",
 			description : "something",
-			offering : ["F", "W"],
+			offering : ["fall_quarter", "winter_quarter"],
 			co_requisite : "",
 			credit : "NO",
 			category : "humanities_and_social_science"
@@ -243,18 +255,7 @@ window.AllCourses = {
 			department : "C&I",
 			course_number : "2",
 			description : "something",
-			offering : ["W", "S"],
-			co_requisite : "",
-			credit : "NO",
-			category : "humanities_and_social_science"
-		},
-
-		{
-			name : "University Core",
-			department : "",
-			course_number : "",
-			description : "something",
-			offering : ["F", "W", "S"],
+			offering : ["winter_quarter", "spring_quarter"],
 			co_requisite : "",
 			credit : "NO",
 			category : "humanities_and_social_science"
