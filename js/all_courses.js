@@ -137,7 +137,7 @@ window.AllCourses = {
 		},
 
 		{
-			name : "Advanced Programming in ",
+			name : "Advanced Programming",
 			department : "COEN",
 			course_number : "11",
 			description : "something",
@@ -213,7 +213,7 @@ window.AllCourses = {
 			offering : ["F", "W"],
 			co_requisite : "",
 			credit : "NO",
-			category : "hummanities_and_social_science"
+			category : "humanities_and_social_science"
 		},
 
 		{
@@ -224,7 +224,7 @@ window.AllCourses = {
 			offering : ["W", "S"],
 			co_requisite : "",
 			credit : "NO",
-			category : "hummanities_and_social_science"
+			category : "humanities_and_social_science"
 		},	
 
 		{
@@ -235,7 +235,7 @@ window.AllCourses = {
 			offering : ["F", "W"],
 			co_requisite : "",
 			credit : "NO",
-			category : "hummanities_and_social_science"
+			category : "humanities_and_social_science"
 		},
 
 		{
@@ -246,7 +246,7 @@ window.AllCourses = {
 			offering : ["W", "S"],
 			co_requisite : "",
 			credit : "NO",
-			category : "hummanities_and_social_science"
+			category : "humanities_and_social_science"
 		},
 
 		{
@@ -257,7 +257,7 @@ window.AllCourses = {
 			offering : ["F", "W", "S"],
 			co_requisite : "",
 			credit : "NO",
-			category : "hummanities_and_social_science"
+			category : "humanities_and_social_science"
 		}
 	]
 }
