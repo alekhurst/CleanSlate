@@ -1,3 +1,9 @@
+window.Schedule = {
+    fall_quarter: [],
+    winter_quarter: [],
+    spring_quarter: []
+};
+
 // Initial Schedule Object
 window.DefaultScheduleCSE = {
 	fall_quarter : [
