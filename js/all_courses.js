@@ -119,7 +119,7 @@ window.AllCourses = {
 			description : "something",
 			offering : ["fall_quarter"],
 			credit : "NO",
-			category : "math_and_science"
+			category : "math_and_science",
             units : "5",
 		}
 	],
