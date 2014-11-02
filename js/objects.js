@@ -6,35 +6,35 @@ window.DefaultScheduleCSE = {
 			description : 'Critical Thinking & Writing I',
 			units : '4',
 			category : 'humanities_and_social_science',
-            modifiers : ''
+            
 		},
 		{
 			name : 'MATH 11',
 			description : 'Calculus I',
 			units : '4',
 			category : 'math_and_science',
-            modifiers : ''
+            
 		},
 		{
-			name : 'CHEM 11',
-			description : 'Chemistry I',
+			name : 'CHEM 11+L',
+			description : 'General Chemistry I + Lab',
 			units : '5',
 			category : 'math_and_science',
-            modifiers : 'Lab'
+            
 		},
 		{
-			name : 'COEN 10',
-			description : 'Introduction to Programming',
+			name : 'COEN 10+L',
+			description : 'Introduction to Programming + Lab',
 			units : '5',
 			category: 'engineering',
-            modifiers : 'Lab'
+            
 		},
 		{
 			name : 'ENGR 1',
 			description : 'Introduction to Engineering',
 			units : '1',
 			category: 'engineering',
-            modifiers : ''
+            
 		}
 	],
 	
@@ -44,25 +44,25 @@ window.DefaultScheduleCSE = {
 			description : 'Critical Thinking & Writing 2',
 			units : '4',
 			category : 'humanities_and_social_science',
-            modifiers : ''
+            
 		},
 		{
 			name : 'MATH 12',
 			description : 'Calculus II',
 			units : '4',
 			category : 'math_and_science',
-            modifiers : '' 
+            
 		},
 		{
-			name : 'PHYS 31',
-			description : 'Physics I',
+			name : 'PHYS 31+L',
+			description : 'Physics I + Lab',
 			units : '4',
 			category : 'math_and_science',
-            modifiers : ''
+            
 		},
 		{
-			name : 'COEN 11',
-			description : 'Advanced Programming',
+			name : 'COEN 11+L',
+			description : 'Advanced Programming + Lab',
 			units : '5',
 			category: 'engineering',
             modifiers: 'Lab'
@@ -75,28 +75,28 @@ window.DefaultScheduleCSE = {
 			description : 'Discrete Math',
 			units : '4',
 			category : 'math_and_science',
-            modifiers : ''
+            
 		},
 		{
 			name : 'MATH 13',
 			description : 'Calculus III',
 			units : '4',
 			category : 'math_and_science',
-            modifiers : ''
+            
 		},
 		{
-			name : 'PHYS 32',
-			description : 'Physics II',
+			name : 'PHYS 32+L',
+			description : 'Physics II + Lab',
 			units : '5',
 			category : 'math_and_science',
-            modifiers : 'Lab'
+            
 		},
 		{
-			name : 'COEN 12',
-			description : 'Data Structures',
+			name : 'COEN 12+L',
+			description : 'Data Structures + Lab',
 			units : '5',
 			category: 'engineering',
-            modifiers : 'Lab'
+            
         }
 	]
 };
@@ -108,35 +108,33 @@ window.DefaultScheduleWDE = {
 			description : 'Calculus I',
 			units : '4',
 			category : 'math_and_science',
-            modifiers : ''
+            
 		},
 		{
-			name : 'CHEM 11',
-			description : 'Chemistry I',
+			name : 'CHEM 11+L',
+			description : 'General Chemistry I + Lab',
 			units : '5',
 			category : 'math_and_science',
-            modifiers : 'Lab'
+            
 		},
 		{
 			name : 'University Core',
 			description : 'Critical Thinking & Writing I',
 			units : '4',
 			category : 'humanities_and_social_science',
-            modifiers : ''
+            
 		},
 		{
-			name : 'COEN 10',
-			description : 'Introduction to Programming',
+			name : 'COEN 10+L',
+			description : 'Introduction to Programming + Lab',
 			units : '5',
 			category: 'engineering',
-            modifiers : 'Lab'
 		},
 		{
 			name : 'ENGR 1',
 			description : 'Introduction to Engineering',
 			units : '1',
 			category: 'engineering',
-            modifiers : ''
 		}
 	],
 	
@@ -146,29 +144,24 @@ window.DefaultScheduleWDE = {
 			description : 'Calculus II',
 			units : '4',
 			category : 'math_and_science',
-			description : 'Critical Thinking & Writing I',
-            modifiers : ''
 		},
 		{
 			name : 'University Core',
 			description : 'Critical Thinking & Writing 2',
 			units : '4',
 			category : 'humanities_and_social_science',
-            modifiers : ''
 		},
 		{
 			name : 'University Core',
 			description : 'Cultures & Ideas 1',
 			units : '4',
 			category : 'humanities_and_social_science',
-            modifiers : ''
 		},
 		{
-			name : 'COEN 11',
-			description : 'Advanced Programming',
+			name : 'COEN 11+L',
+			description : 'Advanced Programming + Lab',
 			units : '5',
 			category: 'engineering',
-            modifiers : 'Lab'
 		}
 	],
 	
@@ -178,28 +171,24 @@ window.DefaultScheduleWDE = {
 			description : 'Calculus III',
 			units : '4',
 			category : 'math_and_science',
-            modifiers : ''
 		},
 		{
 			name : 'University Core',
 			description : 'Cultures & Ideas 2',
 			units : '4',
 			category : 'humanities_and_social_science',
-            modifiers : ''
 		},
 		{
 			name : 'University Core',
 			description : 'Religion, Theology & Cultures 1',
 			units : '4',
 			category : 'humanities_and_social_science',
-            modifiers : ''
 		},
 		{
-			name : 'COEN 12',
+			name : 'COEN 12+L',
 			description : 'Data Structures',
 			units : '5',
 			category: 'engineering',
-            modifiers : 'Lab'
 		}
 	]
 };
