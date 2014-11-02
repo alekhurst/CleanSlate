@@ -6,10 +6,9 @@ window.AllCourses = {
 			course_number : "11",
 			description : "something",
 			offering : ["fall_quarter", "winter_quarter", "spring_quarter"],
-			co_requisite : "",
 			credit : "NO",
 			category : "math_and_science",
-			next:["MATH 12"]
+            units : "4",
 		},
 
 		{
@@ -18,10 +17,9 @@ window.AllCourses = {
 			course_number : "12",
 			description : "something",
 			offering : ["fall_quarter", "winter_quarter", "spring_quarter"],
-			co_requisite : "",
 			credit : "NO",
 			category : "math_and_science",
-			next:["MATH 13"]
+            units : "4",
 		},
 
 		{
@@ -30,10 +28,9 @@ window.AllCourses = {
 			course_number : "13",
 			description : "something",
 			offering : ["fall_quarter", "winter_quarter", "spring_quarter"],
-			co_requisite : "",
 			credit : "NO",
 			category : "math_and_science",
-			next:["MATH 14"]
+            units : "4",
 		},
 
 		{
@@ -42,10 +39,9 @@ window.AllCourses = {
 			course_number : "14",
 			description : "something",
 			offering : ["fall_quarter", "winter_quarter", "spring_quarter"],
-			co_requisite : "",
 			credit : "NO",
 			category : "math_and_science",
-			next:["MATH 53","AMTH 106","AMTH 108"]
+            units : "4",
 		},
 
 		{
@@ -54,10 +50,9 @@ window.AllCourses = {
 			course_number : "53",
 			description : "something",
 			offering : ["fall_quarter", "winter_quarter", "spring_quarter"],
-			co_requisite : "",
 			credit : "NO",
 			category : "math_and_science",
-			next:["AMTH 106","AMTH 108"]
+            units : "4",
 		},
 
 		{
@@ -66,10 +61,9 @@ window.AllCourses = {
 			course_number : "106",
 			description : "something",
 			offering : ["fall_quarter", "winter_quarter", "spring_quarter"],
-			co_requisite : "",
 			credit : "NO",
 			category : "math_and_science",
-			next:["MATH 53","AMTH 108"]
+            units : "4",
 		},
 
 		{
@@ -78,97 +72,90 @@ window.AllCourses = {
 			course_number : "108",
 			description : "something",
 			offering : ["fall_quarter", "winter_quarter", "spring_quarter"],
-			co_requisite : "",
 			credit : "NO",
 			category : "math_and_science",
-			next:["MATH 53","AMTH 106"]
+            units : "4",
 		}
 	],
 
 	science_courses : [
 		{
-			name : "General Chemistry 1",
+			name : "General Chemistry 1 + Lab",
 			department : "CHEM",
-			course_number : "11",
+			course_number : "11+L",
 			description : "something",
 			offering : ["fall_quarter"],
-			co_requisite : "LAB",
 			credit : "NO",
 			category : "math_and_science",
-			next:[]
+            units : "5",
 		},
 
 		{
-			name : "Physics: Scientists & Engineers 1",
+			name : "Physics: Scientists & Engineers 1 + Lab",
 			department : "PHYS",
-			course_number : "31",
+			course_number : "31+L",
 			description : "something",
 			offering : ["winter_quarter"],
-			co_requisite : "LAB",
 			credit : "NO",
 			category : "math_and_science",
-			next:["PHYS 32"]
+            units : "5",
 		},
 
 		{
-			name : "Physics: Scientists & Engineers 2",
+			name : "Physics: Scientists & Engineers 2 + Lab",
 			department : "PHYS",
-			course_number : "32",
+			course_number : "32+L",
 			description : "something",
 			offering : ["spring_quarter"],
-			co_requisite : "LAB",
 			credit : "NO",
 			category : "math_and_science",
-			next:["PHYS 33"]
+            units : "5",
 		},
 
 		{
-			name : "Physics: Scientists & Engineers 3",
+			name : "Physics: Scientists & Engineers 3 + Lab",
 			department : "PHYS",
-			course_number : "33",
+			course_number : "33+L",
 			description : "something",
 			offering : ["fall_quarter"],
-			co_requisite : "LAB",
 			credit : "NO",
 			category : "math_and_science"
+            units : "5",
 		}
 	],
 
 	coen_courses : [
 		{
-			name : "Introduction to Programming",
+			name : "Introduction to Programming + Lab",
 			department : "COEN",
-			course_number : "10",
+			course_number : "10+L",
 			description : "something",
 			offering : ["fall_quarter", "winter_quarter"],
-			co_requisite : "LAB",
 			credit : "NO",
 			category : "engineering",
-			next:["COEN 11"]
+            units : "5",
 		},
 
 		{
-			name : "Advanced Programming",
+			name : "Advanced Programming + Lab",
 			department : "COEN",
-			course_number : "11",
+			course_number : "11+L",
 			description : "something",
 			offering : ["fall_quarter", "winter_quarter", "spring_quarter"],
-			co_requisite : "LAB",
 			credit : "NO",
 			category : "engineering",
-			next:["COEN 12"]
+            units : "5",
 		},
 
 		{
-			name : "Abstract Data Types and Data Structures",
+			name : "Abstract Data Types and Data Structures + Lab",
 			department : "COEN",
-			course_number : "12",
+			course_number : "12+L",
 			description : "something",
 			offering : ["fall_quarter", "winter_quarter", "spring_quarter"],
-			co_requisite : "LAB",
 			credit : "NO",
 			category : "engineering",
-			next:["COEN 19","COEN 20","COEN 21","COEN 70"]
+            units : "5",
 		},
 
 		{
@@ -177,46 +164,42 @@ window.AllCourses = {
 			course_number : "19",
 			description : "something",
 			offering : ["fall_quarter", "spring_quarter"],
-			co_requisite : "",
 			credit : "NO",
 			category : "engineering",
-			next: ["COEN 21"]
+            units : "4",
 		},
 
 		{
-			name : "Introduction to Embedded Systems",
+			name : "Introduction to Embedded Systems + Lab",
 			department : "COEN",
-			course_number : "20",
+			course_number : "20+L",
 			description : "something",
 			offering : ["fall_quarter", "spring_quarter"],
-			co_requisite : "",
 			credit : "NO",
 			category : "engineering",
-			next: ["COEN 21","COEN 70"]
+            units : "5",
 		},
 
 		{
-			name : "Introduction to Logic Design",
+			name : "Introduction to Logic Design + Lab",
 			department : "COEN",
-			course_number : "21",
+			course_number : "21+L",
 			description : "something",
 			offering : ["fall_quarter", "winter_quarter", "spring_quarter"],
-			co_requisite : "LAB",
 			credit : "NO",
 			category : "engineering",
-			next: ["COEN 20","COEN 70"]
+            units : "5",
 		},
 
 		{
-			name : "Formal Specification and Advanced Data Structures",
+			name : "Formal Specification and Advanced Data Structures + Lab",
 			department : "COEN",
-			course_number : "70",
+			course_number : "70+L",
 			description : "something",
 			offering : ["winter_quarter"],
-			co_requisite : "LAB",
 			credit : "NO",
 			category : "engineering",
-			next: ["COEN 20","COEN 21"]
+            units : "5",
 		}
 	],
 
@@ -227,9 +210,9 @@ window.AllCourses = {
 			course_number : "",
 			description : "something",
 			offering : ["fall_quarter", "winter_quarter", "spring_quarter"],
-			co_requisite : "",
 			credit : "NO",
-			category : "humanities_and_social_science"
+			category : "humanities_and_social_science",
+            units : "4",
 		}
 	],
 
@@ -240,9 +223,9 @@ window.AllCourses = {
 			course_number : "1",
 			description : "Critical Thinking & Writing I",
 			offering : ["fall_quarter", "winter_quarter"],
-			co_requisite : "",
 			credit : "NO",
-			category : "humanities_and_social_science"
+			category : "humanities_and_social_science",
+            units : "4",
 		},
 
 		{
@@ -251,9 +234,9 @@ window.AllCourses = {
 			course_number : "2",
 			description : "something",
 			offering : ["winter_quarter", "spring_quarter"],
-			co_requisite : "",
 			credit : "NO",
-			category : "humanities_and_social_science"
+			category : "humanities_and_social_science",
+            units : "4",
 		},	
 
 		{
@@ -262,9 +245,9 @@ window.AllCourses = {
 			course_number : "1",
 			description : "something",
 			offering : ["fall_quarter", "winter_quarter"],
-			co_requisite : "",
 			credit : "NO",
-			category : "humanities_and_social_science"
+			category : "humanities_and_social_science",
+            units : "4",
 		},
 
 		{
@@ -273,11 +256,9 @@ window.AllCourses = {
 			course_number : "2",
 			description : "something",
 			offering : ["winter_quarter", "spring_quarter"],
-			co_requisite : "",
 			credit : "NO",
-			category : "humanities_and_social_science"
+			category : "humanities_and_social_science",
+            units : "4",
 		}
 	]
 }
-
-
