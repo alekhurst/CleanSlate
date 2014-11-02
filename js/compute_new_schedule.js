@@ -72,7 +72,7 @@ function computeNewScheduleCSE(student_input) {
     //
     // A SCHEDULE OBJECT IN THE SAME FORMAT AS THE DECLARATION MUST BE RETURNED HERE
     //              (obviously with new courses in each quarter)
-    var new_schedule = window.DefaultScheduleCSE;
+    var new_schedule = window.DefaultScheduleCSE;	// (defined in objects.js)
     console.log(new_schedule);
 
     if (student_input.length > 0) { //If there are changes to the default schedule, make those changes
