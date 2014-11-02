@@ -53,16 +53,18 @@ function computeRequiredCourses(current_schedule) {
     }
     return current_schedule;
 }
+function doSomething(string) {
+    console.log('here');
+    console.log(string);
+}
 
 /**
- * This function is initially called when the student's input from the view has changed.
+ * This function is initially called for CSE students when the student's input from the view has changed.
  * 
  * @param {Object} student_input - object containing the current state of input from the user
- * @param {Object} current_schedule - object containing current state of the schedule in the view
  */
-function computeNewSchedule(student_input, current_schedule) {
+function computeNewScheduleCSE(student_input) {
     console.log(student_input);
-    console.log(current_schedule);
 
     // in this case there is no algorithm, so we just return the same default schedule.
     // Normally, the computation would begin here, and at some point a modified schedule
@@ -70,17 +72,15 @@ function computeNewSchedule(student_input, current_schedule) {
     //
     // A SCHEDULE OBJECT IN THE SAME FORMAT AS THE DECLARATION MUST BE RETURNED HERE
     //              (obviously with new courses in each quarter)
-    var new_schedule;
-    if (student_input.length == 0) { //No student input, create default schedule
-        new_schedule = computeRequiredCourses(current_schedule);
-        console.log(new_schedule);
-        for (quarter in current_schedule) {
-            //First, look in required course list
+    var new_schedule = window.DefaultScheduleCSE;
+    console.log(new_schedule);
+
+    if (student_input.length > 0) { //If there are changes to the default schedule, make those changes
+        new_schedule = computeNewScheduleCSE([]); //Compute default schedule first
+        for (change in student_input) {
+            //Do changes based on student_input changes
+            window[student_input[change]['function']].apply(window, student_input[change]['parameters']);
         }
-        //Name, description, units, category
-    } else {
-        new_schedule = computeNewSchedule([], current_schedule); //Compute default schedule first
-        //Now, compute the final schedule based on student_input
     }
 
     return new_schedule;  
