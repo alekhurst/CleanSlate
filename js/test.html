@@ -4,34 +4,31 @@
 		<meta charset="UTF-8">
 		<title>CleanSlate</title>
 		<style type="text/css">
-			#fall,#winter,#spring{float:left;padding:20px;}
+			#fall_quarter,#winter_quarter,#spring_quarter{float:left;padding:20px;}
 		</style>
 	</head>
     <body>
 		<div id="input">
 		</div>
 		<div id="output">
-			<div id="fall"></div>
-			<div id="winter"></div>
-			<div id="spring"></div>
+			<div id="fall_quarter"></div>
+			<div id="winter_quarter"></div>
+			<div id="spring_quarter"></div>
 		</div>
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 		<script src="../js/all_courses.js"></script>
 		<script src="../js/objects.js"></script>
 		<script src="../js/compute_new_schedule.js"></script>
         <script type="text/javascript">
-            var newSchedule = computeNewScheduleCSE([{function : 'doSomething', parameters : ['meow']}]);
-            console.log(newSchedule);
-			function printQtr(arr,qid){
+            var newSchedule = computeNewScheduleCSE([{function : 'hasCredit', parameters : ['MATH 11']}]);
+            //console.log(newSchedule);
+			for(var qid in newSchedule){
+				var arr = newSchedule[qid];
 				for(var i = 0; i < arr.length; i++){
 					document.getElementById(qid).innerHTML += "<b>"+arr[i].name+"</b><br />"
 															+ arr[i].description+"<br />";
 				}
 			}
-			printQtr(newSchedule.fall_quarter,"fall");
-			printQtr(newSchedule.winter_quarter,"winter");
-			printQtr(newSchedule.spring_quarter,"spring");
-			
         </script>
 	</body>
 </html>

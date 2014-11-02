@@ -53,11 +53,34 @@ function computeRequiredCourses(current_schedule) {
     }
     return current_schedule;
 }
-function doSomething(string) {
+function doSomething(schedule,string) {
     console.log('here');
+	console.log(schedule);
     console.log(string);
 }
 
+function getCourse(name){
+	var _name = name.split(" "); // into [dept,courseNo]
+	
+	for(var i in AllCourses){
+		for(var j in AllCourses[i]){
+			if(!AllCourses[i][j].name) continue;
+			var c = AllCourses[i][j];
+			if(c.department == _name[0] && c.course_number == _name[1]) return c;
+		}
+	}
+	return {name:"Core"}; // return by default...
+}
+
+function removeCourse(course){
+	var _course = getCourse(course);
+	var _repl = getCourse(_course.next[0]);
+	console.log(_course); console.log(_repl);
+}
+
+function hasCredit(course){
+	removeCourse(course);
+}
 /**
  * This function is initially called for CSE students when the student's input from the view has changed.
  * 
@@ -72,16 +95,18 @@ function computeNewScheduleCSE(student_input) {
     //
     // A SCHEDULE OBJECT IN THE SAME FORMAT AS THE DECLARATION MUST BE RETURNED HERE
     //              (obviously with new courses in each quarter)
-    var new_schedule = window.DefaultScheduleCSE;	// (defined in objects.js)
-    console.log(new_schedule);
+    window.WorkingSchedule = window.DefaultScheduleCSE;	// (defined in objects.js)
+    //console.log(WorkingSchedule);
 
     if (student_input.length > 0) { //If there are changes to the default schedule, make those changes
-        new_schedule = computeNewScheduleCSE([]); //Compute default schedule first
         for (change in student_input) {
             //Do changes based on student_input changes
-            window[student_input[change]['function']].apply(window, student_input[change]['parameters']);
+			var param = student_input[change]['parameters'];
+			
+			// Execute the function.
+            window[student_input[change]['function']].apply(window,param);
         }
     }
 
-    return new_schedule;  
+    return window.WorkingSchedule;  
 }

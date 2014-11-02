@@ -8,7 +8,8 @@ window.AllCourses = {
 			offering : ["fall_quarter", "winter_quarter", "spring_quarter"],
 			co_requisite : "",
 			credit : "NO",
-			category : "math_and_science"
+			category : "math_and_science",
+			next:["MATH 12"]
 		},
 
 		{
@@ -19,7 +20,8 @@ window.AllCourses = {
 			offering : ["fall_quarter", "winter_quarter", "spring_quarter"],
 			co_requisite : "",
 			credit : "NO",
-			category : "math_and_science"
+			category : "math_and_science",
+			next:["MATH 13"]
 		},
 
 		{
@@ -30,7 +32,8 @@ window.AllCourses = {
 			offering : ["fall_quarter", "winter_quarter", "spring_quarter"],
 			co_requisite : "",
 			credit : "NO",
-			category : "math_and_science"
+			category : "math_and_science",
+			next:["MATH 14"]
 		},
 
 		{
@@ -41,7 +44,8 @@ window.AllCourses = {
 			offering : ["fall_quarter", "winter_quarter", "spring_quarter"],
 			co_requisite : "",
 			credit : "NO",
-			category : "math_and_science"
+			category : "math_and_science",
+			next:["MATH 53","AMTH 106","AMTH 108"]
 		},
 
 		{
@@ -52,7 +56,8 @@ window.AllCourses = {
 			offering : ["fall_quarter", "winter_quarter", "spring_quarter"],
 			co_requisite : "",
 			credit : "NO",
-			category : "math_and_science"
+			category : "math_and_science",
+			next:["AMTH 106","AMTH 108"]
 		},
 
 		{
@@ -63,7 +68,8 @@ window.AllCourses = {
 			offering : ["fall_quarter", "winter_quarter", "spring_quarter"],
 			co_requisite : "",
 			credit : "NO",
-			category : "math_and_science"
+			category : "math_and_science",
+			next:["MATH 53","AMTH 108"]
 		},
 
 		{
@@ -74,7 +80,8 @@ window.AllCourses = {
 			offering : ["fall_quarter", "winter_quarter", "spring_quarter"],
 			co_requisite : "",
 			credit : "NO",
-			category : "math_and_science"
+			category : "math_and_science",
+			next:["MATH 53","AMTH 106"]
 		}
 	],
 
@@ -87,7 +94,8 @@ window.AllCourses = {
 			offering : ["fall_quarter"],
 			co_requisite : "LAB",
 			credit : "NO",
-			category : "math_and_science"
+			category : "math_and_science",
+			next:[]
 		},
 
 		{
@@ -98,7 +106,8 @@ window.AllCourses = {
 			offering : ["winter_quarter"],
 			co_requisite : "LAB",
 			credit : "NO",
-			category : "math_and_science"
+			category : "math_and_science",
+			next:["PHYS 32"]
 		},
 
 		{
@@ -109,7 +118,8 @@ window.AllCourses = {
 			offering : ["spring_quarter"],
 			co_requisite : "LAB",
 			credit : "NO",
-			category : "math_and_science"
+			category : "math_and_science",
+			next:["PHYS 33"]
 		},
 
 		{
@@ -133,7 +143,8 @@ window.AllCourses = {
 			offering : ["fall_quarter", "winter_quarter"],
 			co_requisite : "LAB",
 			credit : "NO",
-			category : "engineering"
+			category : "engineering",
+			next:["COEN 11"]
 		},
 
 		{
@@ -144,7 +155,8 @@ window.AllCourses = {
 			offering : ["fall_quarter", "winter_quarter", "spring_quarter"],
 			co_requisite : "LAB",
 			credit : "NO",
-			category : "engineering"
+			category : "engineering",
+			next:["COEN 12"]
 		},
 
 		{
@@ -155,7 +167,8 @@ window.AllCourses = {
 			offering : ["fall_quarter", "winter_quarter", "spring_quarter"],
 			co_requisite : "LAB",
 			credit : "NO",
-			category : "engineering"
+			category : "engineering",
+			next:["COEN 19","COEN 20","COEN 21","COEN 70"]
 		},
 
 		{
@@ -166,7 +179,8 @@ window.AllCourses = {
 			offering : ["fall_quarter", "spring_quarter"],
 			co_requisite : "",
 			credit : "NO",
-			category : "engineering"
+			category : "engineering",
+			next: []
 		},
 
 		{
@@ -177,7 +191,8 @@ window.AllCourses = {
 			offering : ["fall_quarter", "spring_quarter"],
 			co_requisite : "",
 			credit : "NO",
-			category : "engineering"
+			category : "engineering",
+			next: ["COEN 21","COEN 70"]
 		},
 
 		{
@@ -188,7 +203,8 @@ window.AllCourses = {
 			offering : ["fall_quarter", "winter_quarter", "spring_quarter"],
 			co_requisite : "LAB",
 			credit : "NO",
-			category : "engineering"
+			category : "engineering",
+			next: ["COEN 20","COEN 70"]
 		},
 
 		{
@@ -199,7 +215,8 @@ window.AllCourses = {
 			offering : ["winter_quarter"],
 			co_requisite : "LAB",
 			credit : "NO",
-			category : "engineering"
+			category : "engineering",
+			next: ["COEN 20","COEN 21"]
 		}
 	],
 
