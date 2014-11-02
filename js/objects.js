@@ -145,7 +145,7 @@ window.DefaultScheduleWDE = {
 			name : 'MATH 12',
 			description : 'Calculus II',
 			units : '4',
-			category : 'math_and_science'
+			category : 'math_and_science',
 			description : 'Critical Thinking & Writing I',
             modifiers : ''
 		},
