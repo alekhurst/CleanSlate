@@ -145,6 +145,4 @@ function computeNewScheduleCSE(student_input) {
             window[student_input[change]['function']].apply(window,param);
         }
     }
-
-    return window.WorkingSchedule;  
 }
