@@ -60,7 +60,7 @@ function doSomething(schedule,string) {
 }
 
 function getCourse(name){
-	var _name = name.split(" "); // into [dept,courseNo]
+	var _name = (name) ? name.split(" ") : ["",""]; // into [dept,courseNo]
 	
 	for(var i in AllCourses){
 		for(var j in AllCourses[i]){
@@ -69,13 +69,51 @@ function getCourse(name){
 			if(c.department == _name[0] && c.course_number == _name[1]) return c;
 		}
 	}
-	return {name:"Core"}; // return by default...
+	return AllCourses["core_courses"][0]; // return by default...
 }
 
 function removeCourse(course){
 	var _course = getCourse(course);
-	var _repl = getCourse(_course.next[0]);
-	console.log(_course); console.log(_repl);
+	var _repl = getCourse( ((_course.next) ? _course.next[0] : 'Core') );
+	
+	for(var i in window.WorkingSchedule){
+		for(var j in window.WorkingSchedule[i]){
+			var cl = window.WorkingSchedule[i][j];
+			if(!cl.name) continue; // (not a course)
+			if(cl.name == course){
+				// construct replacement
+				var replaceCourse;
+				if(_repl.name == "University Core"){
+					replaceCourse = {
+						name:_repl.name,
+						description: "Something",
+						units:'4',
+						category:_repl.category,
+						modifiers:''					
+					};
+				}
+				else{
+					replaceCourse = {
+						name:_repl.department + " " + _repl.course_number,
+						description: _repl.name,
+						units:'4',
+						category:_repl.category,
+						modifiers:''					
+					};
+					
+					// remove other instances of replacement
+					removeCourse(replaceCourse.name);
+				}
+				
+				// replace the course 
+				window.WorkingSchedule[i][j] = replaceCourse;
+				
+				// print out
+				console.log("Replaced "+_course.department + " " + _course.course_number
+								+ " with " + replaceCourse.name);
+			}
+		}
+	}
 }
 
 function hasCredit(course){

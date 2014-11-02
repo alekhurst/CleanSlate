@@ -20,7 +20,17 @@
 		<script src="../js/objects.js"></script>
 		<script src="../js/compute_new_schedule.js"></script>
         <script type="text/javascript">
-            var newSchedule = computeNewScheduleCSE([{function : 'hasCredit', parameters : ['MATH 11']}]);
+            var newSchedule = computeNewScheduleCSE([
+													{function : 'hasCredit', parameters : ['MATH 11']},
+													{function : 'hasCredit', parameters : ['MATH 12']},
+													{function : 'hasCredit', parameters : ['MATH 13']},
+													{function : 'hasCredit', parameters : ['PHYS 31']},
+													{function : 'hasCredit', parameters : ['PHYS 33']},
+													{function : 'hasCredit', parameters : ['CHEM 11']},
+													{function : 'hasCredit', parameters : ['COEN 10']},
+													{function : 'hasCredit', parameters : ['COEN 11']},
+													
+												]);
             //console.log(newSchedule);
 			for(var qid in newSchedule){
 				var arr = newSchedule[qid];
