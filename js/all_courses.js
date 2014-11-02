@@ -180,7 +180,7 @@ window.AllCourses = {
 			co_requisite : "",
 			credit : "NO",
 			category : "engineering",
-			next: []
+			next: ["COEN 21"]
 		},
 
 		{
