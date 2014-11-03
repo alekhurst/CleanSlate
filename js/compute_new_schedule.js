@@ -24,6 +24,48 @@ function getCourseId(branch, department, course_number) {
     return -1; //Not found
 }
 
+function takenBeforeOrDuringThisQuarter(course, quarter) {
+    var quarter_taken = course['quarter_taken'];
+
+    if (quarter_taken == '') //Not taken at all, return false
+        return false;
+
+    if (quarter_taken == 'spring_quarter') //Must be taken before or during this quarter
+        return true;
+    if (quarter == 'fall_quarter' && quarter_taken == 'fall_quarter')
+        return true
+    if (quarter == 'winter_quarter' && quarter_taken != 'spring_quarter')
+        return true;
+
+    return false;
+}
+/*
+ * This function returns if a course if offered this quarter (true if yes, false otherwise)
+ *
+ * @param {object} course - Course object to be tested
+ * @param {string} quarter - The current quarter ("fall_quarter", "winter_quarter", or "spring_quarter")
+ */
+function offeredThisQuarter(course, quarter) {
+    for (_quarter in course['offering']) {
+        if (quarter == course['offering'][_quarter])
+            return true;
+    }
+    return false;
+}
+
+function prereqsCompleted(course) {
+    for (prereq in course['prerequisites']) {
+        var prereq_branch = course['prerequisites'][prereq][0];
+        var prereq_department = course['prerequisites'][prereq][1];
+        var prereq_course_number = course['prerequisites'][prereq][2];
+
+        var prereq_course = getCourse(prereq_branch, getCourseId(prereq_branch, prereq_department, prereq_course_number));
+        if (prereq_course['credit'] == 'NO')
+            return false;
+    }
+    return true;
+}
+
 /* 
  * This function is called to return an array ([course, id]) of the next course and it's id in window.AllCourses
  *
@@ -37,17 +79,25 @@ function nextCourseAfter(course_data, id, quarter) {
     var department = course_data[1];
     var course_number = course_data[2];
 
-    var current_course = window.AllCourses[branch][department + course_number];
-    var current_id = getCourseId(branch, department, course_number);
+    var current_id = parseInt(id);
+    var current_course = getCourse(branch, current_id);
 
-    while (!offeredThisQuarter(window.AllCourses[branch][current_id], quarter) || !prereqsCompleted(window.AllCourses[branch][current_id]) {
+    var parent_course = parentCourseInSameDepartment(current_course);
+    if (parent_course == null) //No parent course, just increment pointer
+        current_id++;
+    else //Set current_id to element after parent's course
+        current_id = parseInt(getCourseId(parent_course['branch'], parent_course['department'], parent_course['course_number'])) + 1;
+    current_course = getCourse(branch, current_id);
+    while (!offeredThisQuarter(current_course, quarter) || !prereqsCompleted(current_course)) {
+        //If the course is not in the schedule, if it is not being offered this quarter, or the prereqs are not completed
         if (current_id == window.AllCourses[branch].length - 1) { //At the last element, no more courses
             return null;
         }
-        current_id++;
+        current_id++; //Go along branch
+        current_course = getCourse(branch, current_id); //Get next course in branch
     }
 
-    return [window.AllCourses[branch][current_id], current_id];
+    return [getCourse(branch, current_id), current_id];
 }
 
 /*
@@ -97,17 +147,17 @@ function removeCourse(course_title, quarter) {
             }
         }
     }
-    
 
     var course = window.WorkingSchedule[quarter][course_title];
     var id = getCourseId(course['branch'], course['department'], course['course_number']);
     var next_course_in_series = nextCourseAfter([course.branch, course.department, course.course_number], id, quarter);
 
     delete window.WorkingSchedule[quarter][course_title]; //Remove the course
+    window.AllCourses[course['branch']][id]['quarter_taken'] = ''; //Record that the course is no longer being taken
 
     console.log(next_course_in_series);
     if(!next_course_in_series) { //Take core course
-        var core_course = window.AllCourses['core_courses'][0];
+        var core_course = getCourse('core_courses', 0);
 
         window.WorkingSchedule[quarter]['CORE'] = {
             name : core_course['name'],
