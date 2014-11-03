@@ -83,8 +83,8 @@ function nextOffering(offerings, quarter) {
  * This function is called by removeCourse to remove a course from the default course list at a specific quarter
  * 
  * @param {Object} course_title - Title of course to be removed (i.e. "COEN10")
+ * @param {string} quarter - The current quarter ("fall_quarter", "winter_quarter", or "spring_quarter")
  */
-
 function removeCourse(course_title, quarter) {
     if (quarter == -1) //Base case, return and break out of recursion
         return;
