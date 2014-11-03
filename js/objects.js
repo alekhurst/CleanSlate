@@ -1,7 +1,7 @@
 // Initial Schedule Object
 window.DefaultScheduleCSE = {
-	fall_quarter : [
-		{
+	fall_quarter : {
+		CTW1 : {
 			name : "Critical Thinking & Writing 1",
 			department : "CTW",
 			course_number : "1",
@@ -11,7 +11,7 @@ window.DefaultScheduleCSE = {
             units : "4",
             prerequisites: [],
 		},
-		{
+		MATH9 : {
 			name : "Precalculus",
 			department : "MATH",
 			course_number : "9",
@@ -21,7 +21,7 @@ window.DefaultScheduleCSE = {
             units : "4",
             prerequisites : [],
 		},
-		{
+		CHEM11 : {
 			name : "General Chemistry 1 + Lab",
 			department : "CHEM",
 			course_number : "11",
@@ -31,7 +31,7 @@ window.DefaultScheduleCSE = {
             units : "5",
             prerequisites : [],
 		},
-		{
+		COEN10 : {
 			name : "Introduction to Programming + Lab",
 			department : "COEN",
 			course_number : "10",
@@ -41,7 +41,7 @@ window.DefaultScheduleCSE = {
             units : "5",
             prerequisites: [],
 		},
-        {
+        ENGR1 : {
             name : "Introduction to Engineering + Lab",
             department : "ENGR",
             course_number : "1",
@@ -51,10 +51,10 @@ window.DefaultScheduleCSE = {
             units : "2",
             prerequisites : [],
         },
-	],
+	},
 	
-	winter_quarter : [
-		{
+	winter_quarter : {
+		CTW2 : {
 			name : "Critical Thinking & Writing 2",
 			department : "CTW",
 			course_number : "2",
@@ -64,7 +64,7 @@ window.DefaultScheduleCSE = {
             units : "4",
             prerequisites : [["required_courses", "CTW", "1"]],
 		},	
-		{
+		MATH11 : {
 			name : "Calculus & Analytic Geometry 1",
 			department : "MATH",
 			course_number : "11",
@@ -74,7 +74,7 @@ window.DefaultScheduleCSE = {
             units : "4",
             prerequisites : [["math_courses", "MATH", "9"]],
 		},
-		{
+		PHYS31 : {
 			name : "Physics: Scientists & Engineers 1 + Lab",
 			department : "PHYS",
 			course_number : "31",
@@ -84,7 +84,7 @@ window.DefaultScheduleCSE = {
             units : "5",
             prerequisites : [["math_courses", "MATH", "11"]],
 		},
-		{
+		COEN11 : {
 			name : "Advanced Programming + Lab",
 			department : "COEN",
 			course_number : "11",
@@ -94,10 +94,10 @@ window.DefaultScheduleCSE = {
             units : "5",
             prerequisites : [["coen_courses", "COEN", "10"]],
 		},
-	],
+	},
 	
-	spring_quarter : [
-		{
+	spring_quarter : {
+		COEN19 : {
 			name : "Discrete Math",
 			department : "COEN",
 			course_number : "19",
@@ -107,7 +107,7 @@ window.DefaultScheduleCSE = {
             units : "4",
             prerequisites : [],
 		},
-		{
+		MATH12 : {
 			name : "Calculus & Analytic Geometry 2",
 			department : "MATH",
 			course_number : "12",
@@ -117,7 +117,7 @@ window.DefaultScheduleCSE = {
             units : "4",
             prerequisites : [["math_courses", "MATH", "11"]],
 		},
-		{
+		PHYS32 : {
 			name : "Physics: Scientists & Engineers 2 + Lab",
 			department : "PHYS",
 			course_number : "32",
@@ -127,7 +127,7 @@ window.DefaultScheduleCSE = {
             units : "5",
             prerequisites : [["math_courses", "MATH", "11"], ["science_courses", "PHYS", "31"]],
 		},
-		{
+		COEN12 : {
 			name : "Abstract Data Types and Data Structures + Lab",
 			department : "COEN",
 			course_number : "12",
@@ -137,7 +137,7 @@ window.DefaultScheduleCSE = {
             units : "5",
             prerequisites : [["coen_courses", "COEN", "11"]],
 		},
-	]
+	}
 };
 
 window.DefaultScheduleWDE = {
