@@ -9,8 +9,8 @@ window.DefaultScheduleCSE = {
             
 		},
 		{
-			name : 'MATH 11',
-			description : 'Calculus I',
+			name : 'MATH 9',
+			description : 'Precalculus',
 			units : '4',
 			category : 'math_and_science',
             
@@ -47,8 +47,8 @@ window.DefaultScheduleCSE = {
             
 		},
 		{
-			name : 'MATH 12',
-			description : 'Calculus II',
+			name : 'MATH 11',
+			description : 'Calculus I',
 			units : '4',
 			category : 'math_and_science',
             
@@ -78,8 +78,8 @@ window.DefaultScheduleCSE = {
             
 		},
 		{
-			name : 'MATH 13',
-			description : 'Calculus III',
+			name : 'MATH 12',
+			description : 'Calculus II',
 			units : '4',
 			category : 'math_and_science',
             
@@ -104,8 +104,8 @@ window.DefaultScheduleCSE = {
 window.DefaultScheduleWDE = {
 	fall_quarter : [
 		{
-			name : 'MATH 11',
-			description : 'Calculus I',
+			name : 'MATH 9',
+			description : 'Precalculus',
 			units : '4',
 			category : 'math_and_science',
             
@@ -140,8 +140,8 @@ window.DefaultScheduleWDE = {
 	
 	winter_quarter : [
 		{
-			name : 'MATH 12',
-			description : 'Calculus II',
+			name : 'MATH 11',
+			description : 'Calculus I',
 			units : '4',
 			category : 'math_and_science',
 		},
@@ -167,8 +167,8 @@ window.DefaultScheduleWDE = {
 	
 	spring_quarter : [
 		{
-			name : 'MATH 13',
-			description : 'Calculus III',
+			name : 'MATH 12',
+			description : 'Calculus II',
 			units : '4',
 			category : 'math_and_science',
 		},
