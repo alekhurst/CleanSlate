@@ -33,28 +33,19 @@
 					</ul>
 				</nav>
 				<h2 id="input-label">AP Credit: </h2>
-				<select>
-					<option> Test 1 </option>
-					<option> Test 2 </option>
-					<option> Test 3 </option>
-					<option> Test 4 </option>
-					<option> Test 5 </option>
+				<select ng-model="currently_viewing_ap_test.id" ng-options="APTest.id as APTest.name for APTest in APTests">
 				</select>
-				<p id="selection-description"> Differentiation and applications, introduction to integration</p>
-				<ul id="ap-test-score">
+				<p id="selection-description" ng-model="currently_viewing_ap_test.description"> {{ APTests[ currently_viewing_ap_test.id ].description }}</p>
+				<ul id="ap-test-score" ng-show="currently_viewing_ap_test.id >= 0">
 					<li class="selected-ap-test-score">3</li>
 					<li>4</li>
 					<li>5</li>
 				</ul>
-				<button id="add-selection">Add</button>
+				<button id="add-selection" ng-show="currently_viewing_ap_test.id >= 0">Add</button>
 				<div id="added-selections">
 					<h2>Your Added AP Scores</h2>
 					<ul>
-						<li>Chemistry (Score: 4)<button>Remove</button></li>
-						<li>Biology (Score: 5)<button>Remove</button></li>
-						<li>Calculus AB (Score: 5)<button>Remove</button></li>
-						<li>Chemistry (Score: 4)<button>Remove</button></li>
-						<li>Biology (Score: 5)<button>Remove</button></li>
+						<li ng-repeat="ap_test in StudentInput.ap_credit">{{ APTests[ currently_viewing_ap_test.id ].name}}</li>
 					</ul>
 				</div>
 			</section>
@@ -68,21 +59,21 @@
 				<ul id="courses">
 					<ul id="fall-quarter" class="quarter">
 						<li class="course" ng-class="assignCSSCourseClass()" ng-repeat="course in Schedule.fall_quarter">
-							<h3 class="course-title">{{course.name}}</h3>
+							<h3 class="course-title">{{course.department}} {{course.course_number}}</h3>
 							<h6 class="course-units">{{course.units}} units</h6>
 							<h6 class="course-description">{{course.description}}</h6>
 						</li>
 					</ul>
 					<ul id="winter-quarter" class="quarter">
 						<li class="course" ng-class="assignCSSCourseClass()" ng-repeat="course in Schedule.winter_quarter">
-							<h3 class="course-title">{{course.name}}</h3>
+							<h3 class="course-title">{{course.department}} {{course.course_number}}</h3>
 							<h6 class="course-units">{{course.units}} units</h6>
 							<h6 class="course-description">{{course.description}}</h6>
 						</li>
 					</ul>
 					<ul id="spring-quarter" class="quarter">
 						<li class="course" ng-class="assignCSSCourseClass()" ng-repeat="course in Schedule.spring_quarter">
-							<h3 class="course-title">{{course.name}}</h3>
+							<h3 class="course-title">{{course.department}} {{course.course_number}}</h3>
 							<h6 class="course-units">{{course.units}} units</h6>
 							<h6 class="course-description">{{course.description}}</h6>
 						</li>
@@ -104,5 +95,7 @@
 		<script src="js/view_controller.js"></script>
 		<script src="js/objects.js"></script>
 		<script src="js/compute_new_schedule.js"></script>
+		<script src="js/ap_tests.js"></script>
+		<script src="js/all_courses.js"></script>
 	</body>
 </html>
