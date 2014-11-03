@@ -16,14 +16,14 @@ window.DefaultScheduleCSE = {
             
 		},
 		{
-			name : 'CHEM 11+L',
+			name : 'CHEM 11',
 			description : 'General Chemistry I + Lab',
 			units : '5',
 			category : 'math_and_science',
             
 		},
 		{
-			name : 'COEN 10+L',
+			name : 'COEN 10',
 			description : 'Introduction to Programming + Lab',
 			units : '5',
 			category: 'engineering',
@@ -54,14 +54,14 @@ window.DefaultScheduleCSE = {
             
 		},
 		{
-			name : 'PHYS 31+L',
+			name : 'PHYS 31',
 			description : 'Physics I + Lab',
 			units : '4',
 			category : 'math_and_science',
             
 		},
 		{
-			name : 'COEN 11+L',
+			name : 'COEN 11',
 			description : 'Advanced Programming + Lab',
 			units : '5',
 			category: 'engineering',
@@ -85,14 +85,14 @@ window.DefaultScheduleCSE = {
             
 		},
 		{
-			name : 'PHYS 32+L',
+			name : 'PHYS 32',
 			description : 'Physics II + Lab',
 			units : '5',
 			category : 'math_and_science',
             
 		},
 		{
-			name : 'COEN 12+L',
+			name : 'COEN 12',
 			description : 'Data Structures + Lab',
 			units : '5',
 			category: 'engineering',
@@ -111,7 +111,7 @@ window.DefaultScheduleWDE = {
             
 		},
 		{
-			name : 'CHEM 11+L',
+			name : 'CHEM 11',
 			description : 'General Chemistry I + Lab',
 			units : '5',
 			category : 'math_and_science',
@@ -125,7 +125,7 @@ window.DefaultScheduleWDE = {
             
 		},
 		{
-			name : 'COEN 10+L',
+			name : 'COEN 10',
 			description : 'Introduction to Programming + Lab',
 			units : '5',
 			category: 'engineering',
@@ -158,7 +158,7 @@ window.DefaultScheduleWDE = {
 			category : 'humanities_and_social_science',
 		},
 		{
-			name : 'COEN 11+L',
+			name : 'COEN 11',
 			description : 'Advanced Programming + Lab',
 			units : '5',
 			category: 'engineering',
@@ -185,7 +185,7 @@ window.DefaultScheduleWDE = {
 			category : 'humanities_and_social_science',
 		},
 		{
-			name : 'COEN 12+L',
+			name : 'COEN 12',
 			description : 'Data Structures',
 			units : '5',
 			category: 'engineering',
