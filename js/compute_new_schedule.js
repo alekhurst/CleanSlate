@@ -28,26 +28,26 @@ function getCourseId(branch, department, course_number) {
  * This function is called to return an array ([course, id]) of the next course and it's id in window.AllCourses
  *
  * @param {array} course_data - course data array of course to remove ([branch, department, course_number])
+ * @param {int} id - id of course in window.AllClasses[branch]
  * @param {string} quarter - Current quarter to check after ("fall_quarter", "winter_quarter", or "spring_quarter")
  */
-function nextCourseAfter(course_data, quarter) {
+function nextCourseAfter(course_data, id, quarter) {
+    //NOT DONE YET
     var branch = course_data[0];
     var department = course_data[1];
     var course_number = course_data[2];
 
-    for (course in window.AllCourses[branch]) {
-        var prereq = window.AllCourses[branch][course]['prerequisites'];
-        if (prereq.length == 0) { //No prerequisites, meaning this is not the next course in the series
-            continue;
+    var current_course = window.AllCourses[branch][department + course_number];
+    var current_id = getCourseId(branch, department, course_number);
+
+    while (!offeredThisQuarter(window.AllCourses[branch][current_id], quarter) || !prereqsCompleted(window.AllCourses[branch][current_id]) {
+        if (current_id == window.AllCourses[branch].length - 1) { //At the last element, no more courses
+            return null;
         }
-        else if (prereq.length == 1 && prereq[0][0] == branch && prereq[0][1] == department && prereq[0][2] == course_number) { //course_data is the only prereq
-            //Only one prerequisite and it is satisfied, so this is the next course 
-            
-            var id = getCourseId(branch, window.AllCourses[branch][course]['department'], window.AllCourses[branch][course]['course_number']);
-            return [window.AllCourses[branch][id], id];
-        } else if (prereq.length > 1) { //More than one prerequisite, check if each prereq is satisfied
-        }
+        current_id++;
     }
+
+    return [window.AllCourses[branch][current_id], current_id];
 }
 
 /*
@@ -100,29 +100,13 @@ function removeCourse(course_title, quarter) {
     
 
     var course = window.WorkingSchedule[quarter][course_title];
-    var next_course_in_series = nextCourseAfter([course.branch, course.department, course.course_number], quarter);
+    var id = getCourseId(course['branch'], course['department'], course['course_number']);
+    var next_course_in_series = nextCourseAfter([course.branch, course.department, course.course_number], id, quarter);
 
     delete window.WorkingSchedule[quarter][course_title]; //Remove the course
 
-    if (next_course_in_series[0] != null) { //Take the next course in the series, if there is one
-        window.AllCourses[course.branch][next_course_in_series[1]]['credit'] = 'YES'; //This course is now to be taken, give student credit
-
-        window.WorkingSchedule[quarter][next_course_in_series[0]['department'] + next_course_in_series[0]['course_number']] = {
-            name : next_course_in_series[0]['name'],
-            department : next_course_in_series[0]['department'],
-            course_number : next_course_in_series[0]['course_number'],
-            description : next_course_in_series[0]['description'],
-            branch : course.branch,
-            offering : next_course_in_series[0]['offering'],
-            category : next_course_in_series[0]['category'],
-            units : next_course_in_series[0]['units'],
-            prerequisites : next_course_in_series[0]['prerequisites'],
-        };
-        var new_course = window.WorkingSchedule[quarter][next_course_in_series[0]['department'] + next_course_in_series[0]['course_number']];
-        var next_offering = nextOffering(new_course['offering'], quarter);
-
-        removeCourse(new_course['department'] + new_course['course_number'], next_offering); //Recursively "slide down" next offered course
-    } else { //Take core class
+    console.log(next_course_in_series);
+    if(!next_course_in_series) { //Take core course
         var core_course = window.AllCourses['core_courses'][0];
 
         window.WorkingSchedule[quarter]['CORE'] = {
@@ -135,6 +119,20 @@ function removeCourse(course_title, quarter) {
             category : core_course['category'],
             units : core_course['units'],
             prerequisites : core_course['prerequisites'],
+        };
+    } else { //Take the next course in the series, if there is one
+        window.AllCourses[course.branch][next_course_in_series[1]]['credit'] = 'YES'; //This course is now to be taken, give student credit
+
+        window.WorkingSchedule[quarter][next_course_in_series[0]['department'] + next_course_in_series[0]['course_number']] = {
+            name : next_course_in_series[0]['name'],
+            department : next_course_in_series[0]['department'],
+            course_number : next_course_in_series[0]['course_number'],
+            description : next_course_in_series[0]['description'],
+            branch : course.branch,
+            offering : next_course_in_series[0]['offering'],
+            category : next_course_in_series[0]['category'],
+            units : next_course_in_series[0]['units'],
+            prerequisites : next_course_in_series[0]['prerequisites'],
         };
     }
 }
