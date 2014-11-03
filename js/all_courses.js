@@ -1,6 +1,18 @@
 window.AllCourses = {
 	math_courses : [
 		{
+			name : "Precalculus",
+			department : "MATH",
+			course_number : "9",
+			description : "something",
+			offering : ["fall_quarter", "winter_quarter", "spring_quarter"],
+			credit : "NO",
+			category : "math_and_science",
+            units : "4",
+            prerequisites : [],
+		},
+
+		{
 			name : "Calculus & Analytic Geometry 1",
 			department : "MATH",
 			course_number : "11",
@@ -9,6 +21,7 @@ window.AllCourses = {
 			credit : "NO",
 			category : "math_and_science",
             units : "4",
+            prerequisites : [["math_courses", "MATH", "9"]],
 		},
 
 		{
@@ -20,6 +33,7 @@ window.AllCourses = {
 			credit : "NO",
 			category : "math_and_science",
             units : "4",
+            prerequisites : [["math_courses", "MATH", "11"]],
 		},
 
 		{
@@ -31,6 +45,7 @@ window.AllCourses = {
 			credit : "NO",
 			category : "math_and_science",
             units : "4",
+            prerequisites : [["math_courses", "MATH", "12"]],
 		},
 
 		{
@@ -42,6 +57,7 @@ window.AllCourses = {
 			credit : "NO",
 			category : "math_and_science",
             units : "4",
+            prerequisites : [["math_courses","MATH","13"]],
 		},
 
 		{
@@ -53,6 +69,7 @@ window.AllCourses = {
 			credit : "NO",
 			category : "math_and_science",
             units : "4",
+            prerequisites : [["math_courses","MATH","13"]],
 		},
 
 		{
@@ -64,6 +81,7 @@ window.AllCourses = {
 			credit : "NO",
 			category : "math_and_science",
             units : "4",
+            prerequisites : [["math_courses","MATH","14"]],
 		},
 
 		{
@@ -75,6 +93,8 @@ window.AllCourses = {
 			credit : "NO",
 			category : "math_and_science",
             units : "4",
+            prerequisites : [["math_courses","MATH","14"]],
+		},
 		}
 	],
 
@@ -88,6 +108,8 @@ window.AllCourses = {
 			credit : "NO",
 			category : "math_and_science",
             units : "5",
+            prerequisites : [],
+		},
 		},
 
 		{
@@ -99,6 +121,7 @@ window.AllCourses = {
 			credit : "NO",
 			category : "math_and_science",
             units : "5",
+            prerequisites : [["math_courses","MATH","11"]],
 		},
 
 		{
@@ -110,6 +133,7 @@ window.AllCourses = {
 			credit : "NO",
 			category : "math_and_science",
             units : "5",
+            prerequisites : [["math_courses","MATH","11"], ["science_courses", "PHYS", "31"]],
 		},
 
 		{
@@ -121,6 +145,7 @@ window.AllCourses = {
 			credit : "NO",
 			category : "math_and_science",
             units : "5",
+            prerequisites : [["math_courses","MATH","12"], ["science_courses", "PHYS", "32"]],
 		}
 	],
 
@@ -134,6 +159,7 @@ window.AllCourses = {
 			credit : "NO",
 			category : "engineering",
             units : "5",
+            prerequisites: [],
 		},
 
 		{
@@ -145,6 +171,7 @@ window.AllCourses = {
 			credit : "NO",
 			category : "engineering",
             units : "5",
+            prerequisites: [["coen_courses", "COEN", "10"]],
 		},
 
 		{
@@ -156,6 +183,7 @@ window.AllCourses = {
 			credit : "NO",
 			category : "engineering",
             units : "5",
+            prerequisites: [["coen_courses", "COEN", "11"]],
 		},
 
 		{
@@ -167,6 +195,7 @@ window.AllCourses = {
 			credit : "NO",
 			category : "engineering",
             units : "4",
+            prerequisites: [],
 		},
 
 		{
@@ -178,6 +207,7 @@ window.AllCourses = {
 			credit : "NO",
 			category : "engineering",
             units : "5",
+            prerequisites: [["coen_courses", "COEN", "11"]],
 		},
 
 		{
@@ -189,6 +219,7 @@ window.AllCourses = {
 			credit : "NO",
 			category : "engineering",
             units : "5",
+            prerequisites: [],
 		},
 
 		{
@@ -200,6 +231,7 @@ window.AllCourses = {
 			credit : "NO",
 			category : "engineering",
             units : "5",
+            prerequisites: [["coen_courses", "COEN", "12"], ["coen_courses", "COEN", "19"]],
 		}
 	],
 
@@ -213,6 +245,7 @@ window.AllCourses = {
 			credit : "NO",
 			category : "humanities_and_social_science",
             units : "4",
+            prerequisites: [],
 		}
 	],
 
@@ -226,6 +259,7 @@ window.AllCourses = {
 			credit : "NO",
 			category : "humanities_and_social_science",
             units : "4",
+            prerequisites: [],
 		},
 
 		{
@@ -237,6 +271,7 @@ window.AllCourses = {
 			credit : "NO",
 			category : "humanities_and_social_science",
             units : "4",
+            prerequisites: [["required_courses", "CTW", "1"]],
 		},	
 
 		{
@@ -248,6 +283,7 @@ window.AllCourses = {
 			credit : "NO",
 			category : "humanities_and_social_science",
             units : "4",
+            prerequisites: [],
 		},
 
 		{
@@ -259,6 +295,7 @@ window.AllCourses = {
 			credit : "NO",
 			category : "humanities_and_social_science",
             units : "4",
+            prerequisites: [["required_courses", "C&I", "1"]],
 		}
 	]
 }
