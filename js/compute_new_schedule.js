@@ -87,9 +87,12 @@ function nextCourseAfter(course_data, id, quarter) {
         current_id++;
     else //Set current_id to element after parent's course
         current_id = parseInt(getCourseId(parent_course['branch'], parent_course['department'], parent_course['course_number'])) + 1;
+
     current_course = getCourse(branch, current_id);
-    while (!offeredThisQuarter(current_course, quarter) || !prereqsCompleted(current_course)) {
-        //If the course is not in the schedule, if it is not being offered this quarter, or the prereqs are not completed
+
+    while (takenBeforeOrDuringThisQuarter(current_course, quarter) || !offeredThisQuarter(current_course, quarter) || !prereqsCompleted(current_course)) {
+        //If the course has been taken before, if the course is not being offered this quarter, or the prereqs are not completed
+        //This means the course is not the next one to take, so continue along the branch and look for a different one to take
         if (current_id == window.AllCourses[branch].length - 1) { //At the last element, no more courses
             return null;
         }
