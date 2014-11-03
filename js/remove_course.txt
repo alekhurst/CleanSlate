@@ -1,4 +1,25 @@
-function remove course(course)
+function_remove_course(course, quarter)
 {
+
+	if (quarter == null)
+	{
+		return;
+	}
 	
+	course.credit = "YES";
+
+	var newCourse = course;
+
+	while (course.next.isOfferredThisQuarter == false && course.preReqs == fulfilled) {
+		newCourse = newCourse.next
+	}
+
+	if (newCourse = null) {
+		newCourse = CORE;
+		return;
+	}	
+
+	//newCourse should be set to either a non-CORE class or a CORE class
+
+	function_remove_course(newCourse, quarter.next);
 }
