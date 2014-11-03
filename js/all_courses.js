@@ -82,7 +82,7 @@ window.AllCourses = {
 		{
 			name : "General Chemistry 1 + Lab",
 			department : "CHEM",
-			course_number : "11+L",
+			course_number : "11",
 			description : "something",
 			offering : ["fall_quarter"],
 			credit : "NO",
@@ -93,7 +93,7 @@ window.AllCourses = {
 		{
 			name : "Physics: Scientists & Engineers 1 + Lab",
 			department : "PHYS",
-			course_number : "31+L",
+			course_number : "31",
 			description : "something",
 			offering : ["winter_quarter"],
 			credit : "NO",
@@ -104,7 +104,7 @@ window.AllCourses = {
 		{
 			name : "Physics: Scientists & Engineers 2 + Lab",
 			department : "PHYS",
-			course_number : "32+L",
+			course_number : "32",
 			description : "something",
 			offering : ["spring_quarter"],
 			credit : "NO",
@@ -115,7 +115,7 @@ window.AllCourses = {
 		{
 			name : "Physics: Scientists & Engineers 3 + Lab",
 			department : "PHYS",
-			course_number : "33+L",
+			course_number : "33",
 			description : "something",
 			offering : ["fall_quarter"],
 			credit : "NO",
@@ -128,7 +128,7 @@ window.AllCourses = {
 		{
 			name : "Introduction to Programming + Lab",
 			department : "COEN",
-			course_number : "10+L",
+			course_number : "10",
 			description : "something",
 			offering : ["fall_quarter", "winter_quarter"],
 			credit : "NO",
@@ -139,7 +139,7 @@ window.AllCourses = {
 		{
 			name : "Advanced Programming + Lab",
 			department : "COEN",
-			course_number : "11+L",
+			course_number : "11",
 			description : "something",
 			offering : ["fall_quarter", "winter_quarter", "spring_quarter"],
 			credit : "NO",
@@ -150,7 +150,7 @@ window.AllCourses = {
 		{
 			name : "Abstract Data Types and Data Structures + Lab",
 			department : "COEN",
-			course_number : "12+L",
+			course_number : "12",
 			description : "something",
 			offering : ["fall_quarter", "winter_quarter", "spring_quarter"],
 			credit : "NO",
@@ -172,7 +172,7 @@ window.AllCourses = {
 		{
 			name : "Introduction to Embedded Systems + Lab",
 			department : "COEN",
-			course_number : "20+L",
+			course_number : "20",
 			description : "something",
 			offering : ["fall_quarter", "spring_quarter"],
 			credit : "NO",
@@ -183,7 +183,7 @@ window.AllCourses = {
 		{
 			name : "Introduction to Logic Design + Lab",
 			department : "COEN",
-			course_number : "21+L",
+			course_number : "21",
 			description : "something",
 			offering : ["fall_quarter", "winter_quarter", "spring_quarter"],
 			credit : "NO",
@@ -194,7 +194,7 @@ window.AllCourses = {
 		{
 			name : "Formal Specification and Advanced Data Structures + Lab",
 			department : "COEN",
-			course_number : "70+L",
+			course_number : "70",
 			description : "something",
 			offering : ["winter_quarter"],
 			credit : "NO",
