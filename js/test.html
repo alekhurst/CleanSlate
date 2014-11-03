@@ -18,17 +18,22 @@
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 		<script src="../js/all_courses.js"></script>
 		<script src="../js/objects.js"></script>
+		<script src="../js/ap_tests.js"></script>
 		<script src="../js/compute_new_schedule.js"></script>
         <script type="text/javascript">
+            console.log(window.WorkingSchedule);
             computeNewScheduleCSE([
-									{function : 'hasCredit', parameters : ['MATH 11']},
-									{function : 'hasCredit', parameters : ['MATH 12']},
-									{function : 'hasCredit', parameters : ['MATH 13']},
-									{function : 'hasCredit', parameters : ['PHYS 31']},
-									{function : 'hasCredit', parameters : ['PHYS 33']},
-									{function : 'hasCredit', parameters : ['CHEM 11']},
-									{function : 'hasCredit', parameters : ['COEN 10']},
-									{function : 'hasCredit', parameters : ['COEN 11']},
+                {function : 'removeCourse', parameters : ['MATH9']},
+                {function : 'removeCourse', parameters : ['MATH11']},
+                {function : 'removeCourse', parameters : ['MATH12']},
+//									{function : 'hasCredit', parameters : ['MATH 11']},
+//									{function : 'hasCredit', parameters : ['MATH 12']},
+//									{function : 'hasCredit', parameters : ['MATH 13']},
+//									{function : 'hasCredit', parameters : ['PHYS 31']},
+//									{function : 'hasCredit', parameters : ['PHYS 33']},
+//									{function : 'hasCredit', parameters : ['CHEM 11']},
+//									{function : 'hasCredit', parameters : ['COEN 10']},
+//									{function : 'hasCredit', parameters : ['COEN 11']},
 									
 								]);
             console.log(window.WorkingSchedule);

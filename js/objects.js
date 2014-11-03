@@ -283,26 +283,4 @@ window.Steps = [
 	}
 ];
 
-window.APTests = [
-	{
-		name: 'AP Calculus AB',
-		description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
-	},
-	{
-		name: 'AP Calculus BC',
-		description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
-	},
-	{
-		name: 'AP Biology',
-		description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
-	},
-	{
-		name: 'AP Chemistry',
-		description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
-	},
-	{
-		name: 'AP Computer Science',
-		description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
-	}
-]
-
+window.WorkingSchedule = DefaultScheduleCSE;
