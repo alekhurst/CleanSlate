@@ -6,7 +6,7 @@ window.AllCourses = {
 			course_number : "9",
 			description : "something",
 			offering : ["fall_quarter", "winter_quarter", "spring_quarter"],
-			credit : "NO",
+			credit : "YES",
 			category : "math_and_science",
             units : "4",
             prerequisites : [],
@@ -18,7 +18,7 @@ window.AllCourses = {
 			course_number : "11",
 			description : "something",
 			offering : ["fall_quarter", "winter_quarter", "spring_quarter"],
-			credit : "NO",
+			credit : "YES",
 			category : "math_and_science",
             units : "4",
             prerequisites : [["math_courses", "MATH", "9"]],
@@ -30,7 +30,7 @@ window.AllCourses = {
 			course_number : "12",
 			description : "something",
 			offering : ["fall_quarter", "winter_quarter", "spring_quarter"],
-			credit : "NO",
+			credit : "YES",
 			category : "math_and_science",
             units : "4",
             prerequisites : [["math_courses", "MATH", "11"]],
@@ -95,7 +95,6 @@ window.AllCourses = {
             units : "4",
             prerequisites : [["math_courses", "MATH", "14"]],
 		},
-		}
 	],
 
 	science_courses : [
@@ -105,11 +104,10 @@ window.AllCourses = {
 			course_number : "11",
 			description : "something",
 			offering : ["fall_quarter"],
-			credit : "NO",
+			credit : "YES",
 			category : "math_and_science",
             units : "5",
             prerequisites : [],
-		},
 		},
 
 		{
@@ -118,7 +116,7 @@ window.AllCourses = {
 			course_number : "31",
 			description : "something",
 			offering : ["winter_quarter"],
-			credit : "NO",
+			credit : "YES",
 			category : "math_and_science",
             units : "5",
             prerequisites : [["math_courses", "MATH", "11"]],
@@ -130,7 +128,7 @@ window.AllCourses = {
 			course_number : "32",
 			description : "something",
 			offering : ["spring_quarter"],
-			credit : "NO",
+			credit : "YES",
 			category : "math_and_science",
             units : "5",
             prerequisites : [["math_courses", "MATH", "11"], ["science_courses", "PHYS", "31"]],
@@ -150,16 +148,28 @@ window.AllCourses = {
 	],
 
 	coen_courses : [
+        {
+            name : "Introduction to Engineering + Lab",
+            department : "ENGR",
+            course_number : "1",
+            description : "something",
+            offering : ["fall_quarter", "winter_quarter"],
+            credit : "YES",
+            category : "engineering",
+            units : "2",
+            prerequisites : [],
+        },
+
 		{
 			name : "Introduction to Programming + Lab",
 			department : "COEN",
 			course_number : "10",
 			description : "something",
 			offering : ["fall_quarter", "winter_quarter"],
-			credit : "NO",
+			credit : "YES",
 			category : "engineering",
             units : "5",
-            prerequisites: [],
+            prerequisites : [],
 		},
 
 		{
@@ -168,10 +178,10 @@ window.AllCourses = {
 			course_number : "11",
 			description : "something",
 			offering : ["fall_quarter", "winter_quarter", "spring_quarter"],
-			credit : "NO",
+			credit : "YES",
 			category : "engineering",
             units : "5",
-            prerequisites: [["coen_courses", "COEN", "10"]],
+            prerequisites : [["coen_courses", "COEN", "10"]],
 		},
 
 		{
@@ -180,10 +190,10 @@ window.AllCourses = {
 			course_number : "12",
 			description : "something",
 			offering : ["fall_quarter", "winter_quarter", "spring_quarter"],
-			credit : "NO",
+			credit : "YES",
 			category : "engineering",
             units : "5",
-            prerequisites: [["coen_courses", "COEN", "11"]],
+            prerequisites : [["coen_courses", "COEN", "11"]],
 		},
 
 		{
@@ -192,10 +202,10 @@ window.AllCourses = {
 			course_number : "19",
 			description : "something",
 			offering : ["fall_quarter", "spring_quarter"],
-			credit : "NO",
+			credit : "YES",
 			category : "engineering",
             units : "4",
-            prerequisites: [],
+            prerequisites : [],
 		},
 
 		{
@@ -207,7 +217,7 @@ window.AllCourses = {
 			credit : "NO",
 			category : "engineering",
             units : "5",
-            prerequisites: [["coen_courses", "COEN", "11"]],
+            prerequisites : [["coen_courses", "COEN", "11"]],
 		},
 
 		{
@@ -219,7 +229,7 @@ window.AllCourses = {
 			credit : "NO",
 			category : "engineering",
             units : "5",
-            prerequisites: [],
+            prerequisites : [],
 		},
 
 		{
@@ -231,7 +241,7 @@ window.AllCourses = {
 			credit : "NO",
 			category : "engineering",
             units : "5",
-            prerequisites: [["coen_courses", "COEN", "12"], ["coen_courses", "COEN", "19"]],
+            prerequisites : [["coen_courses", "COEN", "12"], ["coen_courses", "COEN", "19"]],
 		}
 	],
 
@@ -242,10 +252,10 @@ window.AllCourses = {
 			course_number : "",
 			description : "something",
 			offering : ["fall_quarter", "winter_quarter", "spring_quarter"],
-			credit : "NO",
+			credit : "",
 			category : "humanities_and_social_science",
             units : "4",
-            prerequisites: [],
+            prerequisites : [],
 		}
 	],
 
@@ -256,10 +266,10 @@ window.AllCourses = {
 			course_number : "1",
 			description : "Critical Thinking & Writing I",
 			offering : ["fall_quarter", "winter_quarter"],
-			credit : "NO",
+			credit : "YES",
 			category : "humanities_and_social_science",
             units : "4",
-            prerequisites: [],
+            prerequisites : [],
 		},
 
 		{
@@ -268,10 +278,10 @@ window.AllCourses = {
 			course_number : "2",
 			description : "something",
 			offering : ["winter_quarter", "spring_quarter"],
-			credit : "NO",
+			credit : "YES",
 			category : "humanities_and_social_science",
             units : "4",
-            prerequisites: [["required_courses", "CTW", "1"]],
+            prerequisites : [["required_courses", "CTW", "1"]],
 		},	
 
 		{
@@ -280,10 +290,10 @@ window.AllCourses = {
 			course_number : "1",
 			description : "something",
 			offering : ["fall_quarter", "winter_quarter"],
-			credit : "NO",
+			credit : "YES",
 			category : "humanities_and_social_science",
             units : "4",
-            prerequisites: [],
+            prerequisites : [],
 		},
 
 		{
@@ -292,10 +302,10 @@ window.AllCourses = {
 			course_number : "2",
 			description : "something",
 			offering : ["winter_quarter", "spring_quarter"],
-			credit : "NO",
+			credit : "YES",
 			category : "humanities_and_social_science",
             units : "4",
-            prerequisites: [["required_courses", "C&I", "1"]],
+            prerequisites : [["required_courses", "C&I", "1"]],
 		}
 	]
 }
