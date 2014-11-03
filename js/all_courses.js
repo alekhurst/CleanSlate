@@ -57,7 +57,7 @@ window.AllCourses = {
 			credit : "NO",
 			category : "math_and_science",
             units : "4",
-            prerequisites : [["math_courses","MATH","13"]],
+            prerequisites : [["math_courses", "MATH", "13"]],
 		},
 
 		{
@@ -69,7 +69,7 @@ window.AllCourses = {
 			credit : "NO",
 			category : "math_and_science",
             units : "4",
-            prerequisites : [["math_courses","MATH","13"]],
+            prerequisites : [["math_courses", "MATH", "13"]],
 		},
 
 		{
@@ -81,7 +81,7 @@ window.AllCourses = {
 			credit : "NO",
 			category : "math_and_science",
             units : "4",
-            prerequisites : [["math_courses","MATH","14"]],
+            prerequisites : [["math_courses", "MATH", "14"]],
 		},
 
 		{
@@ -93,7 +93,7 @@ window.AllCourses = {
 			credit : "NO",
 			category : "math_and_science",
             units : "4",
-            prerequisites : [["math_courses","MATH","14"]],
+            prerequisites : [["math_courses", "MATH", "14"]],
 		},
 		}
 	],
@@ -121,7 +121,7 @@ window.AllCourses = {
 			credit : "NO",
 			category : "math_and_science",
             units : "5",
-            prerequisites : [["math_courses","MATH","11"]],
+            prerequisites : [["math_courses", "MATH", "11"]],
 		},
 
 		{
@@ -133,7 +133,7 @@ window.AllCourses = {
 			credit : "NO",
 			category : "math_and_science",
             units : "5",
-            prerequisites : [["math_courses","MATH","11"], ["science_courses", "PHYS", "31"]],
+            prerequisites : [["math_courses", "MATH", "11"], ["science_courses", "PHYS", "31"]],
 		},
 
 		{
@@ -145,7 +145,7 @@ window.AllCourses = {
 			credit : "NO",
 			category : "math_and_science",
             units : "5",
-            prerequisites : [["math_courses","MATH","12"], ["science_courses", "PHYS", "32"]],
+            prerequisites : [["math_courses", "MATH", "12"], ["science_courses", "PHYS", "32"]],
 		}
 	],
 
