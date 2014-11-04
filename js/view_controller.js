@@ -33,6 +33,7 @@ CleanSlateApp.controller('CleanSlateController', function ($scope) {
 	/* View Controller Variable Initialization */
 	$scope.CurrentStep = window.Steps[0];
 	$scope.APTests = window.APTests;
+	$scope.TransferCredit = window.TransferCredit;
 	$scope.currently_viewing_ap_test.score = 3;
 
 	/* Event listeners */
