@@ -261,7 +261,7 @@ function removeCourse(course_title, quarter) {
 
 function preComputeScheduleTransferCSE(transfer_credit)
 {
-    computeNewScheduleCSE([ { function : "removeCourse", parameters : [window.TransferCredit[transfer_credit.id].fulfillment[0][1] + window.TransferCredit[transfer_credit.id].fulfillment[0][2]] } ])
+    computeNewScheduleCSE([ { function : "removeCourse", parameters : [window.TransferCredit[transfer_credit.id].fulfillment[1] + window.TransferCredit[transfer_credit.id].fulfillment[2]] } ])
 
     return computeNewScheduleCSE( [ ] );
 }
