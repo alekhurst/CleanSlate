@@ -10,6 +10,8 @@ BUGS.txt
 **[MINOR]** ENGR1 should be added to the quarter with the least amount of labs
     - This should possibly be implemented in a "fixer" function, called after the regular schedule maker function. This will not only put ENGR in a good place, but also deal with LEAD/Honors courses
 
+**[MINOR]** Logic to Add Classes Back ? (Or Reset?)	
+	
 *[OK DEMO]* Not Printer Friendly
 
 *[OK DEMO]* Console Log Clutter

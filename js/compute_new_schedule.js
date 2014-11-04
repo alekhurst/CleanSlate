@@ -265,6 +265,23 @@ function removeCourse(course_title, quarter) {
         removeCourse(next_course['department'] + next_course['course_number'], nextOffering(next_course['offering'], quarter));
     }
 }
+function preComputeReadinessExamCSE() {
+    computeNewScheduleCSE([{
+            function : "removeCourse",
+            parameters : ["MATH9"]
+        }]);
+
+    return computeNewScheduleCSE( [ ] );
+}
+
+function preComputeProgrammingExperienceCSE() {
+    computeNewScheduleCSE([{
+            function : "removeCourse",
+            parameters : ["COEN10"]
+        }]);
+
+    return computeNewScheduleCSE( [ ] );
+}
 
 function preComputeScheduleTransferCSE(transfer_credit) {
     var schedule_changes = [];
