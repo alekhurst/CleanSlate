@@ -1,6 +1,30 @@
 BUGS.txt
  * List of Known Bugs
 
+————————————————————————————————————————————————
+
+
+* fix AP scores based on real criteria
+	-AP environmental science gets out of CHEM 11
+	-4,5 on AP Chemistry exam gets student out of AMTH 106 in addition to CHEM 11
+
+* don’t shift COEN classes
+
+* calculus readiness exam based on their score to get them out of classes
+
+* rearrange Math course sequence:  9, 11, 12, 13, 14, 106, 108, 53
+
+* Printing the schedule
+
+* change the top bar
+
+
+
+
+
+——————————————————————————————————————————————————————
+
+
 **[MINOR]** Calculus BC test only has one criteria for getting class grades (4-5), while there should be a second one that gives credit for MATH11 (3-4) 
 
 **[MINOR]** Chemistry AP test score of 4-5 shoudl give you credit for AMATH106 + CHEM11
