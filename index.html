@@ -32,24 +32,68 @@
 						<li ng-click="skipToStep(3)"><a href="#">Previous Experience</a></li>
 					</ul>
 				</nav>
-				<h2 id="input-label">AP Credit: </h2>
-				<select ng-model="currently_viewing_ap_test.id" ng-options="APTest.id as APTest.name for APTest in APTests">
-				</select>
-				<p id="selection-description" ng-model="currently_viewing_ap_test.description"> {{ APTests[ currently_viewing_ap_test.id ].description }}</p>
-				<ul id="ap-test-score" ng-show="currently_viewing_ap_test.id >= 0">
-					<li class="selected-ap-test-score" ng-click="setCurrentlyViewingAPTestScore(3)">3</li>
-					<li ng-click="setCurrentlyViewingAPTestScore(4)">4</li>
-					<li ng-click="setCurrentlyViewingAPTestScore(5)">5</li>
-				</ul>
-				<button id="add-selection" ng-show="currently_viewing_ap_test.id >= 0" ng-click="addAPTest()">Add</button>
-				<div id="added-selections">
-					<h2>Your Added AP Scores</h2>
-					<ul>
-						<li ng-repeat="test in StudentInput.ap_credit">
-							<button ng-click="removeAPTest($index)" >Remove</button>
-							{{ APTests[ test.id ].name }} ({{ test.score }}) 
-						</li>
+				<div id="ap-credit-field" ng-show="CurrentStep.step_number === 2">
+					<h2 id="input-label">AP Credit: </h2>
+					<select ng-model="currently_viewing_ap_test.id" ng-options="APTest.id as APTest.name for APTest in APTests">
+					</select>
+					<p id="selection-description" ng-model="currently_viewing_ap_test.description"> {{ APTests[ currently_viewing_ap_test.id ].description }}</p>
+					<ul id="ap-test-score" ng-show="currently_viewing_ap_test.id >= 0">
+						<li class="selected-ap-test-score" ng-click="setCurrentlyViewingAPTestScore(3)">3</li>
+						<li ng-click="setCurrentlyViewingAPTestScore(4)">4</li>
+						<li ng-click="setCurrentlyViewingAPTestScore(5)">5</li>
 					</ul>
+					<button id="add-selection" ng-show="currently_viewing_ap_test.id >= 0" ng-click="addAPTest()">Add</button>
+					<div id="added-selections">
+						<h2>Your Added AP Scores</h2>
+						<ul>
+							<li ng-repeat="test in StudentInput.ap_credit">
+								<button ng-click="removeAPTest($index)" >Remove</button>
+								{{ APTests[ test.id ].name }} ({{ test.score }}) 
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div id="transfer-credit-field" ng-show="CurrentStep.step_number === 3">
+					<h2 id="input-label">AP Credit: </h2>
+					<select ng-model="currently_viewing_transfer.id" ng-options="APTest.id as APTest.name for APTest in APTests">
+					</select>
+					<p id="selection-description" ng-model="currently_viewing_ap_test.description"> {{ APTests[ currently_viewing_ap_test.id ].description }}</p>
+					<ul id="ap-test-score" ng-show="currently_viewing_ap_test.id >= 0">
+						<li class="selected-ap-test-score" ng-click="setCurrentlyViewingAPTestScore(3)">3</li>
+						<li ng-click="setCurrentlyViewingAPTestScore(4)">4</li>
+						<li ng-click="setCurrentlyViewingAPTestScore(5)">5</li>
+					</ul>
+					<button id="add-selection" ng-show="currently_viewing_ap_test.id >= 0" ng-click="addAPTest()">Add</button>
+					<div id="added-selections">
+						<h2>Your Added AP Scores</h2>
+						<ul>
+							<li ng-repeat="test in StudentInput.ap_credit">
+								<button ng-click="removeAPTest($index)" >Remove</button>
+								{{ APTests[ test.id ].name }} ({{ test.score }}) 
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div id="prev-exp-field" ng-show="CurrentStep.step_number === 4">
+					<h2 id="input-label">AP Credit: </h2>
+					<select ng-model="currently_viewing_ap_test.id" ng-options="APTest.id as APTest.name for APTest in APTests">
+					</select>
+					<p id="selection-description" ng-model="currently_viewing_ap_test.description"> {{ APTests[ currently_viewing_ap_test.id ].description }}</p>
+					<ul id="ap-test-score" ng-show="currently_viewing_ap_test.id >= 0">
+						<li class="selected-ap-test-score" ng-click="setCurrentlyViewingAPTestScore(3)">3</li>
+						<li ng-click="setCurrentlyViewingAPTestScore(4)">4</li>
+						<li ng-click="setCurrentlyViewingAPTestScore(5)">5</li>
+					</ul>
+					<button id="add-selection" ng-show="currently_viewing_ap_test.id >= 0" ng-click="addAPTest()">Add</button>
+					<div id="added-selections">
+						<h2>Your Added AP Scores</h2>
+						<ul>
+							<li ng-repeat="test in StudentInput.ap_credit">
+								<button ng-click="removeAPTest($index)" >Remove</button>
+								{{ APTests[ test.id ].name }} ({{ test.score }}) 
+							</li>
+						</ul>
+					</div>
 				</div>
 			</section>
 			<!-- Steps 2-5 Output Section (Bottom Half of UI)-->
