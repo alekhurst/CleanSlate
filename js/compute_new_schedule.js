@@ -322,6 +322,18 @@ function removeCourse(course_title, quarter) {
         console.log('recursively checking ' + nextOffering(next_course['offering'], quarter) + ' for ' + next_course['department'] + next_course['course_number']);
         removeCourse(next_course['department'] + next_course['course_number'], nextOffering(next_course['offering'], quarter));
     }
+	
+	/* Engineering 1 Check */
+	var units = {};
+	var engr1qtr = 'fall_quarter';
+	for(var q in WorkingSchedule){
+		if(WorkingSchedule[q]["ENGR1"]) delete WorkingSchedule[q]["ENGR1"]; 
+		units[q] = 0; 
+		for(var j in WorkingSchedule[q]) units[q] += WorkingSchedule[q][j].units;
+		if(units[q] < units[engr1qtr]) engr1qtr = q;
+	}
+	WorkingSchedule[engr1qtr]["ENGR1"] = AllCourses["coen_courses"][0];
+	AllCourses["coen_courses"][0].quarter_taken = engr1qtr;
 }
 function preComputeReadinessExamCSE() {
     computeNewScheduleCSE([{
