@@ -271,7 +271,7 @@ function preComputeScheduleAPCSE(ap_test)
     if (ap_test.score >= window.APTests[ap_test.id].min_score && ap_test.score <= window.APTests[ap_test.id].max_score) {
         for (course in window.APTests[ap_test.id].fulfillment) {
                computeNewScheduleCSE([ 
-                    { function : "removeCourse", parameters : [course[1] + course[2]] }
+                    { function : "removeCourse", parameters : [window.APTests[ap_test.id].fulfillment[course][1] + window.APTests[ap_test.id].fulfillment[course][2]] }
                                     ])
         }    
     }
@@ -301,9 +301,6 @@ function computeNewScheduleCSE(student_input) {
             
             // Execute the function
             window[student_input[change]['function']].apply(window,param);
-        }
-
-
-        
+        }       
     }
 }
