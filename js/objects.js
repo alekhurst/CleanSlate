@@ -50,7 +50,7 @@ window.DefaultScheduleCSE = {
             department : "ENGR",
             course_number : "1",
             description : "something",
-            branch : "coen_courses",
+            branch : "engineering_courses",
             offering : ["fall_quarter", "winter_quarter"],
             category : "engineering",
             units : "2",

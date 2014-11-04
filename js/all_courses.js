@@ -159,7 +159,7 @@ window.AllCourses = {
 		}
 	],
 
-	coen_courses : [
+    engineering_courses : [
         {
             name : "Introduction to Engineering + Lab",
             department : "ENGR",
@@ -172,7 +172,9 @@ window.AllCourses = {
             units : "2",
             prerequisites : [],
         },
+    ],
 
+	coen_courses : [
 		{
 			name : "Introduction to Programming + Lab",
 			department : "COEN",
