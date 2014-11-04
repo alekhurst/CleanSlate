@@ -163,6 +163,8 @@ CleanSlateApp.controller('CleanSlateController', function ($scope) {
 	 */
 	$scope.testScheduleUpdate = function() {
 		$scope.StudentInput.ap_credit[0] += 'lalalala';
+		// actual print code
+		window.print();
 	}
 
 	$scope.showDescription = function() {
