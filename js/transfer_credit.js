@@ -52,12 +52,12 @@ window.TransferCredit = [
         id : 7,
         name : "English Composition 1",
         description : 'first english class',
-        fulfillment : [["required_courses", "CTW", "1"]]
+        fulfillment : [["CTW_courses", "CTW", "1"]]
     },
     {   
         id : 8,
         name : "English Composition 2",
         description : 'second english class',
-        fulfillment : [["required_courses", "CTW", "2"]]
+        fulfillment : [["CTW_courses", "CTW", "2"]]
     }
 ];
