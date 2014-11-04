@@ -32,8 +32,17 @@ CleanSlateApp.controller('CleanSlateController', function ($scope) {
 
 	/* View Controller Variable Initialization */
 	$scope.CurrentStep = window.Steps[0];
-	$scope.APTests = window.APTests;
-	$scope.currently_viewing_ap_test.score = 3;
+	
+		// AP Tests
+		$scope.APTests = window.APTests;
+		$scope.currently_viewing_ap_test.score = 3;
+		
+		// Transfer Credit
+		$scope.TransferCredit = window.TransferCredit;
+		
+		// Miscellaneous
+		$scope.previousProgramming = false;
+		$scope.calculusReady = false;
 
 	/* Event listeners */
 	$scope.$watch('CurrentStep', function() {
@@ -122,9 +131,45 @@ CleanSlateApp.controller('CleanSlateController', function ($scope) {
 	}
 
 	$scope.addAPTest = function() {
+		for(var i in $scope.StudentInput.ap_credit){
+			if($scope.StudentInput.ap_credit[i].id == $scope.currently_viewing_ap_test.id) $scope.removeAPTest(i);
+		}
 		$scope.StudentInput.ap_credit.push( { id:$scope.currently_viewing_ap_test.id, score:$scope.currently_viewing_ap_test.score } );
-		$scope.Schedule = preComputeScheduleCSE( {id: $scope.currently_viewing_ap_test.id, score:$scope.currently_viewing_ap_test.score } );
-		$scope.currently_viewing_ap_test.score = 3;
+		$scope.Schedule = preComputeScheduleAPCSE( {id: $scope.currently_viewing_ap_test.id, score:$scope.currently_viewing_ap_test.score } )
+		$scope.setCurrentlyViewingAPTestScore(3);
+
+	}
+	
+	$scope.removeAPTest = function(index){
+		$scope.StudentInput.ap_credit.splice(index,1); // remove the AP test from the array.
+		//$scope.Schedule = preComputeScheduleAPCSE( {id: $scope.currently_viewing_ap_test.id, score:$scope.currently_viewing_ap_test.score } )
+	}
+	
+	
+	$scope.addTransferCredit = function() {
+		for(var i in $scope.StudentInput.transfer_credit){
+			if($scope.StudentInput.transfer_credit[i].id == $scope.currently_viewing_transfer.id) $scope.removeTransferCredit(i);
+		}
+		$scope.StudentInput.transfer_credit.push( { id:$scope.currently_viewing_transfer.id } );
+		$scope.Schedule = preComputeScheduleTransferCSE( {id: $scope.currently_viewing_transfer.id} );
+	}
+	
+	$scope.removeTransferCredit = function(index){
+		$scope.StudentInput.transfer_credit.splice(index,1); // remove the AP test from the array.
+		//$scope.Schedule = preComputeScheduleTransferCSE( {id: $scope.currently_viewing_ap_test.id, score:$scope.currently_viewing_ap_test.score } )
+	}
+	
+
+	$scope.updateProgExp = function(){
+		if(!$scope.previousProgramming){
+			$scope.Schedule = preComputeProgrammingExperienceCSE();
+		}	
+	}
+	
+	$scope.updateCalcReady = function(){
+		if(!$scope.calculusReady){
+			$scope.Schedule = preComputeReadinessExamCSE();
+		}
 	}
 
 	/**
@@ -139,6 +184,8 @@ CleanSlateApp.controller('CleanSlateController', function ($scope) {
 	 */
 	$scope.testScheduleUpdate = function() {
 		$scope.StudentInput.ap_credit[0] += 'lalalala';
+		// actual print code
+		window.print();
 	}
 
 	$scope.showDescription = function() {

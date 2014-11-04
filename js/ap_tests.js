@@ -3,9 +3,9 @@ window.APTests = [
         id : 0,
         name : "Calculus AB" ,
         description : 'Single variable calculus differentiation. Intro to integration.',
-        min_score : "3",
+        min_score : "4",
         max_score : "5",
-        fulfillment : [["math-courses", "MATH", "11"], ["math-courses", "MATH", "12"]]
+        fulfillment : [["math-courses", "MATH", "9"], ["math-courses", "MATH", "11"], ["math-courses", "MATH", "12"]]
     },
     {
         id : 1,
@@ -20,7 +20,7 @@ window.APTests = [
         // ],
         min_score : "4",
         max_score : "5",
-        fulfillment : [["math-courses", "MATH", "11"], ["math-courses", "MATH", "12"], ["math-courses", "MATH", "13"]]
+        fulfillment : [["math-courses", "MATH", "9"], ["math-courses", "MATH", "11"], ["math-courses", "MATH", "12"], ["math-courses", "MATH", "13"]]
     },
     {
         id : 2,
@@ -36,7 +36,7 @@ window.APTests = [
         description : 'Introduction to computer science in Java or C++',
         min_score : "4",
         max_score : "5",
-        fulfillment : [["coen-courses", "COEN", "11"]]
+        fulfillment : [["coen-courses", "COEN", "10"], ["coen-courses", "COEN", "11"]]
     },
     {   
         id : 4,

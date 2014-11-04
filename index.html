@@ -32,21 +32,52 @@
 						<li ng-click="skipToStep(3)"><a href="#">Previous Experience</a></li>
 					</ul>
 				</nav>
-				<h2 id="input-label">AP Credit: </h2>
-				<select ng-model="currently_viewing_ap_test.id" ng-options="APTest.id as APTest.name for APTest in APTests">
-				</select>
-				<p id="selection-description" ng-model="currently_viewing_ap_test.description"> {{ APTests[ currently_viewing_ap_test.id ].description }}</p>
-				<ul id="ap-test-score" ng-show="currently_viewing_ap_test.id >= 0">
-					<li class="selected-ap-test-score" ng-click="setCurrentlyViewingAPTestScore(3)">3</li>
-					<li ng-click="setCurrentlyViewingAPTestScore(4)">4</li>
-					<li ng-click="setCurrentlyViewingAPTestScore(5)">5</li>
-				</ul>
-				<button id="add-selection" ng-show="currently_viewing_ap_test.id >= 0" ng-click="addAPTest()">Add</button>
-				<div id="added-selections">
-					<h2>Your Added AP Scores</h2>
-					<ul>
-						<li ng-repeat="test in StudentInput.ap_credit">{{ APTests[ test.id ].name }} ({{ test.score }}) </li>
+				<div id="ap-credit-field" ng-show="CurrentStep.step_number === 2">
+					<h2 id="input-label">AP Credit: </h2>
+					<select ng-model="currently_viewing_ap_test.id" ng-options="APTest.id as APTest.name for APTest in APTests">
+					</select>
+					<p id="selection-description" ng-model="currently_viewing_ap_test.description"> {{ APTests[ currently_viewing_ap_test.id ].description }}</p>
+					<ul id="ap-test-score" ng-show="currently_viewing_ap_test.id >= 0">
+						<li class="selected-ap-test-score" ng-click="setCurrentlyViewingAPTestScore(3)">3</li>
+						<li ng-click="setCurrentlyViewingAPTestScore(4)">4</li>
+						<li ng-click="setCurrentlyViewingAPTestScore(5)">5</li>
 					</ul>
+					<button id="add-selection" ng-show="currently_viewing_ap_test.id >= 0" ng-click="addAPTest()">Add</button>
+					<div id="added-selections">
+						<h2>Your Added AP Scores</h2>
+						<ul>
+							<li ng-repeat="test in StudentInput.ap_credit">
+								<button ng-click="removeAPTest($index)" >Remove</button>
+								{{ APTests[ test.id ].name }} ({{ test.score }}) 
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div id="transfer-credit-field" ng-show="CurrentStep.step_number === 3">
+					<h2 id="input-label">Transfer Credit: </h2>
+					<select ng-model="currently_viewing_transfer.id" ng-options="TransCred.id as TransCred.name for TransCred in TransferCredit">
+					</select>
+					<p id="selection-description" ng-model="currently_viewing_transfer.description"> {{ TransferCredit[ currently_viewing_trasnfer.id ].description }}</p>
+					<button id="add-selection" ng-show="currently_viewing_transfer.id >= 0" ng-click="addTransferCredit()">Add</button>
+					<div id="added-selections">
+						<h2>Your Added Transfer Credit</h2>
+						<ul>
+							<li ng-repeat="test in StudentInput.transfer_credit">
+								<button ng-click="removeTransferCredit($index)" >Remove</button>
+								{{ TransferCredit[ test.id ].name }}
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div id="prev-exp-field" ng-show="CurrentStep.step_number === 4">
+					<h2 id="input-label">Previous Experience</h2>
+					<p class="prev-exp-paragraph" id="prev-exp-programming"> Do you have previous programming experience?
+						<input id="prevProgramming" type="checkbox" ng-checked="previousProgramming" ng-click="updateProgExp()" />
+					</p>
+					<p class="prev-exp-paragraph" id="prev-exp-precalc"> Did you score above 80 on the Calculus Readiness Exam?
+						<input id="calculusReady" type="checkbox" ng-checked="calculusReady" ng-click="updateCalcReady()" />
+					</p>
+					
 				</div>
 			</section>
 			<!-- Steps 2-5 Output Section (Bottom Half of UI)-->
@@ -96,6 +127,7 @@
 		<script src="js/objects.js"></script>
 		<script src="js/compute_new_schedule.js"></script>
 		<script src="js/ap_tests.js"></script>
+		<script src="js/transfer_credit.js"></script>
 		<script src="js/all_courses.js"></script>
 	</body>
 </html>

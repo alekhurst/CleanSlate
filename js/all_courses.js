@@ -268,7 +268,7 @@ window.AllCourses = {
 	core_courses : [
 		{
 			name : "University Core",
-			department : "",
+			department : "CORE",
 			course_number : "",
 			description : "something",
 			offering : ["fall_quarter", "winter_quarter", "spring_quarter"],

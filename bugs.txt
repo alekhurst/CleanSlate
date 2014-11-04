@@ -1,0 +1,50 @@
+BUGS.txt
+ * List of Known Bugs
+
+**[MINOR]** Calculus BC test only has one criteria for getting class grades (4-5), while there should be a second one that gives credit for MATH11 (3-4) 
+
+**[MINOR]** No Honors/LEAD courses (this might be OK for demo)
+
+**[MINOR]** ENGR1 should be added to the quarter with the least amount of labs
+    - This should possibly be implemented in a "fixer" function, called after the regular schedule maker function. This will not only put ENGR in a good place, but also deal with LEAD/Honors courses
+
+**[MINOR]** C&I 1/2 should be added in consecutive quarters that have CORE classes
+
+**[MINOR]** Logic to Add Classes Back ? (Or Reset?)	
+	
+*[OK DEMO]* Not Printer Friendly
+
+*[OK DEMO]* Console Log Clutter
+ 
+*[OK DEMO]* Every course in the course plan still says 'something'
+
+*[OK DEMO]* Multiple Scores on Same Test Produce Backend Issues (Classes 'undefined')
+
+*[OK DEMO]* No Backend Logic to Remove AP Tests (apparently)
+
+[FIXED] Broken AP Tests: Physics C (Both), Calculus BC, Comp. Sci A
+	- JP fixed this with the AP Score resetting to 3 issue. However, a 5 on the Comp
+	  Sci A Test still has the student taking COEN 10 while removing COEN 11.  Shouldn't
+	  we remove both? (JORDAN: Yes, we should. I added it.)
+
+[FIXED] Comp. Sci A gives credit for COEN10 as well as COEN11
+
+[FIXED] Most Transfer Credit Transactions Have Some 'undefined' Error
+    - See https://github.com/alekhurst/CleanSlate/commit/96a7a8439f1a606c22f3eff2caf2228107063a7e
+    - Jordan: preComputeScheduleTransferCSE() was calling computeNewScheduleCSE(), but was not passing removal requests in correctly
+
+[FIXED] Testing out of CHEM11 would put PHYS33 in its place
+    - See https://github.com/alekhurst/CleanSlate/commit/9973c2313f297926c7c2337b8579d17f81a1c812
+
+[FIXED] Physics: E&M AP Credit gives a TypeError: Cannot read property 'PHYS33' of undefined
+    - See https://github.com/alekhurst/CleanSlate/commit/19770ae47db03a0364335507dc273862d284556a
+
+[FIXED] Physics: Getting a qualified grade on Calculus 1 after testing out of MATH9 gives a TypeError: Cannot read property 'MATH9' of undefined
+    - See https://github.com/alekhurst/CleanSlate/commit/19770ae47db03a0364335507dc273862d284556a
+
+[FIXED] Physics: E&M Transfer Credit is Broken (TypeError: Cannot read property 'branch' of undefined)
+[FIXED] Physics: Physics C: Mechanics AP credit is broken
+    - See https://github.com/alekhurst/CleanSlate/commit/bd33cbb5650555b20e117fb644a2fde14424a209
+    - Jordan: ID's for some transfer credits were off by 1
+
+LAST STABLE COMMIT: https://github.com/alekhurst/CleanSlate/commit/d5b8c2aee0dc8a5d5438cfc5b0734dd92060bbed
