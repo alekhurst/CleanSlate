@@ -271,7 +271,12 @@ function preComputeScheduleTransferCSE(transfer_credit)
 function preComputeScheduleAPCSE(ap_test)
 {
     console.log("ap_test.score = " + ap_test.score)
+
+    console.log("ap_test.min_score = " + ap_test.min_score)
+    console.log("ap_test.max_score = " + ap_test.max_score)
+
     if (ap_test.score >= window.APTests[ap_test.id].min_score && ap_test.score <= window.APTests[ap_test.id].max_score) {
+        console.log("inside if statement")
         for (course in window.APTests[ap_test.id].fulfillment) {
                computeNewScheduleCSE([ 
                     { function : "removeCourse", parameters : [window.APTests[ap_test.id].fulfillment[course][1] + window.APTests[ap_test.id].fulfillment[course][2]] }
