@@ -36,7 +36,7 @@ window.APTests = [
         description : 'something',
         min_score : "4",
         max_score : "5",
-        fulfillment : [["coen-courses", "COEN", "10"], ["coen-courses", "COEN", "11"]];
+        fulfillment : [["coen-courses", "COEN", "10"], ["coen-courses", "COEN", "11"]]
     },
     {   
         id : 4,
