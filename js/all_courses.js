@@ -280,7 +280,7 @@ window.AllCourses = {
 		}
 	],
 
-	required_courses : [
+	CTW_courses : [
 		{
 			name : "Critical Thinking & Writing 1",
 			department : "CTW",
@@ -305,8 +305,10 @@ window.AllCourses = {
 			category : "humanities_and_social_science",
             units : "4",
             prerequisites : [["required_courses", "CTW", "1"]],
-		},	
+		}
+    ],
 
+    CI_courses : [	
 		{
 			name : "Cultures & Ideas 1",
 			department : "C&I",
