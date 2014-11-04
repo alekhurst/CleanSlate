@@ -5,7 +5,9 @@ BUGS.txt
 
 ***[CRUCIAL]*** Most Transfer Credit Transactions Have Some 'undefined' Error
 
-**[MILD]** Not Printer Friendly
+*[OK DEMO]* Not Printer Friendly
+
+*[OK DEMO]* Console Log Clutter
  
 *[OK DEMO]* Every course in the course plan still says 'something'
 
