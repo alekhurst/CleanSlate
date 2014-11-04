@@ -88,17 +88,19 @@ function offeredThisQuarter(course, quarter) {
 }
 
 /*
- * Returns true if a course has all of its prerequisites completed, false otherwise
+ * Returns true if a course has all of its prerequisites completed by this quarter, false otherwise
  *
  * @param {object} course - Course object to be tested
+ * @param {string} quarter - Current quarter to check after ("fall_quarter", "winter_quarter", or "spring_quarter")
  */
-function prereqsCompleted(course) {
+function prereqsCompleted(course, quarter) {
     for (prereq in course['prerequisites']) {
         var prereq_branch = course['prerequisites'][prereq][0];
         var prereq_department = course['prerequisites'][prereq][1];
         var prereq_course_number = course['prerequisites'][prereq][2];
 
         var prereq_course = getCourse(prereq_branch, getCourseId(prereq_branch, prereq_department, prereq_course_number));
+        //Look when prereq_course is in schedule, and if it is during/after current_quarter, then return false
         if (prereq_course['credit'] == 'NO')
             return false;
     }
@@ -128,8 +130,8 @@ function nextCourseAfter(course_data, id, quarter) {
 
     current_course = getCourse(branch, current_id);
     console.log('Parent: ' + JSON.stringify(current_course));
-    console.log(current_course['department'] + current_course['course_number'] + ': ' + takenBeforeOrDuringThisQuarter(current_course, quarter) + ', ' + !offeredThisQuarter(current_course, quarter) + ', ' +  !prereqsCompleted(current_course));
-    while (takenBeforeOrDuringThisQuarter(current_course, quarter) || !offeredThisQuarter(current_course, quarter) || !prereqsCompleted(current_course)) {
+    console.log(current_course['department'] + current_course['course_number'] + ': ' + takenBeforeOrDuringThisQuarter(current_course, quarter) + ', ' + !offeredThisQuarter(current_course, quarter) + ', ' +  !prereqsCompleted(current_course, quarter));
+    while (takenBeforeOrDuringThisQuarter(current_course, quarter) || !offeredThisQuarter(current_course, quarter) || !prereqsCompleted(current_course, quarter)) {
         //If the course has been taken before, if the course is not being offered this quarter, or the prereqs are not completed
         //This means the course is not the next one to take, so continue along the branch and look for a different one to take
         if (current_id == window.AllCourses[branch].length - 1) { //At the last element, no more courses
@@ -139,7 +141,7 @@ function nextCourseAfter(course_data, id, quarter) {
         current_course = getCourse(branch, current_id); //Get next course in branch
         console.log('next iter');
         console.log(current_course);
-        console.log(current_course['department'] + current_course['course_number'] + ': ' + takenBeforeOrDuringThisQuarter(current_course, quarter) + ', ' + !offeredThisQuarter(current_course, quarter) + ', ' +  !prereqsCompleted(current_course));
+        console.log(current_course['department'] + current_course['course_number'] + ': ' + takenBeforeOrDuringThisQuarter(current_course, quarter) + ', ' + !offeredThisQuarter(current_course, quarter) + ', ' +  !prereqsCompleted(current_course, quarter));
     }
 
     console.log('returning ' + current_course['department'] + current_course['course_number']);
@@ -295,7 +297,7 @@ function computeNewScheduleCSE(student_input) {
 
     if (student_input.length > 0) { //If there are changes to the default schedule, make those changes
         for (change in student_input){
-            console.log('ASDASDASD');
+            console.log('NEW FUNCTION : ' + JSON.stringify(student_input[change]));
             //Do changes based on student_input changes
             var param = student_input[change]['parameters'];
             
