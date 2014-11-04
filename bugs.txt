@@ -1,10 +1,13 @@
 BUGS.txt
  * List of Known Bugs
  
-***[CRUCIAL]*** Broken AP Tests: Physics C (Both), Calculus BC, Comp. Sci A
-
 *[OK DEMO]* Every course in the course plan still says 'something'
 
 *[OK DEMO]* Multiple Scores on Same Test Produce Backend Issues (Classes 'undefined')
 
 *[OK DEMO]* No Backend Logic to Remove AP Tests (apparently)
+
+[FIXED] Broken AP Tests: Physics C (Both), Calculus BC, Comp. Sci A
+	- JP fixed this with the AP Score resetting to 3 issue. However, a 5 on the Comp
+	  Sci A Test still has the student taking COEN 10 while removing COEN 11.  Shouldn't
+	  we remove both?
