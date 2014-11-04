@@ -232,6 +232,25 @@ function removeCourse(course_title, quarter) {
                 return;
             }
         }
+
+        //If here, that means the course has not been taken yet. Find that course and set it to 'taken'.
+        var start = 1;
+        for (; start < course_title.length; start++) {
+            if (parseInt(course_title[start]) == course_title[start]) //You found the first number, start of course_number
+                break;
+        }
+        var course_department = course_title.substring(0, start);
+        var course_c_number = course_title.substring(start, course_title.length);
+
+        for (branch in window.AllCourses) {
+            for (course in window.AllCourses[branch]) {
+                if (window.AllCourses[branch][course]['department'] == course_department && window.AllCourses[branch][course]['course_number'] == course_c_number) {
+                    window.AllCourses[branch][course]['credit'] = 'YES'; 
+                    console.log(JSON.stringify(window.AllCourses[branch][course]));
+                    return;
+                }
+            }
+        }
     }
 
     var course = window.WorkingSchedule[quarter][course_title];
