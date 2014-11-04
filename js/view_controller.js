@@ -43,6 +43,8 @@ CleanSlateApp.controller('CleanSlateController', function ($scope) {
 		// Miscellaneous
 		$scope.previousProgramming = false;
 		$scope.calculusReady = false;
+		$scope.honorsStudent = false;
+		$scope.leadStudent = false;
 
 	/* Event listeners */
 	$scope.$watch('CurrentStep', function() {
@@ -169,6 +171,20 @@ CleanSlateApp.controller('CleanSlateController', function ($scope) {
 	$scope.updateCalcReady = function(){
 		if(!$scope.calculusReady){
 			$scope.Schedule = preComputeReadinessExamCSE();
+		}
+	}
+	
+	$scope.updateHonors = function(){
+		if(!$scope.honorStudent){
+			//$scope.Schedule = preComputeReadinessExamCSE();
+			alert("honors");
+		}
+	}
+	
+	$scope.updateLEAD = function(){
+		if(!$scope.leadStudent){
+			//$scope.Schedule = preComputeReadinessExamCSE();
+			alert("LEAD");
 		}
 	}
 
