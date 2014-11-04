@@ -269,7 +269,7 @@ window.Steps = [
 	},
 	{
 		step_number : 4,
-		description : 'Fill out previous experience',
+		description : 'Fill out miscellaneous information',
 		prev_button : 'true',
 		next_button : 'true',
 		view : 'main'
