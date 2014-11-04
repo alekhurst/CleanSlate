@@ -5,7 +5,7 @@ window.APTests = [
         description : 'something',
         min_score : "3",
         max_score : "5",
-        fulfillment : [["math-courses", "MATH", "11"], ["math-courses", "MATH", "12"]]
+        fulfillment : [["math-courses", "MATH", "9"],["math-courses", "MATH", "11"], ["math-courses", "MATH", "12"]]
     },
     {
         id : 1,
@@ -20,7 +20,7 @@ window.APTests = [
         // ],
         min_score : "4",
         max_score : "5",
-        fulfillment : [["math-courses", "MATH", "11"], ["math-courses", "MATH", "12"], ["math-courses", "MATH", "13"]]
+        fulfillment : [["math-courses", "MATH", "9"], ["math-courses", "MATH", "11"], ["math-courses", "MATH", "12"], ["math-courses", "MATH", "13"]]
     },
     {
         id : 2,
