@@ -45,7 +45,10 @@
 				<div id="added-selections">
 					<h2>Your Added AP Scores</h2>
 					<ul>
-						<li ng-repeat="test in StudentInput.ap_credit">{{ APTests[ test.id ].name }} ({{ test.score }}) </li>
+						<li ng-repeat="test in StudentInput.ap_credit">
+							<button ng-click="removeAPTest($index)" >Remove</button>
+							{{ APTests[ test.id ].name }} ({{ test.score }}) 
+						</li>
 					</ul>
 				</div>
 			</section>

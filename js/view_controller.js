@@ -122,10 +122,18 @@ CleanSlateApp.controller('CleanSlateController', function ($scope) {
 	}
 
 	$scope.addAPTest = function() {
+		for(var i in $scope.StudentInput.ap_credit){
+			if($scope.StudentInput.ap_credit[i].id == $scope.currently_viewing_ap_test.id) $scope.removeAPTest(i);
+		}
 		$scope.StudentInput.ap_credit.push( { id:$scope.currently_viewing_ap_test.id, score:$scope.currently_viewing_ap_test.score } );
 		$scope.Schedule = preComputeScheduleAPCSE( {id: $scope.currently_viewing_ap_test.id, score:$scope.currently_viewing_ap_test.score } )
-				$scope.setCurrentlyViewingAPTestScore(3);
+		$scope.setCurrentlyViewingAPTestScore(3);
 
+	}
+	
+	$scope.removeAPTest = function(index){
+		$scope.StudentInput.ap_credit.splice(index,1); // remove the AP test from the array.
+		//$scope.Schedule = preComputeScheduleAPCSE( {id: $scope.currently_viewing_ap_test.id, score:$scope.currently_viewing_ap_test.score } )
 	}
 
 	/**

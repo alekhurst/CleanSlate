@@ -1,7 +1,10 @@
 BUGS.txt
  * List of Known Bugs
  
-- Broken AP Tests: Physics C (Both), Calculus BC, Comp. Sci A (CRUCIAL)
-- Every course in the course plan still says 'something' (FINE FOR DEMO)
-- Multiple Scores on Same Test are Allowed (FINE FOR DEMO)
-- No way to Remove AP Tests (FINE FOR DEMO)
+***[CRUCIAL]*** Broken AP Tests: Physics C (Both), Calculus BC, Comp. Sci A
+
+*[OK DEMO]* Every course in the course plan still says 'something'
+
+*[OK DEMO]* Multiple Scores on Same Test Produce Backend Issues (Classes 'undefined')
+
+*[OK DEMO]* No Backend Logic to Remove AP Tests (apparently)
