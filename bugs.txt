@@ -46,3 +46,5 @@ BUGS.txt
 [FIXED] Physics: Physics C: Mechanics AP credit is broken
     - See https://github.com/alekhurst/CleanSlate/commit/bd33cbb5650555b20e117fb644a2fde14424a209
     - Jordan: ID's for some transfer credits were off by 1
+
+LAST STABLE COMMIT: https://github.com/alekhurst/CleanSlate/commit/d5b8c2aee0dc8a5d5438cfc5b0734dd92060bbed
