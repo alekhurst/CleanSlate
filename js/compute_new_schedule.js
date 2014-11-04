@@ -178,11 +178,16 @@ function nextOffering(offerings, quarter) {
     }
 }
 
-function quarterTaken(course_name) {
+/*
+ * Returns the quarter (fall_quarter, winter_quarter, spring_quarter) that the course is being taken this year, or an empty string if it is not being taken this year
+ * 
+ * @param {Object} course_title - Title of course to be removed (i.e. "COEN10")
+ */
+function quarterTaken(course_title) {
     for (quarter in window.WorkingSchedule) {
         for (course in window.WorkingSchedule[quarter]) {
-            if (course_name == course) {
-                console.log(course_name + ' taken previously: ' + quarter);
+            if (course_title == course) {
+                console.log(course_title + ' taken previously: ' + quarter);
                 return quarter;
             }
         }
