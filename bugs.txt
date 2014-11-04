@@ -3,12 +3,20 @@ BUGS.txt
  
 ***[CRUCIAL]*** Physics: E&M Transfer Credit is Broken
 
+***[CRUCIAL]*** Physics: E&M AP Credit gives a TypeError: Cannot read property 'PHYS33' of undefined
+
+***[CRUCIAL]*** Physics: Physics C: Mechanics AP credit is broken
+
+***[CRUCIAL]*** Physics: Getting a qualified grade on Calculus 1 after testing out of MATH9 gives a TypeError: Cannot read property 'MATH9' of undefined
+
 **[MINOR]** Calculus BC test only has one criteria for getting class grades (4-5), while there should be a second one that gives credit for MATH11 (3-4) 
 
 **[MINOR]** No Honors/LEAD courses (this might be OK for demo)
 
 **[MINOR]** ENGR1 should be added to the quarter with the least amount of labs
     - This should possibly be implemented in a "fixer" function, called after the regular schedule maker function. This will not only put ENGR in a good place, but also deal with LEAD/Honors courses
+
+**[MINOR]** C&I 1/2 should be added in consecutive quarters that have CORE classes
 
 **[MINOR]** Logic to Add Classes Back ? (Or Reset?)	
 	

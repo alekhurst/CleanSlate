@@ -41,7 +41,7 @@ function parentCourseInSameBranch(current_course, branch) {
 /*
  * This function returns true if a course was taken before this quarter, false otherwise
  *
-/* @param {object} course - Course object to be tested
+ * @param {object} course - Course object to be tested
  * @param {string} quarter - The current quarter ("fall_quarter", "winter_quarter", or "spring_quarter")
  */
 function takenBeforeOrDuringThisQuarter(course, quarter) {
