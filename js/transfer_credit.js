@@ -43,19 +43,19 @@ window.TransferCredit = [
         fulfillment : [["science_courses", "PHYS", "31"]]
     },
     {
-        id : 7,
+        id : 6,
         name : "Physics: Electricity & Magnetism",
         description : 'something',
         fulfillment : [["science_courses", "PHYS", "33"]]
     },
     {   
-        id : 8,
+        id : 7,
         name : "English Composition 1",
         description : 'something',
         fulfillment : [["required_courses", "CTW", "1"]]
     },
     {   
-        id : 9,
+        id : 8,
         name : "English Composition 2",
         description : 'something',
         fulfillment : [["required_courses", "CTW", "2"]]
