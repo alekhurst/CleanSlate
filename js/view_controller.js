@@ -158,6 +158,23 @@ CleanSlateApp.controller('CleanSlateController', function ($scope) {
 		$scope.StudentInput.transfer_credit.splice(index,1); // remove the AP test from the array.
 		//$scope.Schedule = preComputeScheduleTransferCSE( {id: $scope.currently_viewing_ap_test.id, score:$scope.currently_viewing_ap_test.score } )
 	}
+	
+
+	$scope.updateProgExp = function(){
+	
+		if(!$scope.previousProgramming){
+			$scope.Schedule = preComputeProgrammingExperienceCSE();
+		}
+			
+	}
+	
+	$scope.updateCalcReady = function(){
+
+		if(!$scope.calculusReady){
+			$scope.Schedule = preComputeReadinessExamCSE();
+		}
+	
+	}
 
 	/**
 	 * I used this function to test if the updateScheduleWithNewInput() function
