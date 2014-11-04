@@ -280,21 +280,21 @@ function removeCourse(course_title, quarter) {
         };
 		
 		/*C&I*/
-		if(window.AllCourses['required_courses'][getCourseId('required_courses','C&I',1)]['quarter_taken'] == ''){
+		if(window.AllCourses['CI_courses'][getCourseId('CI_courses','C&I',1)]['quarter_taken'] == ''){
 			if(WorkingSchedule.fall_quarter.CORE && WorkingSchedule.winter_quarter.CORE){
 				delete WorkingSchedule.fall_quarter.CORE; delete WorkingSchedule.winter_quarter.CORE;
-				WorkingSchedule.fall_quarter["C&I1"] = getCourse('required_courses',getCourseId('required_courses','C&I',1));
-				window.AllCourses['required_courses'][getCourseId('required_courses','C&I',1)]['quarter_taken'] = 'fall_quarter';
+				WorkingSchedule.fall_quarter["C&I1"] = getCourse('CI_courses',getCourseId('CI_courses','C&I',1));
+				window.AllCourses['CI_courses'][getCourseId('CI_courses','C&I',1)]['quarter_taken'] = 'fall_quarter';
 				
-				WorkingSchedule.winter_quarter["C&I2"] = getCourse('required_courses',getCourseId('required_courses','C&I',2));
-				window.AllCourses['required_courses'][getCourseId('required_courses','C&I',2)]['quarter_taken'] = 'winter_quarter';
+				WorkingSchedule.winter_quarter["C&I2"] = getCourse('CI_courses',getCourseId('CI_courses','C&I',2));
+				window.AllCourses['CI_courses'][getCourseId('CI_courses','C&I',2)]['quarter_taken'] = 'winter_quarter';
 			}
 			if(WorkingSchedule.winter_quarter.CORE && WorkingSchedule.spring_quarter.CORE){
 				delete WorkingSchedule.winter_quarter.CORE; delete WorkingSchedule.spring_quarter.CORE;
-				WorkingSchedule.winter_quarter["C&I1"] = getCourse('required_courses',getCourseId('required_courses','C&I',1));
-				window.AllCourses['required_courses'][getCourseId('required_courses','C&I',1)]['quarter_taken'] = 'winter_quarter';
-				WorkingSchedule.spring_quarter["C&I2"] = getCourse('required_courses',getCourseId('required_courses','C&I',2));
-				window.AllCourses['required_courses'][getCourseId('required_courses','C&I',2)]['quarter_taken'] = 'spring_quarter';
+				WorkingSchedule.winter_quarter["C&I1"] = getCourse('CI_courses',getCourseId('CI_courses','C&I',1));
+				window.AllCourses['CI_courses'][getCourseId('CI_courses','C&I',1)]['quarter_taken'] = 'winter_quarter';
+				WorkingSchedule.spring_quarter["C&I2"] = getCourse('CI_courses',getCourseId('CI_courses','C&I',2));
+				window.AllCourses['CI_courses'][getCourseId('CI_courses','C&I',2)]['quarter_taken'] = 'spring_quarter';
 			
 			}
 		}

@@ -280,7 +280,7 @@ window.AllCourses = {
 		}
 	],
 
-	required_courses : [
+	CTW_courses : [
 		{
 			name : "Critical Thinking & Writing 1",
 			department : "CTW",
@@ -304,9 +304,11 @@ window.AllCourses = {
             quarter_taken: "winter_quarter",
 			category : "humanities_and_social_science",
             units : "4",
-            prerequisites : [["required_courses", "CTW", "1"]],
-		},	
+            prerequisites : [["CTW_courses", "CTW", "1"]],
+		}
+    ],
 
+    CI_courses : [	
 		{
 			name : "Cultures & Ideas 1",
 			department : "C&I",
@@ -331,7 +333,7 @@ window.AllCourses = {
             quarter_taken: "",
 			category : "humanities_and_social_science",
             units : "4",
-            prerequisites : [["required_courses", "C&I", "1"]],
+            prerequisites : [["CI_courses", "C&I", "1"]],
 		}
 	]
 }
