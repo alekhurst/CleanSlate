@@ -2,6 +2,8 @@ BUGS.txt
  * List of Known Bugs
  
 ***[CRUCIAL]*** Physics: E&M Transfer Credit is Broken
+
+**[MILD]** Not Printer Friendly
  
 *[OK DEMO]* Every course in the course plan still says 'something'
 
