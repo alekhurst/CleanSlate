@@ -33,17 +33,17 @@
 					</ul>
 				</nav>
 				<div id="ap-credit-field" ng-show="CurrentStep.step_number === 2">
-					<h2 id="input-label">AP Credit: </h2>
+					<h2 class="input-label">AP Credit: </h2>
 					<select ng-model="currently_viewing_ap_test.id" ng-options="APTest.id as APTest.name for APTest in APTests">
 					</select>
-					<p id="selection-description" ng-model="currently_viewing_ap_test.description"> {{ APTests[ currently_viewing_ap_test.id ].description }}</p>
+					<p class="selection-description" ng-model="currently_viewing_ap_test.description"> {{ APTests[ currently_viewing_ap_test.id ].description }}</p>
 					<ul id="ap-test-score" ng-show="currently_viewing_ap_test.id >= 0">
 						<li class="selected-ap-test-score" ng-click="setCurrentlyViewingAPTestScore(3)">3</li>
 						<li ng-click="setCurrentlyViewingAPTestScore(4)">4</li>
 						<li ng-click="setCurrentlyViewingAPTestScore(5)">5</li>
 					</ul>
-					<button id="add-selection" ng-show="currently_viewing_ap_test.id >= 0" ng-click="addAPTest()">Add</button>
-					<div id="added-selections">
+					<button class="add-selection" ng-show="currently_viewing_ap_test.id >= 0" ng-click="addAPTest()">Add</button>
+					<div class="added-selections">
 						<h2>Your Added AP Scores</h2>
 						<ul>
 							<li ng-repeat="test in StudentInput.ap_credit">
@@ -54,12 +54,12 @@
 					</div>
 				</div>
 				<div id="transfer-credit-field" ng-show="CurrentStep.step_number === 3">
-					<h2 id="input-label">Transfer Credit: </h2>
+					<h2 class="input-label">Transfer Credit: </h2>
 					<select ng-model="currently_viewing_transfer.id" ng-options="TransCred.id as TransCred.name for TransCred in TransferCredit">
 					</select>
-					<p id="selection-description" ng-model="currently_viewing_transfer.description"> {{ TransferCredit[ currently_viewing_trasnfer.id ].description }}</p>
-					<button id="add-selection" ng-show="currently_viewing_transfer.id >= 0" ng-click="addTransferCredit()">Add</button>
-					<div id="added-selections">
+					<p class="selection-description" ng-model="currently_viewing_transfer.description"> {{ TransferCredit[ currently_viewing_transfer.id ].description }}</p>
+					<button id="add-transfer-credit-selection" class="add-selection" ng-show="currently_viewing_transfer.id >= 0" ng-click="addTransferCredit()">Add</button>
+					<div class="added-selections">
 						<h2>Your Added Transfer Credit</h2>
 						<ul>
 							<li ng-repeat="test in StudentInput.transfer_credit">
@@ -70,7 +70,7 @@
 					</div>
 				</div>
 				<div id="prev-exp-field" ng-show="CurrentStep.step_number === 4">
-					<h2 id="input-label">Miscellaneous</h2>
+					<h2 class="input-label">Miscellaneous</h2>
 					<p class="prev-exp-paragraph" id="prev-exp-programming"> Do you have previous programming experience?
 						<input id="prevProgramming" type="checkbox" ng-checked="previousProgramming" ng-click="updateProgExp()" />
 					</p>
