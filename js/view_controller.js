@@ -124,7 +124,7 @@ CleanSlateApp.controller('CleanSlateController', function ($scope) {
 	$scope.addAPTest = function() {
 		$scope.StudentInput.ap_credit.push( { id:$scope.currently_viewing_ap_test.id, score:$scope.currently_viewing_ap_test.score } );
 		$scope.currently_viewing_ap_test.score = 3;
-		$scope.Schedule = preComputeScheduleCSE( {id: $scope.currently_viewing_ap_test.id, score:$scope.currently_viewing_ap_test.score } )
+		$scope.Schedule = preComputeScheduleAPCSE( {id: $scope.currently_viewing_ap_test.id, score:$scope.currently_viewing_ap_test.score } )
 	}
 
 	/**
