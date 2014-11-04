@@ -2,13 +2,13 @@ window.TransferCredit = [
     {
         id : 0,
         name : "Calculus 1" ,
-        description : 'something',
+        description : 'First calculus class',
         fulfillment : [["math_courses", "MATH", "9"], ["math_courses", "MATH", "11"]]
     },
     {
         id : 1,
         name : "Calculus 2",
-        description : 'something',
+        description : 'Second calculus class',
         // [
         //     // {
         //     //     min_score : "3",
@@ -21,43 +21,43 @@ window.TransferCredit = [
     {
         id : 2,
         name : "Chemistry 1",
-        description : 'something',
+        description : 'first chemistry class',
         fulfillment : [["science_courses", "CHEM", "11"]]
     },
     {
         id : 3,
         name : "Computer Science 1",
-        description : 'something',
+        description : 'first computer science class',
         fulfillment : [["coen_courses", "COEN", "10"]]
     },
     {
         id : 4,
         name : "Computer Science 2",
-        description : 'something',
+        description : 'second computer science class',
         fulfillment : [["coen_courses", "COEN", "10"], ["coen_courses", "COEN", "11"]]
     },
     {   
         id : 5,
         name : "Physics: Mechanics",
-        description : 'something',
+        description : 'first physics class',
         fulfillment : [["science_courses", "PHYS", "31"]]
     },
     {
         id : 6,
         name : "Physics: Electricity & Magnetism",
-        description : 'something',
+        description : 'second physics class',
         fulfillment : [["science_courses", "PHYS", "33"]]
     },
     {   
         id : 7,
         name : "English Composition 1",
-        description : 'something',
+        description : 'first english class',
         fulfillment : [["required_courses", "CTW", "1"]]
     },
     {   
         id : 8,
         name : "English Composition 2",
-        description : 'something',
+        description : 'second english class',
         fulfillment : [["required_courses", "CTW", "2"]]
     }
 ];
