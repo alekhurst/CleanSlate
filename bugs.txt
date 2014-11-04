@@ -1,6 +1,8 @@
 BUGS.txt
  * List of Known Bugs
 
+***[CRITICAL]*** CompSci 2 transfer credit TypeError: Cannot read property 'branch' of undefined
+
 **[MINOR]** Calculus BC test only has one criteria for getting class grades (4-5), while there should be a second one that gives credit for MATH11 (3-4) 
 
 **[MINOR]** No Honors/LEAD courses (this might be OK for demo)
