@@ -28,20 +28,14 @@ CleanSlateApp.controller('CleanSlateController', function ($scope) {
 	};  
 	$scope.CurrentStep = {};
 	$scope.APTests = [];
-	$scope.currently_viewing_ap_test;
+	$scope.currently_viewing_ap_test = {};
 
 	/* View Controller Variable Initialization */
 	$scope.CurrentStep = window.Steps[0];
 	$scope.APTests = window.APTests;
+	$scope.currently_viewing_ap_test.score = 3;
 
 	/* Event listeners */
-	$scope.$watch('StudentInput', function() {
-		if(initializing)
-			initializing = false;
-		else 
-			$scope.updateScheduleWithNewInput();
-	}, true);
-
 	$scope.$watch('CurrentStep', function() {
 		if(initializing)
 			initializing = false;
@@ -51,15 +45,6 @@ CleanSlateApp.controller('CleanSlateController', function ($scope) {
 
 	
 	/* Methods */
-
-	/**
-	 * This function is called on change of the StudentInput object. 
-	 * This calls computeNewSchedule() which is in the file: js > compute_new_schedule.js. 
-	 * The returned object assigned to $scope.Schedule and therefore updates in the view
-	 */
-	$scope.updateScheduleWithNewInput = function() {
-		$scope.Schedule = computeNewSchedule($scope.StudentInput, $scope.Schedule);
-	}
 
 	/**
 	 * Used to assign a CSS class that changes the color of the element based on 
@@ -128,6 +113,18 @@ CleanSlateApp.controller('CleanSlateController', function ($scope) {
 			$("#input-component nav ul li").removeClass('select-this-nav');
 			$("#input-component nav ul li:nth-child(" + child_to_select + ")").addClass('select-this-nav');
 		}
+	}
+
+	$scope.setCurrentlyViewingAPTestScore = function(score) {
+		$scope.currently_viewing_ap_test.score = score;
+		$('#ap-test-score li').removeClass('selected-ap-test-score');
+		$($('#ap-test-score li')[ score - 3 ]).addClass('selected-ap-test-score');
+	}
+
+	$scope.addAPTest = function() {
+		$scope.StudentInput.ap_credit.push( { id:$scope.currently_viewing_ap_test.id, score:$scope.currently_viewing_ap_test.score } );
+		$scope.currently_viewing_ap_test.score = 3;
+		preComputeScheduleCSE( {id: $scope.currently_viewing_ap_test.id, score:$scope.currently_viewing_ap_test.score } )
 	}
 
 	/**

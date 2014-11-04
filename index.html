@@ -37,15 +37,15 @@
 				</select>
 				<p id="selection-description" ng-model="currently_viewing_ap_test.description"> {{ APTests[ currently_viewing_ap_test.id ].description }}</p>
 				<ul id="ap-test-score" ng-show="currently_viewing_ap_test.id >= 0">
-					<li class="selected-ap-test-score">3</li>
-					<li>4</li>
-					<li>5</li>
+					<li class="selected-ap-test-score" ng-click="setCurrentlyViewingAPTestScore(3)">3</li>
+					<li ng-click="setCurrentlyViewingAPTestScore(4)">4</li>
+					<li ng-click="setCurrentlyViewingAPTestScore(5)">5</li>
 				</ul>
-				<button id="add-selection" ng-show="currently_viewing_ap_test.id >= 0">Add</button>
+				<button id="add-selection" ng-show="currently_viewing_ap_test.id >= 0" ng-click="addAPTest()">Add</button>
 				<div id="added-selections">
 					<h2>Your Added AP Scores</h2>
 					<ul>
-						<li ng-repeat="ap_test in StudentInput.ap_credit">{{ APTests[ currently_viewing_ap_test.id ].name}}</li>
+						<li ng-repeat="test in StudentInput.ap_credit">{{ APTests[ test.id ].name }} ({{ test.score }}) </li>
 					</ul>
 				</div>
 			</section>
