@@ -119,21 +119,6 @@ function prereqsCompleted(course, quarter) {
 			default:
 				break;
 		}
-		/*
-        if (prereq_course['quarter_taken'] == 'spring_quarter') { //No way that child course could be taken after, return false
-            console.log('bb');
-            return false;
-        }
-        if (prereq_course['quarter_taken'] == 'winter_quarter' && quarter != 'spring_quarter') { //Only way to be false for winter quarter
-            console.log('cc');
-            return false;
-        }
-        if (prereq_course['quarter_taken'] == 'fall_quarter' && quarter == 'fall_quarter') {
-            console.log('dd');
-            return false;
-        }
-        console.log('NEXT PREREQ');
-		*/
     }
     console.log('ee');
     return true;
