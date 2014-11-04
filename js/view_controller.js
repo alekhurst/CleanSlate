@@ -22,16 +22,13 @@ CleanSlateApp.controller('CleanSlateController', function ($scope) {
 		spring_quarter : []   
 	}; 
 	$scope.StudentInput = {
-		ap_credit : [
-			{
-				input_type : 'ap_credit'
-			}
-		],
+		ap_credit : [],
 		transfer_credit : [],
 		previous_experience : []
 	};  
 	$scope.CurrentStep = {};
 	$scope.APTests = [];
+	$scope.currently_viewing_ap_test;
 
 	/* View Controller Variable Initialization */
 	$scope.CurrentStep = window.Steps[0];

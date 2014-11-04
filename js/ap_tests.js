@@ -1,39 +1,57 @@
-window.APTests = {
-    "Calculus AB" : {
+window.APTests = [
+    {
+        id : 0,
+        name : "Calculus AB" ,
+        description : 'something',
         min_score : "3",
         max_score : "5",
-        fulfillment : [["math-courses", "MATH", "11"], ["math-courses", "MATH", "12"]],
+        fulfillment : [["math-courses", "MATH", "11"], ["math-courses", "MATH", "12"]]
     },
-    "Calculus BC" : [
-        {
-            min_score : "3",
-            max_score : "4",
-            fulfillment : [["math-courses", "MATH", "11"]],
-        },
-        {
-            min_score : "4",
-            max_score : "5",
-            fulfillment : [["math-courses", "MATH", "11"], ["math-courses", "MATH", "12"], ["math-courses", "MATH", "13"]],
-        },
-    ],
-    "Chemistry" : {
+    {
+        id : 1,
+        name : "Calculus BC",
+        description : 'something',
+        // [
+        //     // {
+        //     //     min_score : "3",
+        //     //     max_score : "4",
+        //     //     fulfillment : [["math-courses", "MATH", "11"]],
+        //     // },          
+        // ],
+        min_score : "4",
+        max_score : "5",
+        fulfillment : [["math-courses", "MATH", "11"], ["math-courses", "MATH", "12"], ["math-courses", "MATH", "13"]]
+    },
+    {
+        id : 2,
+        name : "Chemistry",
+        description : 'something',
         min_score : "3",
         max_score : "5",
-        fulfillment : [["science-courses", "CHEM", "11"]],
+        fulfillment : [["science-courses", "CHEM", "11"]]
     },
-    "Computer Science A" : {
+    {
+        id : 3,
+        name : "Computer Science A",
+        description : 'something',
         min_score : "4",
         max_score : "5",
-        fulfillment : [["coen-courses", "COEN", "11"]],
+        fulfillment : [["coen-courses", "COEN", "11"]]
     },
-    "Physics C: Mechanics" : {
+    {   
+        id : 4,
+        name : "Physics C: Mechanics",
+        description : 'something',
         min_score : "4",
         max_score : "5",
-        fulfillment : [["science-courses", "PHYS", "31"]],
+        fulfillment : [["science-courses", "PHYS", "31"]]
     },
-    "Physics C: Electricity & Magnetism" : {
+    {
+        id : 5,
+        name : "Physics C: Electricity & Magnetism",
+        description : 'something',
         min_score : "4",
         max_score : "5",
-        fulfillment : [["science-courses", "PHYS", "33"]],
-    },
-};
+        fulfillment : [["science-courses", "PHYS", "33"]]
+    }
+];
