@@ -29,7 +29,7 @@
 					<ul>
 						<li ng-click="skipToStep(1)"><a href="#">AP Credit</a></li>
 						<li ng-click="skipToStep(2)"><a href="#">Transfer Credit</a></li>
-						<li ng-click="skipToStep(3)"><a href="#">Previous Experience</a></li>
+						<li ng-click="skipToStep(3)"><a href="#">Miscellaneous</a></li>
 					</ul>
 				</nav>
 				<div id="ap-credit-field" ng-show="CurrentStep.step_number === 2">
@@ -70,7 +70,7 @@
 					</div>
 				</div>
 				<div id="prev-exp-field" ng-show="CurrentStep.step_number === 4">
-					<h2 id="input-label">Previous Experience</h2>
+					<h2 id="input-label">Miscellaneous</h2>
 					<p class="prev-exp-paragraph" id="prev-exp-programming"> Do you have previous programming experience?
 						<input id="prevProgramming" type="checkbox" ng-checked="previousProgramming" ng-click="updateProgExp()" />
 					</p>
