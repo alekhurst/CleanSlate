@@ -261,9 +261,17 @@ function removeCourse(course_title, quarter) {
     }
 }
 
-function preComputeScheduleTransferCSE(transfer_credit)
-{
-    computeNewScheduleCSE([ { function : "removeCourse", parameters : [window.TransferCredit[transfer_credit.id].fulfillment[1] + window.TransferCredit[transfer_credit.id].fulfillment[2]] } ])
+function preComputeScheduleTransferCSE(transfer_credit) {
+    var schedule_changes = [];
+
+    for (course in window.TransferCredit[transfer_credit['id']]['fulfillment']) {
+        course_info = window.TransferCredit[transfer_credit['id']]['fulfillment'][course];
+        schedule_changes.push({
+            function : "removeCourse",
+            parameters : [course_info[1] + course_info[2]]
+        });
+    }
+    computeNewScheduleCSE(schedule_changes);
 
     return computeNewScheduleCSE( [ ] );
 }

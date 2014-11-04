@@ -16,13 +16,13 @@ window.TransferCredit = [
         //     //     fulfillment : [["math_courses", "MATH", "11"]],
         //     // },          
         // ],
-        fulfillment : ["math_courses", "MATH", "12"]
+        fulfillment : [["math_courses", "MATH", "12"]]
     },
     {
         id : 2,
         name : "Chemistry 1",
         description : 'something',
-        fulfillment : ["science_courses", "CHEM", "11"]
+        fulfillment : [["science_courses", "CHEM", "11"]]
     },
     {
         id : 3,
