@@ -101,7 +101,16 @@ function prereqsCompleted(course, quarter) {
 
         var prereq_course = getCourse(prereq_branch, getCourseId(prereq_branch, prereq_department, prereq_course_number));
         //Look when prereq_course is in schedule, and if it is during/after current_quarter, then return false
-        if (prereq_course['credit'] == 'NO')
+        if (prereq_course['credit'] == 'NO') //Prereq is not completed at all, return false
+            return false;
+
+        if (prereq_course['quarter_taken'] == 'spring_quarter') //No way that child course could be taken after, return false
+            return false;
+
+        if (prereq_course['quarter_taken'] == 'winter_quarter' && quarter == 'spring_quarter') //Only way to be false for winter quarter
+            return false;
+
+        if (prereq_course['quarter_taken'] == 'fall_quarter' && quarter != 'fall_quarter')
             return false;
     }
     return true;
