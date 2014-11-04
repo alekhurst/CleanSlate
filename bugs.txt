@@ -1,0 +1,4 @@
+BUGS.txt
+ * List of Known Bugs
+ 
+- AP Physics Mechanics (5) does not remove PHYS 31
