@@ -40,3 +40,6 @@ BUGS.txt
 [FIXED] Most Transfer Credit Transactions Have Some 'undefined' Error
     - See https://github.com/alekhurst/CleanSlate/commit/96a7a8439f1a606c22f3eff2caf2228107063a7e
     - Jordan: preComputeScheduleTransferCSE() was calling computeNewScheduleCSE(), but was not passing removal requests in correctly
+
+[FIXED] Testing out of CHEM11 would put PHYS33 in its place
+    - See https://github.com/alekhurst/CleanSlate/commit/9973c2313f297926c7c2337b8579d17f81a1c812
