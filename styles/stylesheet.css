@@ -274,7 +274,21 @@ body {
 				background-color: #941A1E;
 			} #input-component #added-selections ul li:hover {
 				background-color: #f4e8e8;
-			} 
+			} #input-component .prev-exp-paragraph{
+				display: block;
+				float: left;
+				clear: both;
+				width:100%;
+				font-size: 22px;
+				margin: 30px 0px 0px 40px;
+				color: #941A1E;			
+			} #input-component .prev-exp-paragraph input[type='checkbox']{
+				height:25px;
+				width:25px;
+				vertical-align:middle;
+				float:right;
+				margin-right:100px;
+			}
 	/* ---- END INPUT COMPONENT ---- */
 
 	/* ---- START OUTPUT COMPONENT ---- */
