@@ -2,7 +2,6 @@ BUGS.txt
  * List of Known Bugs
  
 - Broken AP Tests: Physics C (Both), Calculus BC, Comp. Sci A
-- AP Score Measurer defaults to 3 unless clicked, even if showing 5.
 - Every course in the course plan still says 'something'
 - Multiple Scores on Same Test are Allowed
 - No way to Remove AP Tests
