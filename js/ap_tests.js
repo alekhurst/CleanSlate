@@ -2,7 +2,7 @@ window.APTests = [
     {
         id : 0,
         name : "Calculus AB" ,
-        description : 'something',
+        description : 'Single variable calculus differentiation. Intro to integration.',
         min_score : "3",
         max_score : "5",
         fulfillment : [["math-courses", "MATH", "11"], ["math-courses", "MATH", "12"]]
@@ -10,7 +10,7 @@ window.APTests = [
     {
         id : 1,
         name : "Calculus BC",
-        description : 'something',
+        description : 'Single variable calculus integration. Multi-variable calculus',
         // [
         //     // {
         //     //     min_score : "3",
@@ -25,7 +25,7 @@ window.APTests = [
     {
         id : 2,
         name : "Chemistry",
-        description : 'something',
+        description : 'AP Chemistry',
         min_score : "3",
         max_score : "5",
         fulfillment : [["science-courses", "CHEM", "11"]]
@@ -33,7 +33,7 @@ window.APTests = [
     {
         id : 3,
         name : "Computer Science A",
-        description : 'something',
+        description : 'Introduction to computer science in Java or C++',
         min_score : "4",
         max_score : "5",
         fulfillment : [["coen-courses", "COEN", "11"]]
@@ -41,7 +41,7 @@ window.APTests = [
     {   
         id : 4,
         name : "Physics C: Mechanics",
-        description : 'something',
+        description : 'AP physics with an emphasis on mechanics',
         min_score : "4",
         max_score : "5",
         fulfillment : [["science-courses", "PHYS", "31"]]
@@ -49,7 +49,7 @@ window.APTests = [
     {
         id : 5,
         name : "Physics C: Electricity & Magnetism",
-        description : 'something',
+        description : 'AP physics with an emphasis on electricity and magnetism',
         min_score : "4",
         max_score : "5",
         fulfillment : [["science-courses", "PHYS", "33"]]

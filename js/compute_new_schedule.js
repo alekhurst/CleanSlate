@@ -1,4 +1,4 @@
-s/*
+/*
  * This function returns the course at a position for a given branch
  *
  * @param {string} branch : The name of the branch that the object is located (o.e. "math_courses")
@@ -195,7 +195,7 @@ function preComputeScheduleCSE(ap_test)
     if (ap_test.score >= window.APTests[ap_test.id].min_score && ap_test.score <= window.APTests[ap_test.id].max_score) {
         for (course in window.APTests[ap_test.id].fulfillment) {
                computeNewScheduleCSE([ 
-                    { function : "removeCourse", parameters : [window.APTests[ap_test.id].fulfillment.course[1] + window.APTests[ap_test.id].fulfillment.course[2]] }
+                    { function : "removeCourse", parameters : [window.APTests[ap_test.id].fulfillment[course][1] + ' ' + window.APTests[ap_test.id].fulfillment[course][2]] }
                                     ])
         }    
     }
