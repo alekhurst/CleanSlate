@@ -1,10 +1,6 @@
 BUGS.txt
  * List of Known Bugs
 
-***[CRITICAL]*** CompSci 2 transfer credit TypeError: Cannot read property 'branch' of undefined
-
-***[CRITICAL]*** CompSci A credit TypeError: Cannot read property 'branch' of undefined
-
 **[MINOR]** Calculus BC test only has one criteria for getting class grades (4-5), while there should be a second one that gives credit for MATH11 (3-4) 
 
 **[MINOR]** No Honors/LEAD courses (this might be OK for demo)
@@ -48,5 +44,10 @@ BUGS.txt
 [FIXED] Physics: Physics C: Mechanics AP credit is broken
     - See https://github.com/alekhurst/CleanSlate/commit/bd33cbb5650555b20e117fb644a2fde14424a209
     - Jordan: ID's for some transfer credits were off by 1
+
+[FIXED] CompSci 2 transfer credit TypeError: Cannot read property 'branch' of undefined
+[FIXED] CompSci A credit TypeError: Cannot read property 'branch' of undefined
+    -See https://github.com/alekhurst/CleanSlate/commit/eb9e10a62e3ce9197952da3ffcb94a67985b0a63
+    -Scott: Return if branch is undefined (no prerequisites for the next class in the series I think?)
 
 LAST STABLE COMMIT: https://github.com/alekhurst/CleanSlate/commit/d5b8c2aee0dc8a5d5438cfc5b0734dd92060bbed
