@@ -50,4 +50,4 @@ BUGS.txt
     -See https://github.com/alekhurst/CleanSlate/commit/eb9e10a62e3ce9197952da3ffcb94a67985b0a63
     -Scott: Return if branch is undefined (no prerequisites for the next class in the series I think?)
 
-LAST STABLE COMMIT: https://github.com/alekhurst/CleanSlate/commit/d5b8c2aee0dc8a5d5438cfc5b0734dd92060bbed
+LAST STABLE COMMIT: https://github.com/alekhurst/CleanSlate/commit/f10f63b2aeef9eaa4c5e97a5d5269026702595e3
