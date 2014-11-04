@@ -3,8 +3,6 @@ BUGS.txt
  
 ***[CRUCIAL]*** Physics: E&M Transfer Credit is Broken
 
-***[CRUCIAL]*** Most Transfer Credit Transactions Have Some 'undefined' Error
-
 **[MINOR]** Calculus BC test only has one criteria for getting class grades (4-5), while there should be a second one that gives credit for MATH11 (3-4) 
 
 **[MINOR]** No Honors/LEAD courses (this might be OK for demo)
@@ -28,3 +26,7 @@ BUGS.txt
 	  we remove both? (JORDAN: Yes, we should. I added it.)
 
 [FIXED] Comp. Sci A gives credit for COEN10 as well as COEN11
+
+[FIXED] Most Transfer Credit Transactions Have Some 'undefined' Error
+    - See https://github.com/alekhurst/CleanSlate/commit/96a7a8439f1a606c22f3eff2caf2228107063a7e
+    - Jordan: preComputeScheduleTransferCSE() was calling computeNewScheduleCSE(), but was not passing removal requests in correctly
