@@ -47,6 +47,9 @@ function parentCourseInSameBranch(current_course, branch) {
 function takenBeforeOrDuringThisQuarter(course, quarter) {
     var quarter_taken = course['quarter_taken'];
 
+    if (course['credit'] == 'NO') { //If the course has never been taken, return false
+        return false;
+    }
     if (quarter_taken == '' && course['credit'] == 'YES') { //If the course was taken, but is no longer on the schedule
         return true;
     }
@@ -77,6 +80,11 @@ function offeredThisQuarter(course, quarter) {
     return false;
 }
 
+/*
+ * Returns true if a course has all of its prerequisites completed, false otherwise
+ *
+ * @param {object} course - Course object to be tested
+ */
 function prereqsCompleted(course) {
     for (prereq in course['prerequisites']) {
         var prereq_branch = course['prerequisites'][prereq][0];
@@ -139,7 +147,7 @@ function nextCourseAfter(course_data, id, quarter) {
 function nextOffering(offerings, quarter) {
     console.log(JSON.stringify(window.AllCourses['math_courses'][0]));
     if (quarter == 'spring_quarter') //No other courses, return -1
-        return -1
+        return -1;
     else if (quarter == 'fall_quarter') {
         var next_offering = '';
         for (offering in offerings) {
@@ -263,6 +271,7 @@ function computeNewScheduleCSE(student_input) {
 
     if (student_input.length > 0) { //If there are changes to the default schedule, make those changes
         for (change in student_input){
+            console.log('ASDASDASD');
             //Do changes based on student_input changes
             var param = student_input[change]['parameters'];
             
