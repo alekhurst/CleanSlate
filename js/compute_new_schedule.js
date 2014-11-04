@@ -94,6 +94,7 @@ function offeredThisQuarter(course, quarter) {
  * @param {string} quarter - Current quarter to check after ("fall_quarter", "winter_quarter", or "spring_quarter")
  */
 function prereqsCompleted(course, quarter) {
+    //POTENTIALLY BROKEN
     for (prereq in course['prerequisites']) {
         var prereq_branch = course['prerequisites'][prereq][0];
         var prereq_department = course['prerequisites'][prereq][1];
@@ -101,18 +102,25 @@ function prereqsCompleted(course, quarter) {
 
         var prereq_course = getCourse(prereq_branch, getCourseId(prereq_branch, prereq_department, prereq_course_number));
         //Look when prereq_course is in schedule, and if it is during/after current_quarter, then return false
-        if (prereq_course['credit'] == 'NO') //Prereq is not completed at all, return false
+        if (prereq_course['credit'] == 'NO') { //Prereq is not completed at all, return false
+            console.log('aa');
             return false;
-
-        if (prereq_course['quarter_taken'] == 'spring_quarter') //No way that child course could be taken after, return false
+        }
+        if (prereq_course['quarter_taken'] == 'spring_quarter') { //No way that child course could be taken after, return false
+            console.log('bb');
             return false;
-
-        if (prereq_course['quarter_taken'] == 'winter_quarter' && quarter == 'spring_quarter') //Only way to be false for winter quarter
+        }
+        if (prereq_course['quarter_taken'] == 'winter_quarter' && quarter != 'spring_quarter') { //Only way to be false for winter quarter
+            console.log('cc');
             return false;
-
-        if (prereq_course['quarter_taken'] == 'fall_quarter' && quarter != 'fall_quarter')
+        }
+        if (prereq_course['quarter_taken'] == 'fall_quarter' && quarter == 'fall_quarter') {
+            console.log('dd');
             return false;
+        }
+        console.log('NEXT PREREQ');
     }
+    console.log('ee');
     return true;
 }
 
@@ -309,6 +317,7 @@ function preComputeScheduleTransferCSE(transfer_credit) {
 
 function preComputeScheduleAPCSE(ap_test)
 {
+    //BROKEN, DO LIKE FUNCTION ABOVE
     console.log("ap_test.score = " + ap_test.score)
 
     console.log("ap_test.min_score = " + ap_test.min_score)
