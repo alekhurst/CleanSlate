@@ -367,7 +367,11 @@ function preComputeScheduleAPCSE(ap_test)
         console.log("inside if statement")
         for (course in window.APTests[ap_test.id].fulfillment) {
                computeNewScheduleCSE([ 
+<<<<<<< HEAD
+                    { function : "removeCourse", parameters : [window.APTests[ap_test.id].fulfillment[course][1] + ' ' + window.APTests[ap_test.id].fulfillment[course][2]] }
+=======
                     { function : "removeCourse", parameters : [window.APTests[ap_test.id].fulfillment[course][1] + window.APTests[ap_test.id].fulfillment[course][2]] }
+>>>>>>> d7a2178d1e27c8ec60bf4519f06f8cd4245d8583
                                     ])
         }    
     }

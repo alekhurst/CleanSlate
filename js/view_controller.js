@@ -161,19 +161,15 @@ CleanSlateApp.controller('CleanSlateController', function ($scope) {
 	
 
 	$scope.updateProgExp = function(){
-	
 		if(!$scope.previousProgramming){
 			$scope.Schedule = preComputeProgrammingExperienceCSE();
-		}
-			
+		}	
 	}
 	
 	$scope.updateCalcReady = function(){
-
 		if(!$scope.calculusReady){
 			$scope.Schedule = preComputeReadinessExamCSE();
 		}
-	
 	}
 
 	/**
