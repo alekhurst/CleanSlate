@@ -3,6 +3,8 @@ BUGS.txt
  
 ***[CRUCIAL]*** Physics: E&M Transfer Credit is Broken
 
+***[CRUCIAL]*** Most Transfer Credit Transactions Have Some 'undefined' Error
+
 **[MILD]** Not Printer Friendly
  
 *[OK DEMO]* Every course in the course plan still says 'something'
