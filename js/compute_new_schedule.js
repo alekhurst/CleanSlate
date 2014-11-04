@@ -254,6 +254,7 @@ function removeCourse(course_title, quarter) {
     }
 
     var course = window.WorkingSchedule[quarter][course_title];
+	if(!course){ console.log("course in quarter not found"); return;}
     var id = getCourseId(course['branch'], course['department'], course['course_number']);
     var next_course_in_series = nextCourseAfter([course.branch, course.department, course.course_number], id, quarter);
 
