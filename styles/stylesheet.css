@@ -259,7 +259,7 @@ body {
 				font-size: 18px;
 				color: #941A1E;
 				max-height: 150px;
-				overflow-y: scroll;
+				overflow-y: auto;
 			}
 			#input-component .added-selections ul li button{
 				float: right;
