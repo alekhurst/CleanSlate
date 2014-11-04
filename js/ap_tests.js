@@ -5,22 +5,22 @@ window.APTests = [
         description : 'Single variable calculus differentiation. Intro to integration.',
         min_score : "4",
         max_score : "5",
-        fulfillment : [["math-courses", "MATH", "9"], ["math-courses", "MATH", "11"], ["math-courses", "MATH", "12"]]
+        fulfillment : [["math_courses", "MATH", "9"], ["math_courses", "MATH", "11"], ["math_courses", "MATH", "12"]]
     },
     {
         id : 1,
         name : "Calculus BC",
-        description : 'Single variable calculus integration. Multi-variable calculus',
+        description : 'Single variable calculus integration. Multi_variable calculus',
         // [
         //     // {
         //     //     min_score : "3",
         //     //     max_score : "4",
-        //     //     fulfillment : [["math-courses", "MATH", "11"]],
+        //     //     fulfillment : [["math_courses", "MATH", "11"]],
         //     // },          
         // ],
         min_score : "4",
         max_score : "5",
-        fulfillment : [["math-courses", "MATH", "9"], ["math-courses", "MATH", "11"], ["math-courses", "MATH", "12"], ["math-courses", "MATH", "13"]]
+        fulfillment : [["math_courses", "MATH", "9"], ["math_courses", "MATH", "11"], ["math_courses", "MATH", "12"], ["math_courses", "MATH", "13"]]
     },
     {
         id : 2,
@@ -28,7 +28,7 @@ window.APTests = [
         description : 'AP Chemistry',
         min_score : "3",
         max_score : "5",
-        fulfillment : [["science-courses", "CHEM", "11"]]
+        fulfillment : [["science_courses", "CHEM", "11"]]
     },
     {
         id : 3,
@@ -36,7 +36,7 @@ window.APTests = [
         description : 'Introduction to computer science in Java or C++',
         min_score : "4",
         max_score : "5",
-        fulfillment : [["coen-courses", "COEN", "10"], ["coen-courses", "COEN", "11"]]
+        fulfillment : [["coen_courses", "COEN", "10"], ["coen_courses", "COEN", "11"]]
     },
     {   
         id : 4,
@@ -44,7 +44,7 @@ window.APTests = [
         description : 'AP physics with an emphasis on mechanics',
         min_score : "4",
         max_score : "5",
-        fulfillment : [["science-courses", "PHYS", "31"]]
+        fulfillment : [["science_courses", "PHYS", "31"]]
     },
     {
         id : 5,
@@ -52,6 +52,6 @@ window.APTests = [
         description : 'AP physics with an emphasis on electricity and magnetism',
         min_score : "4",
         max_score : "5",
-        fulfillment : [["science-courses", "PHYS", "33"]]
+        fulfillment : [["science_courses", "PHYS", "33"]]
     }
 ];
