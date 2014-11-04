@@ -43,3 +43,4 @@ BUGS.txt
     - See https://github.com/alekhurst/CleanSlate/commit/9973c2313f297926c7c2337b8579d17f81a1c812
 
 [FIXED] Physics: E&M AP Credit gives a TypeError: Cannot read property 'PHYS33' of undefined
+    - See https://github.com/alekhurst/CleanSlate/commit/19770ae47db03a0364335507dc273862d284556a
