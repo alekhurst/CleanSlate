@@ -5,7 +5,7 @@ function_remove_course(course, quarter)
 	{
 		return;
 	}
-	
+
 	course.credit = "YES";
 
 	var newCourse = course;
@@ -22,4 +22,15 @@ function_remove_course(course, quarter)
 	//newCourse should be set to either a non-CORE class or a CORE class
 
 	function_remove_course(newCourse, quarter.next);
+}
+
+function_ap_check(apTestObject)
+{
+	if (apTestObject's test and score are valid)
+	{
+		foreach (course in apTestObject)
+		{
+			function_remove_course(course, course.quarterOffered?) //what quarter to pass in?
+		}
+	}
 }
