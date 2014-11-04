@@ -44,5 +44,5 @@ BUGS.txt
 
 [FIXED] Physics: E&M Transfer Credit is Broken (TypeError: Cannot read property 'branch' of undefined)
 [FIXED] Physics: Physics C: Mechanics AP credit is broken
-    - See
+    - See https://github.com/alekhurst/CleanSlate/commit/bd33cbb5650555b20e117fb644a2fde14424a209
     - Jordan: ID's for some transfer credits were off by 1
