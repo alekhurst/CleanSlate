@@ -244,7 +244,7 @@ function moveEngr1() {
 
     console.log('UNITS FALL: ' + total_units_fall + ', UNITS WINTER: ' + total_units_winter);
     console.log(quarter_offered);
-    if (total_units_fall < total_units_winter && quarter_offered == 'winter_quarter') { //Move ENGR1 to fall
+    if (total_units_fall <= total_units_winter && quarter_offered == 'winter_quarter') { //Move ENGR1 to fall
         console.log('move to fall');
         window.AllCourses['engineering_courses'][0]['quarter_taken'] = 'fall_quarter';
         delete window.WorkingSchedule['winter_quarter']['ENGR1'];
@@ -262,7 +262,7 @@ function moveEngr1() {
         console.log(JSON.stringify(window.WorkingSchedule['fall_quarter']));
     }
 
-    else if (total_units_fall >= total_units_winter && quarter_offered == 'fall_quarter') { //Move ENGR1 to winter
+    else if (total_units_fall > total_units_winter && quarter_offered == 'fall_quarter') { //Move ENGR1 to winter
         console.log('move to winter');
         window.AllCourses['engineering_courses'][0]['quarter_taken'] = 'winter_quarter';
         delete window.WorkingSchedule['fall_quarter']['ENGR1'];
