@@ -5,6 +5,8 @@ BUGS.txt
 
 ***[CRUCIAL]*** Most Transfer Credit Transactions Have Some 'undefined' Error
 
+**[MINOR]** Calculus BC test only has one criteria for getting class grades (4-5), while there should be a second one that gives credit for MATH11 (3-4) 
+
 *[OK DEMO]* Not Printer Friendly
 
 *[OK DEMO]* Console Log Clutter
@@ -18,4 +20,4 @@ BUGS.txt
 [FIXED] Broken AP Tests: Physics C (Both), Calculus BC, Comp. Sci A
 	- JP fixed this with the AP Score resetting to 3 issue. However, a 5 on the Comp
 	  Sci A Test still has the student taking COEN 10 while removing COEN 11.  Shouldn't
-	  we remove both?
+	  we remove both? (JORDAN: Yes, we should. I added it.)
