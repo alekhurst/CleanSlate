@@ -31,9 +31,6 @@ BUGS.txt
 
 **[MINOR]** No Honors/LEAD courses (this might be OK for demo)
 
-**[MINOR]** ENGR1 should be added to the quarter with the least amount of labs
-    - This should possibly be implemented in a "fixer" function, called after the regular schedule maker function. This will not only put ENGR in a good place, but also deal with LEAD/Honors courses
-
 **[MINOR]** Logic to Add Classes Back ? (Or Reset?)	
 	
 *[OK DEMO]* Not Printer Friendly
@@ -75,5 +72,8 @@ BUGS.txt
     -Scott: Return if branch is undefined (no prerequisites for the next class in the series I think?)
 
 [FIXED] C&I 1/2 should be added in consecutive quarters that have CORE classes
+
+[FIXED] ENGR1 should be added to the quarter with the least amount of labs
+    - See https://github.com/alekhurst/CleanSlate/commit/97664f1192fe55d52dc91c2567a39f2797555ccb
 
 LAST STABLE COMMIT: https://github.com/alekhurst/CleanSlate/commit/f10f63b2aeef9eaa4c5e97a5d5269026702595e3
