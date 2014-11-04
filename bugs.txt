@@ -1,6 +1,8 @@
 BUGS.txt
  * List of Known Bugs
  
+***[CRUCIAL]*** Physics: E&M Transfer Credit is Broken
+ 
 *[OK DEMO]* Every course in the course plan still says 'something'
 
 *[OK DEMO]* Multiple Scores on Same Test Produce Backend Issues (Classes 'undefined')

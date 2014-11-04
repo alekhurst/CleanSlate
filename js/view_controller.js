@@ -136,6 +136,20 @@ CleanSlateApp.controller('CleanSlateController', function ($scope) {
 		$scope.StudentInput.ap_credit.splice(index,1); // remove the AP test from the array.
 		//$scope.Schedule = preComputeScheduleAPCSE( {id: $scope.currently_viewing_ap_test.id, score:$scope.currently_viewing_ap_test.score } )
 	}
+	
+	
+	$scope.addTransferCredit = function() {
+		for(var i in $scope.StudentInput.transfer_credit){
+			if($scope.StudentInput.transfer_credit[i].id == $scope.currently_viewing_transfer.id) $scope.removeTransferCredit(i);
+		}
+		$scope.StudentInput.transfer_credit.push( { id:$scope.currently_viewing_transfer.id } );
+		$scope.Schedule = preComputeScheduleTransferCSE( {id: $scope.currently_viewing_transfer.id} );
+	}
+	
+	$scope.removeTransferCredit = function(index){
+		$scope.StudentInput.transfer_credit.splice(index,1); // remove the AP test from the array.
+		//$scope.Schedule = preComputeScheduleTransferCSE( {id: $scope.currently_viewing_ap_test.id, score:$scope.currently_viewing_ap_test.score } )
+	}
 
 	/**
 	 * I used this function to test if the updateScheduleWithNewInput() function
