@@ -16,7 +16,7 @@ window.TransferCredit = [
         //     //     fulfillment : [["math_courses", "MATH", "11"]],
         //     // },          
         // ],
-        fulfillment : [["math_courses", "MATH", "12"]]
+        fulfillment : [["math_courses", "MATH", "9"], ["math_courses", "MATH", "11"], ["math_courses", "MATH", "12"]]
     },
     {
         id : 2,
@@ -34,7 +34,7 @@ window.TransferCredit = [
         id : 4,
         name : "Computer Science 2",
         description : 'something',
-        fulfillment : [["coen_courses", "COEN", "11"]]
+        fulfillment : [["coen_courses", "COEN", "10"], ["coen_courses", "COEN", "11"]]
     },
     {   
         id : 5,
