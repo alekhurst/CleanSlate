@@ -33,7 +33,7 @@ window.AllCourses = {
 			description : "something",
 			offering : ["fall_quarter", "winter_quarter", "spring_quarter"],
 			credit : "YES",
-            quarter_taken: "winter_quarter",
+            quarter_taken: "spring_quarter",
 			category : "math_and_science",
             units : "4",
             prerequisites : [["math_courses", "MATH", "11"]],
