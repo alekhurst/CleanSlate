@@ -18,6 +18,8 @@ BUGS.txt
 
 * change the top bar
 
+* Fix Documentation [https://www.writelatex.com/1776129zknvfq]
+
 
 
 
