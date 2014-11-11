@@ -9,8 +9,6 @@ BUGS.txt
 
 * calculus readiness exam based on their score to get them out of classes
 
-* rearrange Math course sequence:  9, 11, 12, 13, 14, 106, 108, 53
-
 * Printing the schedule
 
 * change the top bar
@@ -79,5 +77,8 @@ BUGS.txt
 	-AP environmental science gets out of CHEM 11
 	-4,5 on AP Chemistry exam gets student out of AMTH 106 in addition to CHEM 11
     -See https://github.com/alekhurst/CleanSlate/commit/ae5fbbb5c7d45cc2366022c79a6959cd47fc992e
+
+[FIXED] rearrange Math course sequence:  9, 11, 12, 13, 14, 106, 108, 53
+    -See https://github.com/alekhurst/CleanSlate/commit/824cdf0f891cf6eaa899fc640db483aeeb4e7d09
 
 LAST STABLE COMMIT: https://github.com/alekhurst/CleanSlate/commit/f10f63b2aeef9eaa4c5e97a5d5269026702595e3
