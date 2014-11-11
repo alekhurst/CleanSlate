@@ -80,6 +80,6 @@ window.APTests = [
         description: "Dat enviromental class, yo",
         min_score: "4",
         max_score: "5",
-        fulfillment: [["math_courses", "AMATH", "106"]]
+        fulfillment: [["science_courses", "CHEM", "11"]]
     },
 ];
