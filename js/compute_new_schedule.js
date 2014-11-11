@@ -443,23 +443,36 @@ function preComputeScheduleTransferCSE(transfer_credit) {
 
 function preComputeScheduleAPCSE(ap_test)
 {
-    //BROKEN, DO LIKE FUNCTION ABOVE
     console.log('ap_test.score = ' + ap_test.score)
 
-    console.log('ap_test.min_score = ' + ap_test.min_score)
-    console.log('ap_test.max_score = ' + ap_test.max_score)
-
-    if (ap_test.score >= window.APTests[ap_test.id].min_score && ap_test.score <= window.APTests[ap_test.id].max_score) {
-        console.log('inside if statement')
-        for (course in window.APTests[ap_test.id].fulfillment) {
-            computeNewScheduleCSE([ {
-                function : 'removeCourse',
-                parameters : [window.APTests[ap_test.id].fulfillment[course][1] + window.APTests[ap_test.id].fulfillment[course][2]]
-            } ])
-        }    
-    }
-    else {
-        // score not accepted
+    var test = window.APTests[ap_test.id];
+    if (test.multiple_fulfillments) {
+        for (test_fulfillment in test.multiple_fulfillments) {
+            var this_fulfillment = test.multiple_fulfillments[test_fulfillment];
+            console.log('this_fulfillment: ' + JSON.stringify(this_fulfillment));
+            if (ap_test.score >= this_fulfillment.min_score && ap_test.score <= this_fulfillment.max_score) { //If ap_test.score falls within a certain range
+                console.log('do this one: ' + JSON.stringify(this_fulfillment));
+                for (course in this_fulfillment.fulfillment) {
+                    var this_course = this_fulfillment.fulfillment[course];
+                    console.log('this_course: ' + JSON.stringify(this_course));
+                    computeNewScheduleCSE([ {
+                        function : 'removeCourse',
+                        parameters : [this_fulfillment.fulfillment[course][1] + this_fulfillment.fulfillment[course][2]]
+                    } ]);
+                }
+                return computeNewScheduleCSE( [ ] );
+            }
+        }
+    } else {
+        if (ap_test.score >= window.APTests[ap_test.id].min_score && ap_test.score <= window.APTests[ap_test.id].max_score) {
+            console.log('inside if statement')
+            for (course in window.APTests[ap_test.id].fulfillment) {
+                computeNewScheduleCSE([ {
+                    function : 'removeCourse',
+                    parameters : [window.APTests[ap_test.id].fulfillment[course][1] + window.APTests[ap_test.id].fulfillment[course][2]]
+                } ])
+            }    
+        }
     }
 
     return computeNewScheduleCSE( [ ] );
