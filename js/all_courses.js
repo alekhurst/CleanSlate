@@ -66,19 +66,6 @@ window.AllCourses = {
 		},
 
 		{
-			name : "Linear Algebra",
-			department : "MATH",
-			course_number : "53",
-			description : "something",
-			offering : ["fall_quarter", "winter_quarter", "spring_quarter"],
-			credit : "NO",
-            quarter_taken: "",
-			category : "math_and_science",
-            units : "4",
-            prerequisites : [["math_courses", "MATH", "13"]],
-		},
-
-		{
 			name : "Differential Equations",
 			department : "AMTH",
 			course_number : "106",
@@ -102,6 +89,19 @@ window.AllCourses = {
 			category : "math_and_science",
             units : "4",
             prerequisites : [["math_courses", "MATH", "14"]],
+		},
+
+		{
+			name : "Linear Algebra",
+			department : "MATH",
+			course_number : "53",
+			description : "something",
+			offering : ["fall_quarter", "winter_quarter", "spring_quarter"],
+			credit : "NO",
+            quarter_taken: "",
+			category : "math_and_science",
+            units : "4",
+            prerequisites : [["math_courses", "MATH", "13"]],
 		},
 	],
 
