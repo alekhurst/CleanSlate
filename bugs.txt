@@ -4,9 +4,6 @@ BUGS.txt
 ————————————————————————————————————————————————
 
 
-* fix AP scores based on real criteria
-	-AP environmental science gets out of CHEM 11
-	-4,5 on AP Chemistry exam gets student out of AMTH 106 in addition to CHEM 11
 
 * don’t shift COEN classes
 
@@ -77,5 +74,10 @@ BUGS.txt
 
 [FIXED] ENGR1 should be added to the quarter with the least amount of labs
     - See https://github.com/alekhurst/CleanSlate/commit/97664f1192fe55d52dc91c2567a39f2797555ccb
+
+[FIXED] fix AP scores based on real criteria
+	-AP environmental science gets out of CHEM 11
+	-4,5 on AP Chemistry exam gets student out of AMTH 106 in addition to CHEM 11
+    -See https://github.com/alekhurst/CleanSlate/commit/ae5fbbb5c7d45cc2366022c79a6959cd47fc992e
 
 LAST STABLE COMMIT: https://github.com/alekhurst/CleanSlate/commit/f10f63b2aeef9eaa4c5e97a5d5269026702595e3
