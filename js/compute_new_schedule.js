@@ -443,18 +443,13 @@ function preComputeScheduleTransferCSE(transfer_credit) {
 
 function preComputeScheduleAPCSE(ap_test)
 {
-    console.log('ap_test.score = ' + ap_test.score)
-
     var test = window.APTests[ap_test.id];
-    if (test.multiple_fulfillments) {
-        for (test_fulfillment in test.multiple_fulfillments) {
+    if (test.multiple_fulfillments) { //If there are multiple possibilities for AP test scores, go through each one and find the range that ap_test.score falls within, then test out of those classes
+        for (test_fulfillment in test.multiple_fulfillments) { //For each fulfillment 
             var this_fulfillment = test.multiple_fulfillments[test_fulfillment];
-            console.log('this_fulfillment: ' + JSON.stringify(this_fulfillment));
             if (ap_test.score >= this_fulfillment.min_score && ap_test.score <= this_fulfillment.max_score) { //If ap_test.score falls within a certain range
-                console.log('do this one: ' + JSON.stringify(this_fulfillment));
-                for (course in this_fulfillment.fulfillment) {
+                for (course in this_fulfillment.fulfillment) { //For each course that is fulfilled
                     var this_course = this_fulfillment.fulfillment[course];
-                    console.log('this_course: ' + JSON.stringify(this_course));
                     computeNewScheduleCSE([ {
                         function : 'removeCourse',
                         parameters : [this_fulfillment.fulfillment[course][1] + this_fulfillment.fulfillment[course][2]]
