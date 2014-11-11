@@ -11,9 +11,16 @@
 		<div id="background-img"></div>
 		<!-- Top Bar -->
 		<header id="top-bar">
-			<h1>Step {{ CurrentStep.step_number }}: {{ CurrentStep.description }} &nbsp; 
-				<button id="prev-step" class="step-button" ng-click="goToPrevStep()" ng-show="CurrentStep.prev_button === 'true'">Prev</button>
-				<button id="next-step" class="step-button" ng-click="goToNextStep()" ng-show="CurrentStep.next_button === 'true'">Next</button>
+			<ul id="major">
+				<li> {{ current_major }}  
+					<ul>
+						<li ng-click="setMajor('cse')">Computer Science & Engineering</li>
+						<li ng-click="setMajor('wde')">Web Design & Engineering</li>
+					</ul>
+				</li>
+
+			</ul>
+			<h1>{{ CurrentStep.description }} &nbsp; 
 			</h1>
 		</header>
 		<!-- App Container -->
@@ -24,7 +31,7 @@
 				<li ng-click="setMajor('wde')">Web Design & Enginnering</li>
 			</ul>
 			<!-- Steps 2-5 User Input Section (Top Half of UI) -->
-			<section id="input-component" ng-show="CurrentStep.view === 'main'">
+			<section id="input-component" ng-cloak="CurrentStep.view === 'main'" ng-show="CurrentStep.view === 'main'">
 				<nav>
 					<ul>
 						<li ng-click="skipToStep(1)"><a href="#">AP Credit</a></li>
@@ -53,7 +60,7 @@
 						</ul>
 					</div>
 				</div>
-				<div id="transfer-credit-field" ng-show="CurrentStep.step_number === 3">
+				<div id="transfer-credit-field" ng-cloak="CurrentStep.step_number === 3" ng-show="CurrentStep.step_number === 3">
 					<h2 class="input-label">Transfer Credit: </h2>
 					<select ng-model="currently_viewing_transfer.id" ng-options="TransCred.id as TransCred.name for TransCred in TransferCredit">
 					</select>
@@ -87,7 +94,7 @@
 				</div>
 			</section>
 			<!-- Steps 2-5 Output Section (Bottom Half of UI)-->
-			<section id="output-component" ng-show="CurrentStep.view === 'main'">
+			<section id="output-component" ng-cloak="CurrentStep.view === 'main'" ng-show="CurrentStep.view === 'main'">
 				<ul id="quarter-titles">
 					<li>Fall</li>
 					<li>Winter</li>

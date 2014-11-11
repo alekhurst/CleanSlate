@@ -16,11 +16,7 @@ var CleanSlateApp = angular.module('CleanSlateApp', []);
 CleanSlateApp.controller('CleanSlateController', function ($scope) {
 
 	/* View Controller Variable Declaration */
-	$scope.Schedule = {
-		fall_quarter : [],
-		winter_quarter : [],  
-		spring_quarter : []   
-	}; 
+	$scope.Schedule = angular.copy(window.DefaultScheduleCSE);
 	$scope.StudentInput = {
 		ap_credit : [],
 		transfer_credit : [],
@@ -29,9 +25,10 @@ CleanSlateApp.controller('CleanSlateController', function ($scope) {
 	$scope.CurrentStep = {};
 	$scope.APTests = [];
 	$scope.currently_viewing_ap_test = {};
+	$scope.current_major = 'Computer Science & Engineering';
 
 	/* View Controller Variable Initialization */
-	$scope.CurrentStep = window.Steps[0];
+	$scope.CurrentStep = window.Steps[1];
 	
 		// AP Tests
 		$scope.APTests = window.APTests;
@@ -48,9 +45,6 @@ CleanSlateApp.controller('CleanSlateController', function ($scope) {
 
 	/* Event listeners */
 	$scope.$watch('CurrentStep', function() {
-		if(initializing)
-			initializing = false;
-		else 
 			$scope.decideWhichNavToSelect();
 	}, true);
 
@@ -83,26 +77,17 @@ CleanSlateApp.controller('CleanSlateController', function ($scope) {
 	 * @param{String} major - either cse wde
 	 */
 	$scope.setMajor = function(major) {
-		if(major === 'cse')
-			$scope.Schedule = window.DefaultScheduleCSE; // in js/objects.js
-		else if(major === 'wde')
-			$scope.Schedule = window.DefaultScheduleWDE; // in js/objects.js
-	}
+		if(major === 'cse') {
+			$scope.current_major = 'Computer Science & Engineering';
+		}
+		else if(major === 'wde') {
+			$scope.Schedule = angular.copy(window.DefaultScheduleWDE); // in js/objects.js
+			$scope.current_major = 'Web Design & Engineering';
+		}
 
-	/**
-	 * Goes to the previous step in the application
-	 */
-	$scope.goToPrevStep = function() {
-		var prev_step_index = $scope.CurrentStep.step_number - 2;
-		$scope.CurrentStep = window.Steps[prev_step_index];
-	}
-
-	/**
-	 * Goes to the next step in the application
-	 */
-	$scope.goToNextStep = function() {
-		var next_step_index = $scope.CurrentStep.step_number;
-		$scope.CurrentStep = window.Steps[next_step_index];
+		$scope.StudentInput = {};
+		$scope.CurrentStep = window.Steps[1];
+		$scope.currently_viewing_ap_test = {};
 	}
 
 	/**
@@ -136,6 +121,8 @@ CleanSlateApp.controller('CleanSlateController', function ($scope) {
 		for(var i in $scope.StudentInput.ap_credit){
 			if($scope.StudentInput.ap_credit[i].id == $scope.currently_viewing_ap_test.id) $scope.removeAPTest(i);
 		}
+		if(!$scope.StudentInput.ap_credit)
+			$scope.StudentInput.ap_credit = {};
 		$scope.StudentInput.ap_credit.push( { id:$scope.currently_viewing_ap_test.id, score:$scope.currently_viewing_ap_test.score } );
 		$scope.Schedule = preComputeScheduleAPCSE( {id: $scope.currently_viewing_ap_test.id, score:$scope.currently_viewing_ap_test.score } )
 		$scope.setCurrentlyViewingAPTestScore(3);
