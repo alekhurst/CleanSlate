@@ -2,7 +2,7 @@ BUGS.txt
  * List of Known Bugs
 
 ————————————————————————————————————————————————
-LAST STABLE COMMIT: https://github.com/alekhurst/CleanSlate/commit/ae277743365703ed005df77c21755b323b130ca2
+LAST STABLE COMMIT: https://github.com/alekhurst/CleanSlate/commit/f9874c8118ca6a38e95cb496067e1e09183e9166
 ————————————————————————————————————————————————
 
 FEEDBACK FROM DEMO
