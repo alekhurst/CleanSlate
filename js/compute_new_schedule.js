@@ -262,7 +262,7 @@ function moveEngr1() {
 }
 
 /*
- * This function is called to determine the best quarter that a course should be taken
+ * This function is called to determine the best quarter that a course should be taken. Returns [quarter, [flag(s)]]
  * 
  * @param {Object} course_title - Title of course to be removed (i.e. "COEN10")
  */
