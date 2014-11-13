@@ -29,17 +29,26 @@ KNOWN BUGS / FEATURE REQUESTS
 
 [CRITICAL] Only one major implemented
 
-[MAJOR] Not Printer Friendly
-
 [MAJOR] Every course in the course plan still says 'something'
 
 [MINOR] Console Log Clutter / No useful console log info
 
 [FEATURE REQUEST] No Honors/LEAD courses
 
+[FEATURE REQUEST] Window Resizing
+	- (Scott): I like to only use half of my screen real estate for the application, but
+			   CSS Styles are hard-coded for a full screen (looks awkward). Is there any
+			   quick-ish ways to remedy this?
+
 ——————————————————————————————————————————————————————
 
 CHANGELOG
+
+
+[FIXED] Not Printer Friendly
+	- @media print query added to styles/stylesheet.css
+	- Part of the problem with the original printing is that page elements are strictly
+	  defined (spacing, etc.)
 
 [FIXED] Broken AP Tests: Physics C (Both), Calculus BC, Comp. Sci A
 	- JP fixed this with the AP Score resetting to 3 issue. However, a 5 on the Comp
