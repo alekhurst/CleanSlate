@@ -505,4 +505,24 @@ body {
 		}
 	/* ---- END OUTPUT COMPONENT ---- */
 
+	
+	@media print{
+	
+		#top-bar,#input-component{
+			display:none;
+		}
+		
+		#output-component{
+			left:0;
+			top:0;
+			position:absolute;
+			display:block;
+		}
+				
+		#app-container{
+			margin:0;
+			width:auto;
+			left:auto;
+		}
+	}
 
