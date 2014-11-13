@@ -29,7 +29,10 @@ KNOWN BUGS / FEATURE REQUESTS
 
 [CRITICAL] Only one major implemented
 
-[MAJOR] Every course in the course plan still says 'something'
+[MAJOR] Every course in the course plan still says 'something' (Needs to be fixed in both all_courses.js and objects.js)
+
+[MINOR] Switching majors only works once (CSE->WDE), no way to go back to CSE from WDE
+    - Does this change also alter windows.allCourses? It must, or the system will not work.
 
 [MINOR] Console Log Clutter / No useful console log info
 
