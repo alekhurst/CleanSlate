@@ -260,8 +260,94 @@ function moveEngr1() {
         };
     }
 }
+
 /*
- * This function is called by removeCourse to remove a course from the default course list at a specific quarter
+ * This function is called to determine the best quarter that a course should be taken
+ * 
+ * @param {Object} course_title - Title of course to be removed (i.e. "COEN10")
+ */
+function bestQuarterToAdd(course_title) {
+    //Start with earliest quarter offered AFTER PREVIOUS COURSE IN SERIES
+    //Get the next course in the series
+        //If there is none or there is one and it is not completed (not in schedule, but not taken before):
+            //FIRST PRIORITY: earliest quarter with core (FLAG: core)
+            //SECOND PRIORITY (if there isn't a core): Earliest slot of C+I (FLAG: C+I1 or C+I2)
+            //THIRD PRIORITY (if there isn't C+I): Soonest possible WITHOUT 20 UNITS BEFORE ENGR 1(FLAG: next_offering)
+            //FOURTH PRIORITY (if all this fails): Can't be added, return [-1, -1]
+        //Else (There is another course in the series, and it's in the schedule):
+            //IF previous course and next course are one quarter apart (MUST MOVE NEXT COURSE OFFERED)
+                //FIRST PRIORITY: Least units WITHOUT ENGR1 quarter with core (FLAGS: core, move_next)
+                //SECOND PRIORITY (if there isn't a core): Earliest slot of C+I (FLAGS: C+I1 or C+I2, move_next)
+                //THIRD PRIORITY (if there isn't C+I): Soonest possible WITHOUT 20 UNITS BEFORE ENGR 1(FLAGS: next_offering, move_next)
+                //FOURTH PRIORITY (if all this fails): Can't be added, return [-1, -1]
+            //ELSE (There is a gap)
+                //Perform prioritization like above
+                //If the best quarter is before next_offered, don't return move_next flag
+                //If the best quarter is after next_offered, return the move_next flag
+}
+
+/*
+ * This function is called to add a course from the default course list at a specific quarter
+ * 
+ * @param {Object} course_title - Title of course to be removed (i.e. "COEN10")
+ * @param {string} quarter - The current quarter ("fall_quarter", "winter_quarter", or "spring_quarter")
+ */
+function addCourse(course_title, quarter, flags) {
+    if (quarter == -1) {  //Base case, return and break out of recursion
+        moveEngr1(); //Move engineering 1 to a better quarter
+        return;
+    }
+
+    if (!quarter && !flags) { //If no quarter specified (first time), find the best quarter to take the course and return
+        var best_quarter = bestQuarterToAdd(course_title); //[best_quarter, [flag(s)]]
+        addCourse(course_title, best_quarter[0], best_quarter[1]);
+        return;
+    }
+    //If you are here, this means that you have found the best quarter to take a class
+
+    //add course to quarter
+    //If move_next is not in flags:
+        //If core in flags (Nothing left to do):
+            //Exchange core this quarter for this class
+            //addCourse('BASECASE', -1, -1);
+            //return;
+        //Else if C+I 1/2 in flags:
+            //Put course in this quarter IN PLACE OF C+I 1/2
+            //Exchange other C+I for core class
+            //addCourse('BASECASE', -1, -1);
+            //return;
+        //Else if next_offering in flags:
+            //Put course in this quarter
+            //addCourse('BASECASE', -1, -1);
+            //return;
+        //Else:
+            //Not sure how to handle this case. I doubt this should happen, but just in case:
+            //console.log('YOU SHOULDN'T BE HERE - LOCATION 1');
+    //Else (move_next is in flags, must move subsequent courses):
+        //If core in flags (Nothing left to do):
+            //Exchange core this quarter for this class
+            //Remove next_course from schedule
+            //addCourse(next_course, quarter_next_course_was_offered, 'empty');
+            //return;
+        //Else if C+I 1/2 in flags:
+            //Put course in this quarter IN PLACE OF C+I 1/2
+            //Exchange other C+I for core class
+            //Remove next_course from schedule
+            //addCourse(next_course, quarter_next_course_was_offered, 'empty');
+            //return;
+        //Else if next_offering in flags:
+            //Put course in this quarter
+            //Remove next_course from schedule
+            //addCourse(next_course, quarter_next_course_was_offered, 'empty');
+            //return;
+        //Else:
+            //Not sure how to handle this case. I doubt this should happen, but just in case:
+            //console.log('YOU SHOULDN'T BE HERE - LOCATION 2');
+}
+
+
+/*
+ * This function is called to remove a course from the default course list at a specific quarter
  * 
  * @param {Object} course_title - Title of course to be removed (i.e. "COEN10")
  * @param {string} quarter - The current quarter ("fall_quarter", "winter_quarter", or "spring_quarter")
