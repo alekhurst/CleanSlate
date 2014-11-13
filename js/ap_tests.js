@@ -37,7 +37,7 @@ window.APTests = [
             {
                 min_score: "4",
                 max_score: "5",
-                fulfillment: [["science_courses", "CHEM", "11"], ["math_courses", "AMATH", "106"]]
+                fulfillment: [["science_courses", "CHEM", "11"], ["math_courses", "AMTH", "106"]]
             },
         ],
     },
