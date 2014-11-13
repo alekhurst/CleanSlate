@@ -2,8 +2,10 @@ BUGS.txt
  * List of Known Bugs
 
 ————————————————————————————————————————————————
+LAST STABLE COMMIT: https://github.com/alekhurst/CleanSlate/commit/f10f63b2aeef9eaa4c5e97a5d5269026702595e3
+————————————————————————————————————————————————
 
-
+FEEDBACK FROM DEMO
 
 * don’t shift COEN classes
 
@@ -15,26 +17,29 @@ BUGS.txt
 
 * Fix Documentation [https://www.writelatex.com/1776129zknvfq]
 
+——————————————————————————————————————————————————————
 
+KNOWN BUGS / FEATURE REQUESTS
+    CRITICAL: Must fix now! If not fixed, the system will perform SIGNIFICANTLY DIFFERENTLY THAN INTENDED
+    MAJOR: Fix as soon as possible. If not fixed, we will be heavily docked points on the final presentation
+    MINOR: Fix after major bugs are finished. If not fixed, we will be lightly docked points on the final presentation
+    FEATURE REQUEST: Fix if there is time. If not fixed, we may get docked points, or may just not get extra credit
 
+[CRITICAL] No logic for adding courses (functions to implement: addCourse(), bestQuarterToAdd())
 
+[CRITICAL] Only one major implemented
+
+[MAJOR] Not Printer Friendly
+
+[MAJOR] Every course in the course plan still says 'something'
+
+[MINOR] Console Log Clutter / No useful console log info
+
+[FEATURE REQUEST] No Honors/LEAD courses
 
 ——————————————————————————————————————————————————————
 
-
-**[MINOR]** No Honors/LEAD courses (this might be OK for demo)
-
-**[MINOR]** Logic to Add Classes Back ? (Or Reset?)	
-	
-*[OK DEMO]* Not Printer Friendly
-
-*[OK DEMO]* Console Log Clutter
- 
-*[OK DEMO]* Every course in the course plan still says 'something'
-
-*[OK DEMO]* Multiple Scores on Same Test Produce Backend Issues (Classes 'undefined')
-
-*[OK DEMO]* No Backend Logic to Remove AP Tests (apparently)
+CHANGELOG
 
 [FIXED] Broken AP Tests: Physics C (Both), Calculus BC, Comp. Sci A
 	- JP fixed this with the AP Score resetting to 3 issue. However, a 5 on the Comp
@@ -76,5 +81,3 @@ BUGS.txt
 
 [FIXED] rearrange Math course sequence:  9, 11, 12, 13, 14, 106, 108, 53
     -See https://github.com/alekhurst/CleanSlate/commit/824cdf0f891cf6eaa899fc640db483aeeb4e7d09
-
-LAST STABLE COMMIT: https://github.com/alekhurst/CleanSlate/commit/f10f63b2aeef9eaa4c5e97a5d5269026702595e3
