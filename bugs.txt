@@ -21,8 +21,8 @@ FEEDBACK FROM DEMO
 
 KNOWN BUGS / FEATURE REQUESTS
     CRITICAL: Must fix now! If not fixed, the system will perform SIGNIFICANTLY DIFFERENTLY THAN INTENDED
-    MAJOR: Fix as soon as possible. If not fixed, we will be heavily docked points on the final presentation
-    MINOR: Fix after major bugs are finished. If not fixed, we will be lightly docked points on the final presentation
+    MAJOR: Fix as soon as possible. Very time constaining and/or will cost us significant points if not fixed
+    MINOR: Fix after major bugs are finished. Minorly time consuming and/or will cost us minor points if not fixed
     FEATURE REQUEST: Fix if there is time. If not fixed, we may get docked points, or may just not get extra credit
 
 [CRITICAL] No logic for adding courses (functions to implement: addCourse(), bestQuarterToAdd())
@@ -30,6 +30,8 @@ KNOWN BUGS / FEATURE REQUESTS
 [CRITICAL] Only one major implemented
 
 [MAJOR] Every course in the course plan still says 'something' (Needs to be fixed in both all_courses.js and objects.js)
+
+[MINOR] COEN courses should not be shifted
 
 [MINOR] Switching majors only works once (CSE->WDE), no way to go back to CSE from WDE
     - Does this change also alter windows.allCourses? It must, or the system will not work.
