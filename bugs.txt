@@ -34,6 +34,9 @@ KNOWN BUGS / FEATURE REQUESTS
 [MINOR] Application does not retain AP Credit / Transfer Credit when Major is Switched.
 	- (Scott): I would personally find it annoying if I had to input everything twice if I
 			   only wanted to compare majors.
+    - (Jordan): Another option we could do is to check the working schedule against the default
+               schedule, and if they're different upon switching majors, alert the user that
+               changing majors will clear all saved data.
 
 [FEATURE REQUEST] Console Log Clutter / No useful console log info
 	- (Scott): I understand using console logs in development.  I'd just like to comment 
@@ -56,6 +59,7 @@ CHANGELOG
 
 [FIXED] COEN courses should not be shifted
     -(Jordan): Best fix ever. I just changed the offerings of COEN courses. Brilliant.
+    - See https://github.com/alekhurst/CleanSlate/commit/82429cf05b761a83370e9797744eeea55d4cc231
 
 [FIXED] Every course in the course plan still says 'something' (Needs to be fixed in both all_courses.js and objects.js)
 	- index.html was using the 'description'.  We want the course plan to have the course names.
