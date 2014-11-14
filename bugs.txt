@@ -31,8 +31,6 @@ KNOWN BUGS / FEATURE REQUESTS
 
 [MAJOR] Cannot 'remove' AP Credit / Transfer Credit
 
-[MAJOR] Every course in the course plan still says 'something' (Needs to be fixed in both all_courses.js and objects.js)
-
 [MINOR] COEN courses should not be shifted
 
 [MINOR] Application does not retain AP Credit / Transfer Credit when Major is Switched.
@@ -57,6 +55,9 @@ KNOWN BUGS / FEATURE REQUESTS
 ——————————————————————————————————————————————————————
 
 CHANGELOG
+
+[FIXED] Every course in the course plan still says 'something' (Needs to be fixed in both all_courses.js and objects.js)
+	- index.html was using the 'description'.  We want the course plan to have the course names.
 
 [FIXED] Switching majors only works once (CSE->WDE), no way to go back to CSE from WDE
     - Does this change also alter windows.allCourses? It must, or the system will not work.

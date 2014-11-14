@@ -105,21 +105,21 @@
 						<li class="course" ng-class="assignCSSCourseClass()" ng-repeat="course in Schedule.fall_quarter">
 							<h3 class="course-title">{{course.department}} {{course.course_number}}</h3>
 							<h6 class="course-units">{{course.units}} units</h6>
-							<h6 class="course-description">{{course.description}}</h6>
+							<h6 class="course-description">{{course.name}}</h6>
 						</li>
 					</ul>
 					<ul id="winter-quarter" class="quarter">
 						<li class="course" ng-class="assignCSSCourseClass()" ng-repeat="course in Schedule.winter_quarter">
 							<h3 class="course-title">{{course.department}} {{course.course_number}}</h3>
 							<h6 class="course-units">{{course.units}} units</h6>
-							<h6 class="course-description">{{course.description}}</h6>
+							<h6 class="course-description">{{course.name}}</h6>
 						</li>
 					</ul>
 					<ul id="spring-quarter" class="quarter">
 						<li class="course" ng-class="assignCSSCourseClass()" ng-repeat="course in Schedule.spring_quarter">
 							<h3 class="course-title">{{course.department}} {{course.course_number}}</h3>
 							<h6 class="course-units">{{course.units}} units</h6>
-							<h6 class="course-description">{{course.description}}</h6>
+							<h6 class="course-description">{{course.name}}</h6>
 						</li>
 					</ul>
 				</ul>
