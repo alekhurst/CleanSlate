@@ -48,6 +48,9 @@ KNOWN BUGS / FEATURE REQUESTS
 	- (Scott): I like to only use half of my screen real estate for the application, but
 			   CSS Styles are hard-coded for a full screen (looks awkward). Is there any
 			   quick-ish ways to remedy this?
+			   
+[FEATURE REQUEST] Remove transfer_credit.txt and Add flag for potential credit within all_courses.txt.
+	- (Scott): It would make configuration go a lot smoother...(one place...)
 
 ——————————————————————————————————————————————————————
 
