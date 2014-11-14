@@ -1,3 +1,26 @@
+/**********************************************************************************
+ * compute_new_schedule.js
+ *
+ * 		All functions pertaining to the calculation and derivation of course
+ *  schedules are held within this file.
+ *
+ *  This document is divided among the following sections
+ *		- COURSE INFORMATION
+ *		- SCHEDULE MANIPULATION
+ *		- PRECOMPUTATION
+ *		- MODIFICATION LOG
+ *		- COMPUTATION
+ *
+ *  Currently, the following majors are implemented:
+ *		- Computer Science and Engineering
+ *
+ **********************************************************************************
+ */
+
+//---------------------------------------------------------------------------------
+// COURSE INFORMATION FUNCTIONS
+//---------------------------------------------------------------------------------
+
 /*
  * This function returns the course at a position for a given branch
  *
@@ -198,6 +221,43 @@ function quarterTaken(course_title) {
     return ''; //Not taken before, return null
 }
 
+/*
+ * This function is called to return the course location [branch, department, course_number] from a course title
+ * 
+ * @param {Object} course_title - Title of course (i.e. "COEN10")
+ */
+function getCourseLocFromTitle(course_title) {
+    //Get the course's department and course number from course_title
+    var start = 1;
+    for (; start < course_title.length; start++) {
+        if (parseInt(course_title[start]) == course_title[start]) //You found the first number, start of course_number
+            break;
+    }
+    var course_department = course_title.substring(0, start);
+    var course_c_number = course_title.substring(start, course_title.length);
+
+    //Get the course's branch
+    for (branch in window.AllCourses) {
+        for (course in window.AllCourses[branch]) {
+            if (window.AllCourses[branch][course]['department'] == course_department && window.AllCourses[branch][course]['course_number'] == course_c_number) {
+                return [branch, course_department, course_c_number];
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+//---------------------------------------------------------------------------------
+// SCHEDULE MANIPULATION FUNCTIONS
+//---------------------------------------------------------------------------------
+
 function moveEngr1() {
     var quarter_offered;
     for (quarter in window.WorkingSchedule) { //Find the quarter that ENGR1 
@@ -261,30 +321,7 @@ function moveEngr1() {
     }
 }
 
-/*
- * This function is called to return the course location [branch, department, course_number] from a course title
- * 
- * @param {Object} course_title - Title of course (i.e. "COEN10")
- */
-function getCourseLocFromTitle(course_title) {
-    //Get the course's department and course number from course_title
-    var start = 1;
-    for (; start < course_title.length; start++) {
-        if (parseInt(course_title[start]) == course_title[start]) //You found the first number, start of course_number
-            break;
-    }
-    var course_department = course_title.substring(0, start);
-    var course_c_number = course_title.substring(start, course_title.length);
 
-    //Get the course's branch
-    for (branch in window.AllCourses) {
-        for (course in window.AllCourses[branch]) {
-            if (window.AllCourses[branch][course]['department'] == course_department && window.AllCourses[branch][course]['course_number'] == course_c_number) {
-                return [branch, course_department, course_c_number];
-            }
-        }
-    }
-}
 
 /*
  * This function is called to determine the best quarter that a course should be taken. Returns [quarter, [flag(s)]]
@@ -620,23 +657,46 @@ function removeCourse(course_title, quarter) {
     }
 	/* Engineering 1 Check */
 }
-function preComputeReadinessExamCSE() {
-    computeNewScheduleCSE([{
-            function : 'removeCourse',
-            parameters : ['MATH9']
-        }]);
 
-    return computeNewScheduleCSE( [ ] );
+
+
+
+
+
+
+
+//---------------------------------------------------------------------------------
+// PRECOMPUTATION FUNCTIONS
+//---------------------------------------------------------------------------------
+
+
+// CALCULUS READINESS -------------------------------------------------------------
+function getEquivalentReadinessExam(){
+	return [{function: 'removeCourse', parameters:['MATH9']}];
 }
 
-function preComputeProgrammingExperienceCSE() {
-    computeNewScheduleCSE([{
-            function : 'removeCourse',
-            parameters : ['COEN10']
-        }]);
-
-    return computeNewScheduleCSE( [ ] );
+// PROGRAMMING EXPERIENCE----------------------------------------------------------
+function getEquivalentProgrammingExperience(){
+	return [{function: 'removeCourse', parameters:['COEN10']}];
 }
+
+
+// TRANSFER CREDIT-----------------------------------------------------------------
+function getEquivalentTransferCredit(transfer_credit){
+    var schedule_changes = [];
+
+    for (course in window.TransferCredit[transfer_credit['id']]['fulfillment']) {
+        course_info = window.TransferCredit[transfer_credit['id']]['fulfillment'][course];
+        schedule_changes.push({
+            function : 'removeCourse',
+            parameters : [course_info[1] + course_info[2]]
+        });
+    }
+	
+	return schedule_changes;
+}
+	
+
 
 function preComputeScheduleTransferCSE(transfer_credit) {
     var schedule_changes = [];
@@ -651,6 +711,38 @@ function preComputeScheduleTransferCSE(transfer_credit) {
     computeNewScheduleCSE(schedule_changes);
 
     return computeNewScheduleCSE( [ ] );
+}
+
+// AP CREDIT-----------------------------------------------------------------------
+function getEquivalentAPTest(ap_test)
+{
+	var mods = new Array();
+	var test = window.APTests[ap_test.id];
+		if (test.multiple_fulfillments) { //If there are multiple possibilities for AP test scores, go through each one and find the range that ap_test.score falls within, then test out of those classes
+			for (test_fulfillment in test.multiple_fulfillments) { //For each fulfillment 
+				var this_fulfillment = test.multiple_fulfillments[test_fulfillment];
+				if (ap_test.score >= this_fulfillment.min_score && ap_test.score <= this_fulfillment.max_score) { //If ap_test.score falls within a certain range
+					for (course in this_fulfillment.fulfillment) { //For each course that is fulfilled
+						var this_course = this_fulfillment.fulfillment[course];
+						mods.push({
+							function : 'removeCourse',
+							parameters : [this_fulfillment.fulfillment[course][1] + this_fulfillment.fulfillment[course][2]]
+						});
+					}
+					return mods;
+				}
+			}
+		} else {
+			if (ap_test.score >= window.APTests[ap_test.id].min_score && ap_test.score <= window.APTests[ap_test.id].max_score) {
+				for (course in window.APTests[ap_test.id].fulfillment) {
+					mods.push({
+						function : 'removeCourse',
+						parameters : [window.APTests[ap_test.id].fulfillment[course][1] + window.APTests[ap_test.id].fulfillment[course][2]]
+					} );
+				}    
+			}
+		}
+	return mods;
 }
 
 function preComputeScheduleAPCSE(ap_test)
@@ -685,6 +777,33 @@ function preComputeScheduleAPCSE(ap_test)
 }
 
 
+//---------------------------------------------------------------------------------
+// MODIFICATION LOG FUNCTIONS
+//---------------------------------------------------------------------------------
+
+window.AllCourses = {};
+
+window.ModLog = {};
+
+function applyMods(id,mods){
+	if(!id || !mods) return;
+	window.ModLog[id] = mods;
+}
+
+function removeMods(id){
+	if(!id) return;
+	delete window.ModLog[id];
+}
+
+
+
+
+
+
+//---------------------------------------------------------------------------------
+// COMPUTATION FUNCTIONS
+//---------------------------------------------------------------------------------
+
 /*
  * This function is initially called for CSE students when the student's input from the view has changed.
  * 
@@ -693,17 +812,18 @@ function preComputeScheduleAPCSE(ap_test)
 function computeNewScheduleCSE(student_input) {
     // A SCHEDULE OBJECT IN THE SAME FORMAT AS THE DECLARATION MUST BE RETURNED HERE
     //              (obviously with new courses in each quarter)
-    //window.WorkingSchedule = window.DefaultScheduleCSE;    // (defined in objects.js)
 
-    if (student_input.length > 0) { //If there are changes to the default schedule, make those changes
-        for (change in student_input){
-            console.log('NEW FUNCTION : ' + JSON.stringify(student_input[change]));
-            //Do changes based on student_input changes
-            var param = student_input[change]['parameters'];
-            
+	// RESET
+    window.WorkingSchedule = jQuery.extend(true,{},window.DefaultScheduleCSE);    // (defined in objects.js)
+    window.AllCourses = jQuery.extend(true,{},window.CourseCatalogue);    // (defined in all_courses.js)
+	
+	for(id in window.ModLog){
+		for(course in window.ModLog[id]){
+			var record = window.ModLog[id][course]
             // Execute the function
-            window[student_input[change]['function']].apply(window,param);
-        }       
-    }
+            window[record['function']].apply(window,record['parameters']);
+		}
+	}
+	
     return window.WorkingSchedule;
 }

@@ -125,13 +125,33 @@ CleanSlateApp.controller('CleanSlateController', function ($scope) {
 		if(!$scope.StudentInput.ap_credit)
 			$scope.StudentInput.ap_credit = {};
 		$scope.StudentInput.ap_credit.push( { id:$scope.currently_viewing_ap_test.id, score:$scope.currently_viewing_ap_test.score } );
-		$scope.Schedule = preComputeScheduleAPCSE( {id: $scope.currently_viewing_ap_test.id, score:$scope.currently_viewing_ap_test.score } )
+		
+		
+		// Determine which classes are affected.
+		var mods = getEquivalentAPTest( {id: $scope.currently_viewing_ap_test.id, score:$scope.currently_viewing_ap_test.score } );
+	
+		applyMods('AP_'+$scope.currently_viewing_ap_test.id,mods);
+		
+		// Recalculate.
+		$scope.Schedule = computeNewScheduleCSE([]);
+		
+		
+		
 		$scope.setCurrentlyViewingAPTestScore(3);
 
 	}
 	
 	$scope.removeAPTest = function(index){
+		
+		var obj = $scope.StudentInput.ap_credit[index];
+		removeMods('AP_'+obj.id);
+		
 		$scope.StudentInput.ap_credit.splice(index,1); // remove the AP test from the array.
+		
+		
+		// Recalculate.
+		$scope.Schedule = computeNewScheduleCSE([]);
+		
 		//$scope.Schedule = preComputeScheduleAPCSE( {id: $scope.currently_viewing_ap_test.id, score:$scope.currently_viewing_ap_test.score } )
 	}
 	
@@ -141,31 +161,66 @@ CleanSlateApp.controller('CleanSlateController', function ($scope) {
 			if($scope.StudentInput.transfer_credit[i].id == $scope.currently_viewing_transfer.id) $scope.removeTransferCredit(i);
 		}
 		$scope.StudentInput.transfer_credit.push( { id:$scope.currently_viewing_transfer.id } );
-		$scope.Schedule = preComputeScheduleTransferCSE( {id: $scope.currently_viewing_transfer.id} );
+		
+		
+		// Determine which classes are affected.
+		var mods = getEquivalentTransferCredit({id: $scope.currently_viewing_transfer.id} );
+	
+		applyMods('TR_'+$scope.currently_viewing_transfer.id,mods);
+		
+		// Recalculate.
+		$scope.Schedule = computeNewScheduleCSE([]);
+		
+		//$scope.Schedule = preComputeScheduleTransferCSE( );
 	}
 	
 	$scope.removeTransferCredit = function(index){
+		var obj = $scope.StudentInput.transfer_credit[index];
+		removeMods('TR_'+obj.id);
+		
 		$scope.StudentInput.transfer_credit.splice(index,1); // remove the AP test from the array.
+		
+		// Recalculate.
+		$scope.Schedule = computeNewScheduleCSE([]);
+		
 		//$scope.Schedule = preComputeScheduleTransferCSE( {id: $scope.currently_viewing_ap_test.id, score:$scope.currently_viewing_ap_test.score } )
 	}
 	
 
 	$scope.updateProgExp = function(){
+	
+		// If previousProgramming was previously unchecked,
+		// calculate the schedule with the it checked.
 		if(!$scope.previousProgramming){
-			$scope.Schedule = preComputeProgrammingExperienceCSE();
-		}	
+			// Determine which classes are affected.
+			var mods = getEquivalentProgrammingExperience();
+			applyMods('M_01',mods);
+		}
+		else removeMods('M_01');
+		
+		// Recalculate.
+		$scope.Schedule = computeNewScheduleCSE([]);
 	}
 	
 	$scope.updateCalcReady = function(){
+	
+		// If calculusReady was previously unchecked,
+		// calculate the schedule with the it checked.
 		if(!$scope.calculusReady){
-			$scope.Schedule = preComputeReadinessExamCSE();
+			// Determine which classes are affected.
+			var mods = getEquivalentReadinessExam();
+			applyMods('M_02',mods);
 		}
+		else removeMods('M_02');
+
+		// Recalculate.
+		$scope.Schedule = computeNewScheduleCSE([]);
 	}
 	
 	$scope.updateHonors = function(){
-		if(!$scope.honorStudent){
+		if(!$scope.honorsStudent){
 			//$scope.Schedule = preComputeReadinessExamCSE();
-			alert("honors");
+			alert("Honors");
 		}
 	}
 	
