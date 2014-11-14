@@ -29,6 +29,8 @@ KNOWN BUGS / FEATURE REQUESTS
 
 [CRITICAL] Only one major implemented
 
+[MAJOR] Cannot 'remove' AP Credit / Transfer Credit
+
 [MAJOR] Every course in the course plan still says 'something' (Needs to be fixed in both all_courses.js and objects.js)
 
 [MINOR] COEN courses should not be shifted
