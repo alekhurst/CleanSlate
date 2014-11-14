@@ -78,6 +78,7 @@ CleanSlateApp.controller('CleanSlateController', function ($scope) {
 	 */
 	$scope.setMajor = function(major) {
 		if(major === 'cse') {
+			$scope.Schedule = angular.copy(window.DefaultScheduleCSE); // in js/objects.js
 			$scope.current_major = 'Computer Science & Engineering';
 		}
 		else if(major === 'wde') {

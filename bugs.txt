@@ -33,10 +33,14 @@ KNOWN BUGS / FEATURE REQUESTS
 
 [MINOR] COEN courses should not be shifted
 
-[MINOR] Switching majors only works once (CSE->WDE), no way to go back to CSE from WDE
-    - Does this change also alter windows.allCourses? It must, or the system will not work.
+[MINOR] Application does not retain AP Credit / Transfer Credit when Major is Switched.
+	- (Scott): I would personally find it annoying if I had to input everything twice if I
+			   only wanted to compare majors.
 
-[MINOR] Console Log Clutter / No useful console log info
+[FEATURE REQUEST] Console Log Clutter / No useful console log info
+	- (Scott): I understand using console logs in development.  I'd just like to comment 
+			   them out so writing to console log doesn't require looking for a needle
+			   in a haystack with other's log statements.
 
 [FEATURE REQUEST] No Honors/LEAD courses
 
@@ -49,6 +53,11 @@ KNOWN BUGS / FEATURE REQUESTS
 
 CHANGELOG
 
+[FIXED] Switching majors only works once (CSE->WDE), no way to go back to CSE from WDE
+    - Does this change also alter windows.allCourses? It must, or the system will not work.
+	- Line was missing in view_controller.js
+	- (Scott): I have not, however, checked if AP Scores, Transfer Credit is reflected during the switch.
+	
 
 [FIXED] Not Printer Friendly
 	- @media print query added to styles/stylesheet.css
