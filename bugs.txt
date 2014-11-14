@@ -31,8 +31,6 @@ KNOWN BUGS / FEATURE REQUESTS
 
 [MAJOR] Cannot 'remove' AP Credit / Transfer Credit
 
-[MINOR] COEN courses should not be shifted
-
 [MINOR] Application does not retain AP Credit / Transfer Credit when Major is Switched.
 	- (Scott): I would personally find it annoying if I had to input everything twice if I
 			   only wanted to compare majors.
@@ -55,6 +53,9 @@ KNOWN BUGS / FEATURE REQUESTS
 ——————————————————————————————————————————————————————
 
 CHANGELOG
+
+[FIXED] COEN courses should not be shifted
+    -(Jordan): Best fix ever. I just changed the offerings of COEN courses. Brilliant.
 
 [FIXED] Every course in the course plan still says 'something' (Needs to be fixed in both all_courses.js and objects.js)
 	- index.html was using the 'description'.  We want the course plan to have the course names.

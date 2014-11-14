@@ -180,7 +180,7 @@ window.AllCourses = {
 			department : "COEN",
 			course_number : "10",
 			description : "something",
-			offering : ["fall_quarter", "winter_quarter"],
+			offering : ["fall_quarter"], //technically fall and winter, but you don't want to take it any other time
 			credit : "YES",
             quarter_taken: "fall_quarter",
 			category : "engineering",
@@ -193,7 +193,7 @@ window.AllCourses = {
 			department : "COEN",
 			course_number : "11",
 			description : "something",
-			offering : ["fall_quarter", "winter_quarter", "spring_quarter"],
+			offering : ["winter_quarter"], //technically any quarter, but you don't want to take it any other time
 			credit : "YES",
             quarter_taken: "winter_quarter",
 			category : "engineering",
@@ -206,7 +206,7 @@ window.AllCourses = {
 			department : "COEN",
 			course_number : "12",
 			description : "something",
-			offering : ["fall_quarter", "winter_quarter", "spring_quarter"],
+			offering : ["spring_quarter"], //technically any quarter, but you don't want to take it any other quarter
 			credit : "YES",
             quarter_taken: "spring_quarter",
 			category : "engineering",
