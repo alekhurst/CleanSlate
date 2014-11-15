@@ -226,45 +226,6 @@ window.CourseCatalogue = {
             units : "4",
             prerequisites : [],
 		},
-
-		{
-			name : "Introduction to Embedded Systems + Lab",
-			department : "COEN",
-			course_number : "20",
-			description : "something",
-			offering : ["fall_quarter", "spring_quarter"],
-			credit : "NO",
-            quarter_taken: "",
-			category : "engineering",
-            units : "5",
-            prerequisites : [["coen_courses", "COEN", "11"]],
-		},
-
-		{
-			name : "Introduction to Logic Design + Lab",
-			department : "COEN",
-			course_number : "21",
-			description : "something",
-			offering : ["fall_quarter", "winter_quarter", "spring_quarter"],
-			credit : "NO",
-            quarter_taken: "",
-			category : "engineering",
-            units : "5",
-            prerequisites : [],
-		},
-
-		{
-			name : "Formal Specification and Advanced Data Structures + Lab",
-			department : "COEN",
-			course_number : "70",
-			description : "something",
-			offering : ["winter_quarter"],
-			credit : "NO",
-            quarter_taken: "",
-			category : "engineering",
-            units : "5",
-            prerequisites : [["coen_courses", "COEN", "12"], ["coen_courses", "COEN", "19"]],
-		}
 	],
 
 	core_courses : [
