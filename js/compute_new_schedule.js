@@ -697,22 +697,6 @@ function getEquivalentTransferCredit(transfer_credit){
 }
 	
 
-
-function preComputeScheduleTransferCSE(transfer_credit) {
-    var schedule_changes = [];
-
-    for (course in window.TransferCredit[transfer_credit['id']]['fulfillment']) {
-        course_info = window.TransferCredit[transfer_credit['id']]['fulfillment'][course];
-        schedule_changes.push({
-            function : 'removeCourse',
-            parameters : [course_info[1] + course_info[2]]
-        });
-    }
-    computeNewScheduleCSE(schedule_changes);
-
-    return computeNewScheduleCSE( [ ] );
-}
-
 // AP CREDIT-----------------------------------------------------------------------
 function getEquivalentAPTest(ap_test)
 {
@@ -745,36 +729,11 @@ function getEquivalentAPTest(ap_test)
 	return mods;
 }
 
-function preComputeScheduleAPCSE(ap_test)
-{
-    var test = window.APTests[ap_test.id];
-    if (test.multiple_fulfillments) { //If there are multiple possibilities for AP test scores, go through each one and find the range that ap_test.score falls within, then test out of those classes
-        for (test_fulfillment in test.multiple_fulfillments) { //For each fulfillment 
-            var this_fulfillment = test.multiple_fulfillments[test_fulfillment];
-            if (ap_test.score >= this_fulfillment.min_score && ap_test.score <= this_fulfillment.max_score) { //If ap_test.score falls within a certain range
-                for (course in this_fulfillment.fulfillment) { //For each course that is fulfilled
-                    var this_course = this_fulfillment.fulfillment[course];
-                    computeNewScheduleCSE([ {
-                        function : 'removeCourse',
-                        parameters : [this_fulfillment.fulfillment[course][1] + this_fulfillment.fulfillment[course][2]]
-                    } ]);
-                }
-                return computeNewScheduleCSE( [ ] );
-            }
-        }
-    } else {
-        if (ap_test.score >= window.APTests[ap_test.id].min_score && ap_test.score <= window.APTests[ap_test.id].max_score) {
-            for (course in window.APTests[ap_test.id].fulfillment) {
-                computeNewScheduleCSE([ {
-                    function : 'removeCourse',
-                    parameters : [window.APTests[ap_test.id].fulfillment[course][1] + window.APTests[ap_test.id].fulfillment[course][2]]
-                } ])
-            }    
-        }
-    }
 
-    return computeNewScheduleCSE( [ ] );
-}
+
+
+
+
 
 
 //---------------------------------------------------------------------------------
@@ -804,17 +763,32 @@ function removeMods(id){
 // COMPUTATION FUNCTIONS
 //---------------------------------------------------------------------------------
 
+window.BasePlan = {};
+
+function setBasePlan(maj){
+	
+	switch(maj){
+		case 'cse':
+			window.BasePlan = jQuery.extend(true,{},window.DefaultScheduleCSE);    // (defined in objects.js)
+			break;
+		case 'wde':
+			window.BasePlan = jQuery.extend(true,{},window.DefaultScheduleWDE);    // (defined in objects.js)
+			break;
+			
+	}
+}
+
 /*
  * This function is initially called for CSE students when the student's input from the view has changed.
  * 
  * @param {Object} student_input - object containing the current state of input from the user
  */
-function computeNewScheduleCSE(student_input) {
+function computeNewSchedule(student_input) {
     // A SCHEDULE OBJECT IN THE SAME FORMAT AS THE DECLARATION MUST BE RETURNED HERE
     //              (obviously with new courses in each quarter)
 
 	// RESET
-    window.WorkingSchedule = jQuery.extend(true,{},window.DefaultScheduleCSE);    // (defined in objects.js)
+    window.WorkingSchedule = jQuery.extend(true,{},window.BasePlan);    // (defined above)
     window.AllCourses = jQuery.extend(true,{},window.CourseCatalogue);    // (defined in all_courses.js)
 	
 	for(id in window.ModLog){

@@ -26,6 +26,7 @@ CleanSlateApp.controller('CleanSlateController', function ($scope) {
 	$scope.APTests = [];
 	$scope.currently_viewing_ap_test = {};
 	$scope.current_major = 'Computer Science & Engineering';
+	setBasePlan('cse'); /* reflect in base plan */
 
 	/* View Controller Variable Initialization */
 	$scope.CurrentStep = window.Steps[1];
@@ -78,17 +79,19 @@ CleanSlateApp.controller('CleanSlateController', function ($scope) {
 	 */
 	$scope.setMajor = function(major) {
 		if(major === 'cse') {
-			$scope.Schedule = angular.copy(window.DefaultScheduleCSE); // in js/objects.js
+			//$scope.Schedule = angular.copy(window.DefaultScheduleCSE); // in js/objects.js
 			$scope.current_major = 'Computer Science & Engineering';
 		}
 		else if(major === 'wde') {
-			$scope.Schedule = angular.copy(window.DefaultScheduleWDE); // in js/objects.js
+			//$scope.Schedule = angular.copy(window.DefaultScheduleWDE); // in js/objects.js
 			$scope.current_major = 'Web Design & Engineering';
 		}
 
-		$scope.StudentInput = {};
-		$scope.CurrentStep = window.Steps[1];
-		$scope.currently_viewing_ap_test = {};
+		setBasePlan(major);
+		$scope.Schedule = computeNewSchedule([]);
+		//$scope.StudentInput = {};
+		//$scope.CurrentStep = window.Steps[1];
+		//$scope.currently_viewing_ap_test = {};
 	}
 
 	/**
@@ -133,7 +136,7 @@ CleanSlateApp.controller('CleanSlateController', function ($scope) {
 		applyMods('AP_'+$scope.currently_viewing_ap_test.id,mods);
 		
 		// Recalculate.
-		$scope.Schedule = computeNewScheduleCSE([]);
+		$scope.Schedule = computeNewSchedule([]);
 		
 		
 		
@@ -150,7 +153,7 @@ CleanSlateApp.controller('CleanSlateController', function ($scope) {
 		
 		
 		// Recalculate.
-		$scope.Schedule = computeNewScheduleCSE([]);
+		$scope.Schedule = computeNewSchedule([]);
 		
 		//$scope.Schedule = preComputeScheduleAPCSE( {id: $scope.currently_viewing_ap_test.id, score:$scope.currently_viewing_ap_test.score } )
 	}
@@ -169,7 +172,7 @@ CleanSlateApp.controller('CleanSlateController', function ($scope) {
 		applyMods('TR_'+$scope.currently_viewing_transfer.id,mods);
 		
 		// Recalculate.
-		$scope.Schedule = computeNewScheduleCSE([]);
+		$scope.Schedule = computeNewSchedule([]);
 		
 		//$scope.Schedule = preComputeScheduleTransferCSE( );
 	}
@@ -181,7 +184,7 @@ CleanSlateApp.controller('CleanSlateController', function ($scope) {
 		$scope.StudentInput.transfer_credit.splice(index,1); // remove the AP test from the array.
 		
 		// Recalculate.
-		$scope.Schedule = computeNewScheduleCSE([]);
+		$scope.Schedule = computeNewSchedule([]);
 		
 		//$scope.Schedule = preComputeScheduleTransferCSE( {id: $scope.currently_viewing_ap_test.id, score:$scope.currently_viewing_ap_test.score } )
 	}
@@ -199,7 +202,7 @@ CleanSlateApp.controller('CleanSlateController', function ($scope) {
 		else removeMods('M_01');
 		
 		// Recalculate.
-		$scope.Schedule = computeNewScheduleCSE([]);
+		$scope.Schedule = computeNewSchedule([]);
 	}
 	
 	$scope.updateCalcReady = function(){
@@ -214,7 +217,7 @@ CleanSlateApp.controller('CleanSlateController', function ($scope) {
 		else removeMods('M_02');
 
 		// Recalculate.
-		$scope.Schedule = computeNewScheduleCSE([]);
+		$scope.Schedule = computeNewSchedule([]);
 	}
 	
 	$scope.updateHonors = function(){
