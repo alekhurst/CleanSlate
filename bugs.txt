@@ -17,28 +17,6 @@ FEEDBACK FROM DEMO
 
 * Fix Documentation [https://www.writelatex.com/1776129zknvfq]
 
-==========
-   RANT
-==========
-
-Okay.  I was trying to figure out the great mystery of how to reverse the removal of courses.  I did a couple of things
-	(1) I'm keeping a record of all the changes made to the schedule in a Modification Log, which associates changes
-		by an id.
-	(2) Instead of changing the working schedule incrementally, it reloads and recomputes each time something changes
-		- It also reloads the AllCourses object (since it gets changed in the process
-		- THIS MAY BE GOOD TO STRESS TEST.
-	(3) Instead of pre-computing from AP Test / Transfer Credit, it computes the changes, saves them in the Modification Log
-		under an appropriate ID to be used later.
-	(4) Items are removed from the Modification Log with removeMods(id), which finds the entry and deletes it (so it is no 
-	    longer factored into the calculation).
-	(5) Remove buttons are active and should work appropriately.
-	
-Honestly, I'm not even sure if this was a useful venture. I feel like a horse with blinders on.  This feels like a significant
-paradigm shift from where we were.  I'm not sure if it's an improvement.  I may regret this in a couple hours, but...whatever.
-
-Thanks.
-
-- Scott
 
 
 
@@ -51,18 +29,9 @@ KNOWN BUGS / FEATURE REQUESTS
     MINOR: Fix after major bugs are finished. Minorly time consuming and/or will cost us minor points if not fixed
     FEATURE REQUEST: Fix if there is time. If not fixed, we may get docked points, or may just not get extra credit
 
+	
+	
 [CRITICAL] No logic for adding courses (functions to implement: addCourse(), bestQuarterToAdd())
-
-[CRITICAL] Only one major implemented
-
-[MAJOR] Cannot 'remove' AP Credit / Transfer Credit
-
-[MINOR] Application does not retain AP Credit / Transfer Credit when Major is Switched.
-	- (Scott): I would personally find it annoying if I had to input everything twice if I
-			   only wanted to compare majors.
-    - (Jordan): Another option we could do is to check the working schedule against the default
-               schedule, and if they're different upon switching majors, alert the user that
-               changing majors will clear all saved data.
 
 [FEATURE REQUEST] Console Log Clutter / No useful console log info
 	- (Scott): I understand using console logs in development.  I'd just like to comment 
@@ -83,6 +52,44 @@ KNOWN BUGS / FEATURE REQUESTS
 
 CHANGELOG
 
+[FIXED] Only one major implemented
+	- WDE "supported" around 5:33PM Friday
+	- (Scott): May want to be more specific on the bugs here.
+
+[FIXED] Cannot 'remove' AP Credit / Transfer Credit
+	- Removal implemented through usage of a Modification Log
+	- (Scott):
+			==========
+			   RANT
+			==========
+
+			Okay.  I was trying to figure out the great mystery of how to reverse the removal of courses.  I did a couple of things
+				(1) I'm keeping a record of all the changes made to the schedule in a Modification Log, which associates changes
+					by an id.
+				(2) Instead of changing the working schedule incrementally, it reloads and recomputes each time something changes
+					- It also reloads the AllCourses object (since it gets changed in the process
+					- THIS MAY BE GOOD TO STRESS TEST.
+				(3) Instead of pre-computing from AP Test / Transfer Credit, it computes the changes, saves them in the Modification Log
+					under an appropriate ID to be used later.
+				(4) Items are removed from the Modification Log with removeMods(id), which finds the entry and deletes it (so it is no 
+					longer factored into the calculation).
+				(5) Remove buttons are active and should work appropriately.
+				
+			Honestly, I'm not even sure if this was a useful venture. I feel like a horse with blinders on.  This feels like a significant
+			paradigm shift from where we were.  I'm not sure if it's an improvement.  I may regret this in a couple hours, but...whatever.
+
+			Thanks.
+
+			- Scott
+
+[FIXED] Application does not retain AP Credit / Transfer Credit when Major is Switched.
+	- (Scott): I would personally find it annoying if I had to input everything twice if I
+			   only wanted to compare majors.
+    - (Jordan): Another option we could do is to check the working schedule against the default
+               schedule, and if they're different upon switching majors, alert the user that
+               changing majors will clear all saved data.
+	- AP Tests and Transfer Credits are retained in Angular and in Modification Log now.
+			   
 [FIXED] COEN courses should not be shifted
     -(Jordan): Best fix ever. I just changed the offerings of COEN courses. Brilliant.
     - See https://github.com/alekhurst/CleanSlate/commit/82429cf05b761a83370e9797744eeea55d4cc231
