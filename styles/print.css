@@ -37,7 +37,7 @@ body {
 	#output-component {
 		position: absolute;
 		left: 0;
-		top:80px;
+		top:100px;
 		width: 1100px;
 		height: 380px;
 		border-radius: 15px;
@@ -169,7 +169,16 @@ body {
 		
 	/* ---- END OUTPUT COMPONENT ---- */
 
-	
+		#print-header{
+			width:1100px;
+			text-align:center;
+			margin:auto;
+			position:absolute;
+			top:-20px;
+			color:
+		}
+		#print-header h2{margin:0px;padding:0px;color:#941A1E;}
+		#print-header h4{margin:0px;padding:0px;color:#941A1E;}
 	
 		#top-bar,#input-component{
 			display:none;
@@ -189,7 +198,7 @@ body {
 		
 	#profile-component {
 		position: absolute;
-		top: 550px;
+		top: 580px;
 		overflow:auto;
 		left: 0;
 		width: 1100px;

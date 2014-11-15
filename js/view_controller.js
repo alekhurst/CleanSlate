@@ -221,16 +221,16 @@ CleanSlateApp.controller('CleanSlateController', function ($scope) {
 	}
 	
 	$scope.updateHonors = function(){
-		if(!$scope.honorsStudent){
+		if(!$scope.honorStudent){
 			//$scope.Schedule = preComputeReadinessExamCSE();
-			alert("Honors");
+			//alert("Honors");
 		}
 	}
 	
 	$scope.updateLEAD = function(){
 		if(!$scope.leadStudent){
 			//$scope.Schedule = preComputeReadinessExamCSE();
-			alert("LEAD");
+			//alert("LEAD");
 		}
 	}
 

@@ -86,7 +86,7 @@
 						<input id="calculusReady" type="checkbox"  ng-model="calculusReady" ng-click="updateCalcReady()" />
 					</p>
 					<p class="prev-exp-paragraph" id="prev-exp-honors"> Are you enrolled in the Honors Program?
-						<input id="honorsStudent" type="checkbox"  ng-model="honorStudent" ng-click="updateHonors()" />
+						<input id="honorStudent" type="checkbox"  ng-model="honorStudent" ng-click="updateHonors()" />
 					</p>
 					<p class="prev-exp-paragraph" id="prev-exp-lead"> Are you a LEAD Scholar?
 						<input id="leadStudent" type="checkbox" ng-model="leadStudent" ng-click="updateLEAD()" />
@@ -134,10 +134,30 @@
 				<button id="print-button" ng-click='printSchedule()'>Print</button>
 			</section>	
 			
+			<section id="print-header">
+				<h2>Your Incoming Freshman Course Plan</h2>
+				<h4>{{current_major}}</h4>
+			</section>
 			<section id="profile-component" ng-cloak="CurrentStep.view === 'main'" ng-show="CurrentStep.view === 'main'"  ng-class="{reviewed: reviewMode}">
-				<h3>Student Profile</h3>
-				<h4>AP TESTS</h4>
-				<h4>TRANSFER CREDIT</h4>
+				<h3>GENERAL INFORMATION</h3>
+				<ul>
+					<li ng-show="calculusReady">Passed the Calculus Readiness Exam : Does not need to take MATH 9.</li>
+					<li ng-show="previousProgramming">Has previous programming experience : Does not need to take COEN 10</li>
+					<li ng-show="honorStudent">Honors Student</li>
+					<li ng-show="leadStudent">LEAD Student</li>					
+				</ul>
+				<h3>AP TESTS</h4>
+				<ul>
+					<li ng-repeat="test in StudentInput.ap_credit">
+						{{ APTests[ test.id ].name }} ({{ test.score }}) 
+					</li>
+				</ul>
+				<h3>TRANSFER CREDIT</h4>
+				<ul>
+					<li ng-repeat="test in StudentInput.transfer_credit">
+						{{ TransferCredit[ test.id ].name }}
+					</li>
+				</ul>
 			</section>
 		</main>
 
