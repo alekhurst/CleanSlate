@@ -32,7 +32,7 @@
 				<li ng-click="setMajor('wde')">Web Design & Enginnering</li>
 			</ul>
 			<!-- Steps 2-5 User Input Section (Top Half of UI) -->
-			<section id="input-component" ng-cloak="CurrentStep.view === 'main'" ng-show="CurrentStep.view === 'main'">
+			<section id="input-component" ng-cloak="CurrentStep.view === 'main'" ng-show="CurrentStep.view === 'main'"  ng-class="{reviewed: reviewMode}">
 				<nav>
 					<ul>
 						<li ng-click="skipToStep(1)"><a href="#">AP Credit</a></li>
@@ -95,7 +95,7 @@
 				</div>
 			</section>
 			<!-- Steps 2-5 Output Section (Bottom Half of UI)-->
-			<section id="output-component" ng-cloak="CurrentStep.view === 'main'" ng-show="CurrentStep.view === 'main'">
+			<section id="output-component" ng-cloak="CurrentStep.view === 'main'" ng-show="CurrentStep.view === 'main'" ng-class="{reviewed: reviewMode}">
 				<ul id="quarter-titles">
 					<li>Fall</li>
 					<li>Winter</li>
@@ -130,9 +130,15 @@
 					<li><div id="humanities-key"></div>Humanities & Social Science</li>
 					<li><div id="other-key"></div>Other</li>
 				</ul>
-				<button id="review-button" ng-click='printSchedule()'>Review</button>
+				<button id="review-button" ng-click='toggleReview()'>{{reviewButtonText}}</button>
 				<button id="print-button" ng-click='printSchedule()'>Print</button>
 			</section>	
+			
+			<section id="profile-component" ng-cloak="CurrentStep.view === 'main'" ng-show="CurrentStep.view === 'main'"  ng-class="{reviewed: reviewMode}">
+				<h3>Student Profile</h3>
+				<h4>AP TESTS</h4>
+				<h4>TRANSFER CREDIT</h4>
+			</section>
 		</main>
 
 		<!-- Angular & jQuery -->

@@ -523,4 +523,25 @@ body {
 			outline: none;
 		}
 	/* ---- END OUTPUT COMPONENT ---- */
+	
+	/* PROFILE COMPONENT */
+	#profile-component {
+		display:none;
+		position: absolute;
+		top: 550px;
+		overflow:auto;
+		left: 0;
+		width: 1100px;
+		height: 380px;
+		border-radius: 15px;
+		border: 2px solid #941A1E;
+		background-color: rgba(255,255,255, .7);
+	}
+	
+	
+	/* REVIEW STATUS */
+	#input-component.reviewed {display:none;}
+	#output-component.reviewed {top:80px;}
+	#profile-component.reviewed{display:block;}
+	
 }

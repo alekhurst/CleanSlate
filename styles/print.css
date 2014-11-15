@@ -37,6 +37,7 @@ body {
 	#output-component {
 		position: absolute;
 		left: 0;
+		top:80px;
 		width: 1100px;
 		height: 380px;
 		border-radius: 15px;
@@ -175,8 +176,6 @@ body {
 		}
 		
 		#output-component{
-			left:0;
-			top:0;
 			position:absolute;
 			display:block;
 			-moz-box-sizing:border-box;
@@ -185,6 +184,17 @@ body {
 		}
 		
 		#print-button,#review-button{display:none;}
+		
+		
+		
+	#profile-component {
+		position: absolute;
+		top: 550px;
+		overflow:auto;
+		left: 0;
+		width: 1100px;
+		height: 800px;
+	}
 
 }
 

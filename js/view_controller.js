@@ -252,4 +252,24 @@ CleanSlateApp.controller('CleanSlateController', function ($scope) {
 	$scope.showDescription = function() {
 		$('#selection-description').text(test.description)
 	}
+	
+	
+	//------------------------------------------------------------
+	// REVIEW MODE
+	$scope.reviewMode = false;
+	$scope.reviewButtonText = "Review";
+	
+	$scope.toggleReview = function(){
+		$scope.reviewMode = !$scope.reviewMode;
+		
+		if($scope.reviewMode){
+			$scope.reviewButtonText = "Back";	
+			
+		}
+		else{
+			$scope.reviewButtonText = "Review";
+		
+		}
+	}
+	
 });
