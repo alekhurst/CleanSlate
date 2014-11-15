@@ -139,23 +139,23 @@
 				<h4>{{current_major}}</h4>
 			</section>
 			<section id="profile-component" ng-cloak="CurrentStep.view === 'main'" ng-show="CurrentStep.view === 'main'"  ng-class="{reviewed: reviewMode}">
-				<h3>GENERAL INFORMATION</h3>
+				<h3 ng-show="calculusReady || previousProgramming || honorStudent || leadStudent">GENERAL INFORMATION</h3>
 				<ul>
 					<li ng-show="calculusReady">Passed the Calculus Readiness Exam : Does not need to take MATH 9.</li>
 					<li ng-show="previousProgramming">Has previous programming experience : Does not need to take COEN 10</li>
 					<li ng-show="honorStudent">Honors Student</li>
 					<li ng-show="leadStudent">LEAD Student</li>					
 				</ul>
-				<h3>AP TESTS</h4>
+				<h3 ng-show="StudentInput.ap_credit.length">AP TESTS</h4>
 				<ul>
 					<li ng-repeat="test in StudentInput.ap_credit">
-						{{ APTests[ test.id ].name }} ({{ test.score }}) 
+						<b>{{ APTests[ test.id ].name }} ({{ test.score }})</b> : Credit obtained for {{ creditObtainedStrings["AP_"+test.id] }}
 					</li>
 				</ul>
-				<h3>TRANSFER CREDIT</h4>
+				<h3 ng-show="StudentInput.transfer_credit.length">TRANSFER CREDIT</h4>
 				<ul>
 					<li ng-repeat="test in StudentInput.transfer_credit">
-						{{ TransferCredit[ test.id ].name }}
+						<b>{{ TransferCredit[ test.id ].name }}</b> : Credit obtained for {{ creditObtainedStrings["TR_"+test.id] }}
 					</li>
 				</ul>
 			</section>

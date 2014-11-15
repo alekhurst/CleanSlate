@@ -259,17 +259,36 @@ CleanSlateApp.controller('CleanSlateController', function ($scope) {
 	$scope.reviewMode = false;
 	$scope.reviewButtonText = "Review";
 	
+	$scope.creditObtainedStrings = {};
+	
 	$scope.toggleReview = function(){
 		$scope.reviewMode = !$scope.reviewMode;
 		
 		if($scope.reviewMode){
 			$scope.reviewButtonText = "Back";	
 			
+			// parse out modification log into credit obtained strings.
+			for(var i in window.ModLog){
+				$scope.creditObtainedStrings[i] = $scope.parseMods(window.ModLog[i]);
+			}
 		}
 		else{
 			$scope.reviewButtonText = "Review";
 		
 		}
+	}
+	
+	
+	$scope.parseMods = function(mods){
+		var str = "";
+		 
+		for(var i = 0; i < mods.length; i++){
+			if(i!=0) str+= ", ";
+			
+			var s = mods[i]['parameters'][0];
+			str += s.substring(0,4)+" "+s.substring(4);
+		}
+		return str;
 	}
 	
 });
