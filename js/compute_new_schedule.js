@@ -347,7 +347,16 @@ function moveEngr1() {
  * This function is called to put COEN12 in the correct quarter, based on 
  */
 function fixCoen12() {
-    if (!window.WorkingSchedule['winter_quarter']['COEN12'] && !window.WorkingSchedule['spring_quarter']['COEN12']) //If COEN12 isn't even in schedule, return
+    if (!window.WorkingSchedule['winter_quarter']['COEN12'] && !window.WorkingSchedule['spring_quarter']['COEN12'])//If COEN12 isn't even in schedule, return
+        return;
+    if (window.WorkingSchedule['fall_quarter']['C&I1']
+        && window.WorkingSchedule['winter_quarter']['C&I2']
+        && window.WorkingSchedule['spring_quarter']['COEN12']) //Schedule is fixed, return
+        return;
+
+    if (window.WorkingSchedule['fall_quarter'][getACoreForQuarter('fall_quarter')]
+        && window.WorkingSchedule['winter_quarter'][getACoreForQuarter('winter_quarter')]
+        && window.WorkingSchedule['spring_quarter']['COEN12']) //Schedule is fixed, return
         return;
 
     var fall_quarter = window.WorkingSchedule['fall_quarter'];
@@ -386,6 +395,8 @@ function fixCoen12() {
         branch : 'coen_courses',
         offering : coen12['offering'],
         category : coen12['category'],
+        units : coen12['units'],
+        prerequisites: coen12['prerequisites'],
     };
 
     if (ci_in_schedule) { //Just add CORE to winter_quarter
@@ -400,6 +411,8 @@ function fixCoen12() {
             branch : 'core_courses',
             offering : core_course['offering'],
             category : core_course['category'],
+            units: core_course['units'],
+            prerequisites: core_course['prerequisites'],
         };
     } else { //Remove CORE from fall_quarter, then add C&I1/2 to fall_quarter/winter_quarter, respectively
         delete window.WorkingSchedule['fall_quarter'][getACoreForQuarter('fall_quarter')];
@@ -418,6 +431,8 @@ function fixCoen12() {
             branch : 'CI_courses',
             offering : ci_1['offering'],
             category : ci_1['category'],
+            units: ci_1['units'],
+            prerequisites : ci_1['prerequisites'],
         };
 
         window.WorkingSchedule['winter_quarter']['C&I2'] = {
@@ -428,7 +443,15 @@ function fixCoen12() {
             branch : 'CI_courses',
             offering : ci_2['offering'],
             category : ci_2['category'],
+            units: ci_2['units'],
+            prerequisites : ci_2['prerequisites'],
         };
+
+        //Give credit for C&I1/2
+        window.AllCourses['CI_courses'][ci_1_id]['quarter_taken'] = 'fall_quarter';
+        window.AllCourses['CI_courses'][ci_2_id]['quarter_taken'] = 'winter_quarter';
+        window.AllCourses['CI_courses'][ci_1_id]['credit'] = 'YES';
+        window.AllCourses['CI_courses'][ci_2_id]['credit'] = 'YES';
     }
 }
 
@@ -506,7 +529,6 @@ function removeCourse(course_title, quarter) {
 		
 		/*C&I*/
 		if(window.AllCourses['CI_courses'][getCourseId('CI_courses','C&I',1)]['quarter_taken'] == ''){
-			//if(WorkingSchedule.fall_quarter.CORE && WorkingSchedule.winter_quarter.CORE){
             if (numberOfCoresInQuarter('fall_quarter') > 0 && numberOfCoresInQuarter('winter_quarter') > 0) {
                 var fall_core = getACoreForQuarter('fall_quarter');
                 var winter_core = getACoreForQuarter('winter_quarter');
@@ -517,7 +539,6 @@ function removeCourse(course_title, quarter) {
 				WorkingSchedule.winter_quarter['C&I2'] = getCourse('CI_courses',getCourseId('CI_courses','C&I',2));
 				window.AllCourses['CI_courses'][getCourseId('CI_courses','C&I',2)]['quarter_taken'] = 'winter_quarter';
 			}
-			//if(WorkingSchedule.winter_quarter.CORE && WorkingSchedule.spring_quarter.CORE){
             if (numberOfCoresInQuarter('winter_quarter') > 0 && numberOfCoresInQuarter('spring_quarter') > 0) {
                 var winter_core = getACoreForQuarter('winter_quarter');
                 var spring_core = getACoreForQuarter('spring_quarter');
