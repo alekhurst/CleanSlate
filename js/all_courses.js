@@ -219,7 +219,7 @@ window.CourseCatalogue = {
 			department : "COEN",
 			course_number : "19",
 			description : "something",
-			offering : ["fall_quarter", "spring_quarter"],
+			offering : ["spring_quarter"], //Technically fall and spring, but you never want to take it fall quarter
 			credit : "YES",
             quarter_taken: "spring_quarter",
 			category : "engineering",

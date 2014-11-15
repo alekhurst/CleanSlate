@@ -33,6 +33,11 @@ KNOWN BUGS / FEATURE REQUESTS
 	
 [CRITICAL] No logic for adding courses (functions to implement: addCourse(), bestQuarterToAdd())
 
+[MAJOR] Need to fix the logic for COEN 10/11/12/19/20/21/70
+    - (Jordan) We need to sit down and determine what logic is best for these majors. It shouldn't take that long, but I'm not 100% sure how to handle them.
+    - (Jordan) 10/11/12 could be fixed by a single function executed right before the function to fix ENGR1. It would have to check which ones of the three have been tested out of, and then act accordingly.
+    - (Jordan) COEN 19/20/21/70 are more complicated. Currently, I just said 19 should not be allowed in fall. But, that means that COEN21 takes COEN10's space if it is tested out of; obviously an error. So, we need to fix that.
+
 [FEATURE REQUEST] Console Log Clutter / No useful console log info
 	- (Scott): I understand using console logs in development.  I'd just like to comment 
 			   them out so writing to console log doesn't require looking for a needle
