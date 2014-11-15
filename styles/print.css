@@ -1,0 +1,190 @@
+
+@media print{
+
+*{ -webkit-print-color-adjust: exact; }
+
+body {
+	font-family: 'Open Sans', sans-serif;
+	height:100%;
+	width:100%;
+}
+
+#background-img {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 1100px;
+	height: 2000px;
+	background-image: url('../images/scu_logo_large.jpg');
+	background-position: 0% 0%;
+	background-size:1100px auto;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	opacity: .07;
+}
+
+	
+
+/* ---- START APP CONTAINER ---- */
+#app-container {
+	position: absolute;
+	top: 50px;
+	margin-left: 0;
+	width: 1100px;
+}
+
+	/* ---- START OUTPUT COMPONENT ---- */
+	#output-component {
+		position: absolute;
+		left: 0;
+		width: 1100px;
+		height: 380px;
+		border-radius: 15px;
+		border: 2px solid #941A1E;
+		background-color: rgba(255,255,255, .7);
+	}
+		#output-component #quarter-titles {
+			position: absolute;
+			list-style: none;
+			margin: 0;
+			padding: 0;
+			width: 1000px;
+			top: -40px;
+		}
+			#output-component #quarter-titles li {
+				display: block;
+				float: left;
+				padding: 0px 145px;
+				font-size: 25px;
+				color: #941A1E;
+			} #output-component #quarter-titles li:first-child {
+				padding-left: 175px;
+			} #output-component #quarter-titles li:last-child {
+				padding-right: 10px;
+			}
+		#courses {
+			left: 0;
+			top: 0;
+			margin: 20px;
+			padding: 0;
+			width: 1060px;
+			height: 340px;
+			list-style: none;
+		}
+			#courses .quarter {
+				list-style: none;
+				margin: 0px;
+				padding: 0px;
+				float: left;
+				width: 340px;
+				height: 340px;
+			}
+			#courses .quarter:nth-child(2) {
+				margin-left: 20px;
+				margin-right: 20px;
+			}
+				#courses .quarter .course {
+					position: relative;
+					border-radius: 15px;
+					height: 64px;
+					margin: 5px 0px;
+				} #courses .quarter .course:first-child {
+					margin-top: 0px;
+				} #courses .quarter .course:last-child {
+					margin-bottom: 0px;
+				} .engineering-course {
+					background-color: #d7e7c4;
+					color: #35481e;
+				} .math-course {
+					background-color: #cae0ea;
+					color: #234758;
+				} .humanities-course {
+					background-color: #eedfbc;
+					color: #624c18;
+				} .other-course {
+					background-color: #ed9798;
+					color: #941A1E;
+				}
+					#courses .quarter .course .course-title {
+						position: relative;
+						display: block;
+						float: left;
+						font-size: 20px;
+						margin: 0;
+						top: 10px;
+						left: 10px;
+					}
+					#courses .quarter .course .course-units {
+						position: relative;
+						display: block;
+						float: right;
+						font-size: 13px;
+						margin: 0;
+						top: 10px;
+						right: 10px;	
+					}
+					#courses .quarter .course .course-description {
+						position: relative;
+						display: block;
+						font-size: 13px;
+						float: left;
+						clear: both;
+						margin: 0;
+						top: 10px;
+						left: 10px;	
+					} 
+
+		#key {
+			list-style: none;
+			position:absolute;
+			margin: 0;
+			padding: 0;
+			bottom: -50px;
+			left: 50px;
+		}
+			#key li {
+				display: block;
+				float: left;
+				padding: 0px 20px;
+				font-size: 12px;
+			}
+				#key li div {
+					position: relative;
+					border-radius: 4px;
+					margin-right: 5px;
+					display: block;
+					float: left;
+					width: 20px;
+					height: 20px;
+				} #engineering-key {
+					background-color: #d7e7c4;
+				} #math-key {
+					background-color: #cae0ea;
+				} #humanities-key {
+					background-color: #eedfbc;
+				} #other-key {
+					background-color: #ed9798;
+				}
+		
+	/* ---- END OUTPUT COMPONENT ---- */
+
+	
+	
+		#top-bar,#input-component{
+			display:none;
+		}
+		
+		#output-component{
+			left:0;
+			top:0;
+			position:absolute;
+			display:block;
+			-moz-box-sizing:border-box;
+			-webkit-box-sizing:border-box;
+			box-sizing:border-box;
+		}
+		
+		#print-button,#review-button{display:none;}
+
+}
+

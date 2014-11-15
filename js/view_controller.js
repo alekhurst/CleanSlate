@@ -244,8 +244,7 @@ CleanSlateApp.controller('CleanSlateController', function ($scope) {
 	 *
 	 * UPDATE ------ EVERYTHING WORKS
 	 */
-	$scope.testScheduleUpdate = function() {
-		$scope.StudentInput.ap_credit[0] += 'lalalala';
+	$scope.printSchedule = function() {
 		// actual print code
 		window.print();
 	}

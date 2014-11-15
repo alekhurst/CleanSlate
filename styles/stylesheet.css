@@ -1,3 +1,4 @@
+@media screen{
 body {
 	font-family: 'Open Sans', sans-serif;
 }
@@ -502,27 +503,24 @@ body {
 			background-color: #e36365;
 		} #print-button:focus {
 			outline: none;
+		}#review-button {
+			cursor: pointer;
+			position: absolute;
+			margin: 0;
+			padding: 10px 20px;
+			right: 80px;
+			bottom: -60px;
+			background-color: white;
+			font-size: 15px;
+			border: none;
+			box-shadow:0px 0px 0px 2px inset;
+			border-radius: 12px;
+			background-color: white;
+			color: #941A1E;
+		} #review-button:hover {
+			background-color: #e36365;
+		} #review-button:focus {
+			outline: none;
 		}
 	/* ---- END OUTPUT COMPONENT ---- */
-
-	
-	@media print{
-	
-		#top-bar,#input-component{
-			display:none;
-		}
-		
-		#output-component{
-			left:0;
-			top:0;
-			position:absolute;
-			display:block;
-		}
-				
-		#app-container{
-			margin:0;
-			width:auto;
-			left:auto;
-		}
-	}
-
+}

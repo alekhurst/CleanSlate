@@ -3,7 +3,8 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>CleanSlate</title>
-		<link rel="stylesheet" href="styles/stylesheet.css" type="text/css">
+		<link rel="stylesheet" href="styles/stylesheet.css" type="text/css" media="screen">
+		<link rel="print stylesheet" href="styles/print.css" type="text/css" media="print">
 		<link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400' rel='stylesheet' type='text/css'>
 	</head>
 	<body ng-app='CleanSlateApp' ng-controller="CleanSlateController">
@@ -129,7 +130,8 @@
 					<li><div id="humanities-key"></div>Humanities & Social Science</li>
 					<li><div id="other-key"></div>Other</li>
 				</ul>
-				<button id="print-button" ng-click='testScheduleUpdate()'>Print</button>
+				<button id="review-button" ng-click='printSchedule()'>Review</button>
+				<button id="print-button" ng-click='printSchedule()'>Print</button>
 			</section>	
 		</main>
 
