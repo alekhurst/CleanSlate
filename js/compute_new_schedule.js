@@ -256,18 +256,22 @@ function numberOfCoresInQuarter(quarter) {
     return cores_in_quarter;
 }
 
-function nextCore(quarter) {
+function getACoreForQuarter(quarter) {
     var quarter_schedule = window.WorkingSchedule[quarter];
     for (course in quarter_schedule) {
         if (course.indexOf('CORE') > -1) //CORE## found in schedule
             return course;
     }
-    return -1;
+    return -1; //No cores, return -1
 }
 
-
-
-
+function nextCore(quarter) {
+    var quarter_schedule = window.WorkingSchedule[quarter];
+    for (var current_core = 0;;current_core++) { //Keep incrementing current core and return the first core that isnt in schedule
+        if (!quarter_schedule['CORE' + current_core])
+            return 'CORE' + current_core;
+    }
+}
 
 
 
@@ -339,16 +343,25 @@ function moveEngr1() {
     }
 }
 
+/*
+ * This function is called to put COEN12 in the correct quarter, based on 
+ */
 function fixCoen12() {
-    var fall_quarter = window.workingSchedule['fall_quarter'];
+    if (!window.WorkingSchedule['winter_quarter']['COEN12'] && !window.WorkingSchedule['spring_quarter']['COEN12']) //If COEN12 isn't even in schedule, return
+        return;
+
+    var fall_quarter = window.WorkingSchedule['fall_quarter'];
     var winter_quarter = window.WorkingSchedule['winter_quarter'];
     var spring_quarter = window.WorkingSchedule['spring_quarter'];
 
-    var ci_in_schedule = false;
     for (course in fall_quarter) {
         if (course == 'COEN10' || course == 'COEN11') //COEN10/11 is taken in the fall, no schedule fix needed
             return;
-        if (course == 'C&I1') //C&I track is in schedule, mark this down
+    }
+
+    var ci_in_schedule = false;
+    for (course in winter_quarter) {
+        if (course == 'C&I1' || course == 'C&I2') //C&I track is in schedule, mark this down
             ci_in_schedule = true;
     }
 
@@ -357,38 +370,67 @@ function fixCoen12() {
     //What it should be is this:
     //  fall_quarter: C&I1, winter_quarter: C&I2, spring_quarter: COEN12
     //  OR (if C+I is already in schedule):
-    //  fall_quarter: c
+    //  fall_quarter: CORE, winter_quarter: CORE, spring_quarter: COEN12
+
+    var coen12_id = getCourseId('coen_courses', 'COEN', '12');
+    var coen12 = getCourse('coen_courses', coen12_id);
+
+    //Move COEN12 to spring, delete CORE in spring
+    delete window.WorkingSchedule['spring_quarter'][getACoreForQuarter('spring_quarter')];
+    delete window.WorkingSchedule['winter_quarter']['COEN12'];
+    window.WorkingSchedule['spring_quarter']['COEN12'] = {
+        name : coen12['name'],
+        department : coen12['department'],
+        course_number : coen12['course_number'],
+        description : coen12['description'],
+        branch : 'coen_courses',
+        offering : coen12['offering'],
+        category : coen12['category'],
+    };
+
+    if (ci_in_schedule) { //Just add CORE to winter_quarter
+        var winter_core = nextCore('winter_quarter');
+        var core_course = getCourse('core_courses', 0);
+
+        window.WorkingSchedule['winter_quarter'][winter_core] = {
+            name : core_course['name'],
+            department : core_course['department'],
+            course_number : core_course['course_number'],
+            description : core_course['description'],
+            branch : 'core_courses',
+            offering : core_course['offering'],
+            category : core_course['category'],
+        };
+    } else { //Remove CORE from fall_quarter, then add C&I1/2 to fall_quarter/winter_quarter, respectively
+        delete window.WorkingSchedule['fall_quarter'][getACoreForQuarter('fall_quarter')];
+
+        var ci_1_id = getCourseId('CI_courses', 'C&I', '1');
+        var ci_2_id = getCourseId('CI_courses', 'C&I', '2');
+
+        var ci_1 = getCourse('CI_courses', ci_1_id);
+        var ci_2 = getCourse('CI_courses', ci_2_id);
+
+        window.WorkingSchedule['fall_quarter']['C&I1'] = {
+            name : ci_1['name'],
+            department : ci_1['department'],
+            course_number : ci_1['course_number'],
+            description : ci_1['description'],
+            branch : 'CI_courses',
+            offering : ci_1['offering'],
+            category : ci_1['category'],
+        };
+
+        window.WorkingSchedule['winter_quarter']['C&I2'] = {
+            name : ci_2['name'],
+            department : ci_2['department'],
+            course_number : ci_2['course_number'],
+            description : ci_2['description'],
+            branch : 'CI_courses',
+            offering : ci_2['offering'],
+            category : ci_2['category'],
+        };
+    }
 }
-
-
-
-/*
- * This function is called to determine the best quarter that a course should be taken. Returns [quarter, [flag(s)]]
- * 
- * @param {Object} course_title - Title of course to be removed (i.e. "COEN10")
- */
-function bestQuarterToAdd(course_title) {
-    //Start with earliest quarter offered AFTER PREVIOUS COURSE IN SERIES
-    //If previous course in series is spring:
-        //No good quarter to add course, return [-1, -1]
-    //Get the next course in the series
-        //If there is none or there is one and it is not completed (not in schedule, but not taken before):
-            //FIRST PRIORITY: earliest quarter with core (FLAG: core)
-            //SECOND PRIORITY (if there isn't a core): Earliest slot of C+I (FLAG: C+I1 or C+I2)
-            //THIRD PRIORITY (if there isn't C+I): Soonest possible WITHOUT 20 UNITS BEFORE ENGR 1(FLAG: next_offering)
-            //FOURTH PRIORITY (if all this fails): Can't be added, return [-1, -1]
-        //Else (There is another course in the series, and it's in the schedule):
-            //IF previous course and next course are one quarter apart (MUST MOVE NEXT COURSE OFFERED)
-                //FIRST PRIORITY: Least units WITHOUT ENGR1 quarter with core (FLAGS: core, move_next)
-                //SECOND PRIORITY (if there isn't a core): Earliest slot of C+I (FLAGS: C+I1 or C+I2, move_next)
-                //THIRD PRIORITY (if there isn't C+I): Soonest possible WITHOUT 20 UNITS BEFORE ENGR 1 AND COURSE TO BE MOVED (FLAGS: next_offering, move_next)
-                //FOURTH PRIORITY (if all this fails): Can't be added, return [-1, -1]
-            //ELSE (There is a gap)
-                //Perform prioritization like above
-                //If the best quarter is before next_offered, don't return move_next flag
-                //If the best quarter is after next_offered, return the move_next flag
-}
-
 
 /*
  * This function is called to remove a course from the default course list at a specific quarter
@@ -399,6 +441,7 @@ function bestQuarterToAdd(course_title) {
 function removeCourse(course_title, quarter) {
     console.log(course_title + ', ' + quarter);
     if (quarter == -1) {  //Base case, return and break out of recursion
+        fixCoen12(); //Move COEN12 based on if COEN10/11 are completed
         moveEngr1(); //Move engineering 1 to a better quarter
         return;
     }
@@ -447,9 +490,9 @@ function removeCourse(course_title, quarter) {
 
     if(next_course_in_series == null) { //Take core course
         var core_course = getCourse('core_courses', 0);
-        var num_cores = numberOfCoresInQuarter(quarter)
+        var next_core = nextCore(quarter);
 
-        window.WorkingSchedule[quarter]['CORE' + num_cores] = {
+        window.WorkingSchedule[quarter][next_core] = {
             name : core_course['name'],
             department : core_course['department'],
             course_number : core_course['course_number'],
@@ -465,8 +508,8 @@ function removeCourse(course_title, quarter) {
 		if(window.AllCourses['CI_courses'][getCourseId('CI_courses','C&I',1)]['quarter_taken'] == ''){
 			//if(WorkingSchedule.fall_quarter.CORE && WorkingSchedule.winter_quarter.CORE){
             if (numberOfCoresInQuarter('fall_quarter') > 0 && numberOfCoresInQuarter('winter_quarter') > 0) {
-                var fall_core = nextCore('fall_quarter');
-                var winter_core = nextCore('winter_quarter');
+                var fall_core = getACoreForQuarter('fall_quarter');
+                var winter_core = getACoreForQuarter('winter_quarter');
 				delete WorkingSchedule.fall_quarter[fall_core]; delete WorkingSchedule.winter_quarter[winter_core];
 				WorkingSchedule.fall_quarter['C&I1'] = getCourse('CI_courses',getCourseId('CI_courses','C&I',1));
 				window.AllCourses['CI_courses'][getCourseId('CI_courses','C&I',1)]['quarter_taken'] = 'fall_quarter';
@@ -476,8 +519,8 @@ function removeCourse(course_title, quarter) {
 			}
 			//if(WorkingSchedule.winter_quarter.CORE && WorkingSchedule.spring_quarter.CORE){
             if (numberOfCoresInQuarter('winter_quarter') > 0 && numberOfCoresInQuarter('spring_quarter') > 0) {
-                var winter_core = nextCore('winter_quarter');
-                var spring_core = nextCore('spring_quarter');
+                var winter_core = getACoreForQuarter('winter_quarter');
+                var spring_core = getACoreForQuarter('spring_quarter');
 				delete WorkingSchedule.winter_quarter[winter_core]; delete WorkingSchedule.spring_quarter[spring_core];
 				WorkingSchedule.winter_quarter['C&I1'] = getCourse('CI_courses',getCourseId('CI_courses','C&I',1));
 				window.AllCourses['CI_courses'][getCourseId('CI_courses','C&I',1)]['quarter_taken'] = 'winter_quarter';
