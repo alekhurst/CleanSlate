@@ -193,7 +193,7 @@ window.CourseCatalogue = {
 			department : "COEN",
 			course_number : "11",
 			description : "something",
-			offering : ["winter_quarter"], //technically any quarter, but you don't want to take it any other time
+			offering : ["fall_quarter", "winter_quarter"], //technically any quarter, but you don't want to take it any other time
 			credit : "YES",
             quarter_taken: "winter_quarter",
 			category : "engineering",
@@ -206,7 +206,7 @@ window.CourseCatalogue = {
 			department : "COEN",
 			course_number : "12",
 			description : "something",
-			offering : ["spring_quarter"], //technically any quarter, but you don't want to take it any other quarter
+			offering : ["winter_quarter", "spring_quarter"], //technically any quarter, but you don't want to take it any other quarter
 			credit : "YES",
             quarter_taken: "spring_quarter",
 			category : "engineering",
