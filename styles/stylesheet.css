@@ -25,6 +25,11 @@ body {
 	background-color: #941A1E;
 	z-index: 1;
 }
+	#top-bar #major {
+		margin: 0px;
+		position: absolute;
+		top: 5px;
+	}
 	#top-bar #major li{
 		z-index: 2;
 		cursor: pointer;
@@ -43,11 +48,6 @@ body {
 	} #top-bar #major li:hover > ul li {
 		display: block;
 	}
-		#top-bar #major {
-			margin:0px;
-			position: relative;
-			top: 5px;
-		}
 		#top-bar #major li ul {
 			margin: 0px;
 			padding: 0px;
@@ -63,8 +63,8 @@ body {
 
 
 	#top-bar h1 {
-		position: absolute;
-		left: 40%;
+		position: relative;
+		text-align: center;
 		font-size: 25px;
 		top: 10px;
 		line-height: 30px;
@@ -314,7 +314,7 @@ body {
 			#input-component .added-selections ul {
 				list-style-type: none;
 				padding-right: 40px;
-				font-size: 18px;
+				font-size: 17px;
 				color: #941A1E;
 				max-height: 150px;
 				overflow-y: auto;
@@ -333,6 +333,8 @@ body {
 			} #input-component .added-selections ul li button:hover {
 				color: white;
 				background-color: #941A1E;
+			} #input-component .added-selections ul li button:focus {
+				outline: none;
 			} #input-component .added-selections ul li:hover {
 				background-color: #f4e8e8;
 			} #input-component .prev-exp-paragraph{
@@ -446,7 +448,7 @@ body {
 					#courses .quarter .course .course-description {
 						position: relative;
 						display: block;
-						font-size: 13px;
+						font-size: 12px;
 						float: left;
 						clear: both;
 						margin: 0;
@@ -528,6 +530,7 @@ body {
 	
 	/* PROFILE COMPONENT */
 	#profile-component {
+		color: #941A1E;
 		display:none;
 		position: absolute;
 		top: 550px;
