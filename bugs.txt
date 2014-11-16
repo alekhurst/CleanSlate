@@ -29,6 +29,10 @@ KNOWN BUGS / FEATURE REQUESTS
     MINOR: Fix after major bugs are finished. Minorly time consuming and/or will cost us minor points if not fixed
     FEATURE REQUEST: Fix if there is time. If not fixed, we may get docked points, or may just not get extra credit
 
+[MAJOR] Application is way too large in window. It needs to be about 75-80% the size (font, buttons, etc.)
+
+[MAJOR] Descriptions are really vague (get AP/transfer credit descriptions from website, third tab needs to be reworded completely)
+
 [FEATURE REQUEST] Console Log Clutter / No useful console log info
 	- (Scott): I understand using console logs in development.  I'd just like to comment 
 			   them out so writing to console log doesn't require looking for a needle
