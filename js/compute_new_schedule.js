@@ -1,18 +1,18 @@
 /**********************************************************************************
  * compute_new_schedule.js
  *
- * 		All functions pertaining to the calculation and derivation of course
+ *         All functions pertaining to the calculation and derivation of course
  *  schedules are held within this file.
  *
  *  This document is divided among the following sections
- *		- COURSE INFORMATION
- *		- SCHEDULE MANIPULATION
- *		- PRECOMPUTATION
- *		- MODIFICATION LOG
- *		- COMPUTATION
+ *        - COURSE INFORMATION
+ *        - SCHEDULE MANIPULATION
+ *        - PRECOMPUTATION
+ *        - MODIFICATION LOG
+ *        - COMPUTATION
  *
  *  Currently, the following majors are implemented:
- *		- Computer Science and Engineering
+ *        - Computer Science and Engineering
  *
  **********************************************************************************
  */
@@ -120,19 +120,19 @@ function prereqsCompleted(course, quarter) {
         if (prereq_course['credit'] == 'NO') { //Prereq is not completed at all, return false
             return false;
         }
-		switch(prereq_course['quarter_taken']){
-			case 'spring_quarter':
-				return false;
-				break;
-			case 'winter_quarter':
-				if(quarter != 'spring_quarter') return false;
-				break;
-			case 'fall_quarter':
-				if(quarter == 'fall quarter') return false;
-				break;
-			default:
-				break;
-		}
+        switch(prereq_course['quarter_taken']){
+            case 'spring_quarter':
+                return false;
+                break;
+            case 'winter_quarter':
+                if(quarter != 'spring_quarter') return false;
+                break;
+            case 'fall_quarter':
+                if(quarter == 'fall quarter') return false;
+                break;
+            default:
+                break;
+        }
     }
     return true;
 }
@@ -343,6 +343,34 @@ function moveEngr1() {
     }
 }
 
+function fixCI() {
+    if(window.AllCourses['CI_courses'][getCourseId('CI_courses','C&I',1)]['quarter_taken'] == ''){
+        if (numberOfCoresInQuarter('fall_quarter') > 0 && numberOfCoresInQuarter('winter_quarter') > 0) {
+            var fall_core = getACoreForQuarter('fall_quarter');
+            var winter_core = getACoreForQuarter('winter_quarter');
+            delete WorkingSchedule.fall_quarter[fall_core]; delete WorkingSchedule.winter_quarter[winter_core];
+            WorkingSchedule.fall_quarter['C&I1'] = getCourse('CI_courses',getCourseId('CI_courses','C&I',1));
+            window.AllCourses['CI_courses'][getCourseId('CI_courses','C&I',1)]['quarter_taken'] = 'fall_quarter';
+            
+            WorkingSchedule.winter_quarter['C&I2'] = getCourse('CI_courses',getCourseId('CI_courses','C&I',2));
+            window.AllCourses['CI_courses'][getCourseId('CI_courses','C&I',2)]['quarter_taken'] = 'winter_quarter';
+
+            return;
+        }
+        if (numberOfCoresInQuarter('winter_quarter') > 0 && numberOfCoresInQuarter('spring_quarter') > 0) {
+            var winter_core = getACoreForQuarter('winter_quarter');
+            var spring_core = getACoreForQuarter('spring_quarter');
+            delete WorkingSchedule.winter_quarter[winter_core]; delete WorkingSchedule.spring_quarter[spring_core];
+            WorkingSchedule.winter_quarter['C&I1'] = getCourse('CI_courses',getCourseId('CI_courses','C&I',1));
+            window.AllCourses['CI_courses'][getCourseId('CI_courses','C&I',1)]['quarter_taken'] = 'winter_quarter';
+            WorkingSchedule.spring_quarter['C&I2'] = getCourse('CI_courses',getCourseId('CI_courses','C&I',2));
+            window.AllCourses['CI_courses'][getCourseId('CI_courses','C&I',2)]['quarter_taken'] = 'spring_quarter';
+
+            return;
+        }
+    }
+}
+
 /*
  * This function is called to put COEN12 in the correct quarter, based on 
  */
@@ -368,17 +396,9 @@ function fixCoen12() {
             return;
     }
 
-    var ci_in_schedule = false;
-    for (course in winter_quarter) {
-        if (course == 'C&I1' || course == 'C&I2') //C&I track is in schedule, mark this down
-            ci_in_schedule = true;
-    }
-
     //If you are here, this means the COEN track is as follows:
     //  fall_quarter: CORE, winter_quarter: COEN12, spring_quarter: CORE
     //What it should be is this:
-    //  fall_quarter: C&I1, winter_quarter: C&I2, spring_quarter: COEN12
-    //  OR (if C+I is already in schedule):
     //  fall_quarter: CORE, winter_quarter: CORE, spring_quarter: COEN12
 
     var coen12_id = getCourseId('coen_courses', 'COEN', '12');
@@ -399,61 +419,23 @@ function fixCoen12() {
         prerequisites: coen12['prerequisites'],
     };
 
-    if (ci_in_schedule) { //Just add CORE to winter_quarter
-        var winter_core = nextCore('winter_quarter');
-        var core_course = getCourse('core_courses', 0);
+    var winter_core = nextCore('winter_quarter');
+    var core_course = getCourse('core_courses', 0);
 
-        window.WorkingSchedule['winter_quarter'][winter_core] = {
-            name : core_course['name'],
-            department : core_course['department'],
-            course_number : core_course['course_number'],
-            description : core_course['description'],
-            branch : 'core_courses',
-            offering : core_course['offering'],
-            category : core_course['category'],
-            units: core_course['units'],
-            prerequisites: core_course['prerequisites'],
-        };
-    } else { //Remove CORE from fall_quarter, then add C&I1/2 to fall_quarter/winter_quarter, respectively
-        delete window.WorkingSchedule['fall_quarter'][getACoreForQuarter('fall_quarter')];
-
-        var ci_1_id = getCourseId('CI_courses', 'C&I', '1');
-        var ci_2_id = getCourseId('CI_courses', 'C&I', '2');
-
-        var ci_1 = getCourse('CI_courses', ci_1_id);
-        var ci_2 = getCourse('CI_courses', ci_2_id);
-
-        window.WorkingSchedule['fall_quarter']['C&I1'] = {
-            name : ci_1['name'],
-            department : ci_1['department'],
-            course_number : ci_1['course_number'],
-            description : ci_1['description'],
-            branch : 'CI_courses',
-            offering : ci_1['offering'],
-            category : ci_1['category'],
-            units: ci_1['units'],
-            prerequisites : ci_1['prerequisites'],
-        };
-
-        window.WorkingSchedule['winter_quarter']['C&I2'] = {
-            name : ci_2['name'],
-            department : ci_2['department'],
-            course_number : ci_2['course_number'],
-            description : ci_2['description'],
-            branch : 'CI_courses',
-            offering : ci_2['offering'],
-            category : ci_2['category'],
-            units: ci_2['units'],
-            prerequisites : ci_2['prerequisites'],
-        };
-
-        //Give credit for C&I1/2
-        window.AllCourses['CI_courses'][ci_1_id]['quarter_taken'] = 'fall_quarter';
-        window.AllCourses['CI_courses'][ci_2_id]['quarter_taken'] = 'winter_quarter';
-        window.AllCourses['CI_courses'][ci_1_id]['credit'] = 'YES';
-        window.AllCourses['CI_courses'][ci_2_id]['credit'] = 'YES';
-    }
+    window.WorkingSchedule['winter_quarter'][winter_core] = {
+        name : core_course['name'],
+        department : core_course['department'],
+        course_number : core_course['course_number'],
+        description : core_course['description'],
+        branch : 'core_courses',
+        offering : core_course['offering'],
+        category : core_course['category'],
+        units: core_course['units'],
+        prerequisites: core_course['prerequisites'],
+    };
 }
+    //There may be unit issues now. There may be too many units under these cases:
+    //  fall_quarter: 
 
 /*
  * This function is called to remove a course from the default course list at a specific quarter
@@ -466,6 +448,7 @@ function removeCourse(course_title, quarter) {
     if (quarter == -1) {  //Base case, return and break out of recursion
         fixCoen12(); //Move COEN12 based on if COEN10/11 are completed
         moveEngr1(); //Move engineering 1 to a better quarter
+        fixCI();
         return;
     }
 
@@ -498,7 +481,7 @@ function removeCourse(course_title, quarter) {
     }
 
     var course = window.WorkingSchedule[quarter][course_title];
-	if(!course){
+    if(!course){
         console.log('course in quarter not found');
         removeCourse('BASECASE', -1);
         return;
@@ -526,30 +509,7 @@ function removeCourse(course_title, quarter) {
             units : core_course['units'],
             prerequisites : core_course['prerequisites'],
         };
-		
-		/*C&I*/
-		if(window.AllCourses['CI_courses'][getCourseId('CI_courses','C&I',1)]['quarter_taken'] == ''){
-            if (numberOfCoresInQuarter('fall_quarter') > 0 && numberOfCoresInQuarter('winter_quarter') > 0) {
-                var fall_core = getACoreForQuarter('fall_quarter');
-                var winter_core = getACoreForQuarter('winter_quarter');
-				delete WorkingSchedule.fall_quarter[fall_core]; delete WorkingSchedule.winter_quarter[winter_core];
-				WorkingSchedule.fall_quarter['C&I1'] = getCourse('CI_courses',getCourseId('CI_courses','C&I',1));
-				window.AllCourses['CI_courses'][getCourseId('CI_courses','C&I',1)]['quarter_taken'] = 'fall_quarter';
-				
-				WorkingSchedule.winter_quarter['C&I2'] = getCourse('CI_courses',getCourseId('CI_courses','C&I',2));
-				window.AllCourses['CI_courses'][getCourseId('CI_courses','C&I',2)]['quarter_taken'] = 'winter_quarter';
-			}
-            if (numberOfCoresInQuarter('winter_quarter') > 0 && numberOfCoresInQuarter('spring_quarter') > 0) {
-                var winter_core = getACoreForQuarter('winter_quarter');
-                var spring_core = getACoreForQuarter('spring_quarter');
-				delete WorkingSchedule.winter_quarter[winter_core]; delete WorkingSchedule.spring_quarter[spring_core];
-				WorkingSchedule.winter_quarter['C&I1'] = getCourse('CI_courses',getCourseId('CI_courses','C&I',1));
-				window.AllCourses['CI_courses'][getCourseId('CI_courses','C&I',1)]['quarter_taken'] = 'winter_quarter';
-				WorkingSchedule.spring_quarter['C&I2'] = getCourse('CI_courses',getCourseId('CI_courses','C&I',2));
-				window.AllCourses['CI_courses'][getCourseId('CI_courses','C&I',2)]['quarter_taken'] = 'spring_quarter';
-			
-			}
-		}
+        
         removeCourse('BASECASE', -1);
     } else { //Take the next course in the series, if there is one
         var next_course = next_course_in_series[0];
@@ -574,7 +534,7 @@ function removeCourse(course_title, quarter) {
         console.log('recursively checking ' + nextOffering(next_course['offering'], quarter) + ' for ' + next_course['department'] + next_course['course_number']);
         removeCourse(next_course['department'] + next_course['course_number'], nextOffering(next_course['offering'], quarter));
     }
-	/* Engineering 1 Check */
+    /* Engineering 1 Check */
 }
 
 
@@ -591,12 +551,12 @@ function removeCourse(course_title, quarter) {
 
 // CALCULUS READINESS -------------------------------------------------------------
 function getEquivalentReadinessExam(){
-	return [{function: 'removeCourse', parameters:['MATH9']}];
+    return [{function: 'removeCourse', parameters:['MATH9']}];
 }
 
 // PROGRAMMING EXPERIENCE----------------------------------------------------------
 function getEquivalentProgrammingExperience(){
-	return [{function: 'removeCourse', parameters:['COEN10']}];
+    return [{function: 'removeCourse', parameters:['COEN10']}];
 }
 
 
@@ -611,41 +571,41 @@ function getEquivalentTransferCredit(transfer_credit){
             parameters : [course_info[1] + course_info[2]]
         });
     }
-	
-	return schedule_changes;
+    
+    return schedule_changes;
 }
-	
+    
 
 // AP CREDIT-----------------------------------------------------------------------
 function getEquivalentAPTest(ap_test)
 {
-	var mods = new Array();
-	var test = window.APTests[ap_test.id];
-		if (test.multiple_fulfillments) { //If there are multiple possibilities for AP test scores, go through each one and find the range that ap_test.score falls within, then test out of those classes
-			for (test_fulfillment in test.multiple_fulfillments) { //For each fulfillment 
-				var this_fulfillment = test.multiple_fulfillments[test_fulfillment];
-				if (ap_test.score >= this_fulfillment.min_score && ap_test.score <= this_fulfillment.max_score) { //If ap_test.score falls within a certain range
-					for (course in this_fulfillment.fulfillment) { //For each course that is fulfilled
-						var this_course = this_fulfillment.fulfillment[course];
-						mods.push({
-							function : 'removeCourse',
-							parameters : [this_fulfillment.fulfillment[course][1] + this_fulfillment.fulfillment[course][2]]
-						});
-					}
-					return mods;
-				}
-			}
-		} else {
-			if (ap_test.score >= window.APTests[ap_test.id].min_score && ap_test.score <= window.APTests[ap_test.id].max_score) {
-				for (course in window.APTests[ap_test.id].fulfillment) {
-					mods.push({
-						function : 'removeCourse',
-						parameters : [window.APTests[ap_test.id].fulfillment[course][1] + window.APTests[ap_test.id].fulfillment[course][2]]
-					} );
-				}    
-			}
-		}
-	return mods;
+    var mods = new Array();
+    var test = window.APTests[ap_test.id];
+        if (test.multiple_fulfillments) { //If there are multiple possibilities for AP test scores, go through each one and find the range that ap_test.score falls within, then test out of those classes
+            for (test_fulfillment in test.multiple_fulfillments) { //For each fulfillment 
+                var this_fulfillment = test.multiple_fulfillments[test_fulfillment];
+                if (ap_test.score >= this_fulfillment.min_score && ap_test.score <= this_fulfillment.max_score) { //If ap_test.score falls within a certain range
+                    for (course in this_fulfillment.fulfillment) { //For each course that is fulfilled
+                        var this_course = this_fulfillment.fulfillment[course];
+                        mods.push({
+                            function : 'removeCourse',
+                            parameters : [this_fulfillment.fulfillment[course][1] + this_fulfillment.fulfillment[course][2]]
+                        });
+                    }
+                    return mods;
+                }
+            }
+        } else {
+            if (ap_test.score >= window.APTests[ap_test.id].min_score && ap_test.score <= window.APTests[ap_test.id].max_score) {
+                for (course in window.APTests[ap_test.id].fulfillment) {
+                    mods.push({
+                        function : 'removeCourse',
+                        parameters : [window.APTests[ap_test.id].fulfillment[course][1] + window.APTests[ap_test.id].fulfillment[course][2]]
+                    } );
+                }    
+            }
+        }
+    return mods;
 }
 
 
@@ -664,13 +624,13 @@ window.AllCourses = {};
 window.ModLog = {};
 
 function applyMods(id,mods){
-	if(!id || !mods) return;
-	window.ModLog[id] = mods;
+    if(!id || !mods) return;
+    window.ModLog[id] = mods;
 }
 
 function removeMods(id){
-	if(!id) return;
-	delete window.ModLog[id];
+    if(!id) return;
+    delete window.ModLog[id];
 }
 
 
@@ -686,16 +646,16 @@ function removeMods(id){
 window.BasePlan = {};
 
 function setBasePlan(maj){
-	
-	switch(maj){
-		case 'cse':
-			window.BasePlan = jQuery.extend(true,{},window.DefaultScheduleCSE);    // (defined in objects.js)
-			break;
-		case 'wde':
-			window.BasePlan = jQuery.extend(true,{},window.DefaultScheduleWDE);    // (defined in objects.js)
-			break;
-			
-	}
+    
+    switch(maj){
+        case 'cse':
+            window.BasePlan = jQuery.extend(true,{},window.DefaultScheduleCSE);    // (defined in objects.js)
+            break;
+        case 'wde':
+            window.BasePlan = jQuery.extend(true,{},window.DefaultScheduleWDE);    // (defined in objects.js)
+            break;
+            
+    }
 }
 
 /*
@@ -707,17 +667,17 @@ function computeNewSchedule(student_input) {
     // A SCHEDULE OBJECT IN THE SAME FORMAT AS THE DECLARATION MUST BE RETURNED HERE
     //              (obviously with new courses in each quarter)
 
-	// RESET
+    // RESET
     window.WorkingSchedule = jQuery.extend(true,{},window.BasePlan);    // (defined above)
     window.AllCourses = jQuery.extend(true,{},window.CourseCatalogue);    // (defined in all_courses.js)
-	
-	for(id in window.ModLog){
-		for(course in window.ModLog[id]){
-			var record = window.ModLog[id][course]
+    
+    for(id in window.ModLog){
+        for(course in window.ModLog[id]){
+            var record = window.ModLog[id][course]
             // Execute the function
             window[record['function']].apply(window,record['parameters']);
-		}
-	}
-	
+        }
+    }
+    
     return window.WorkingSchedule;
 }
