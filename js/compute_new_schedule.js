@@ -324,10 +324,23 @@ function moveEngr1() {
         else
             total_units_winter += parseInt(window.WorkingSchedule['winter_quarter'][course]['units']);
     }
+    console.log(total_units_fall + ', ' + total_units_winter);
+    if (total_units_fall > 17 && total_units_winter > 17) { //Cannot be placed anywhere, remove from schedule
+        window.AllCourses['engineering_courses'][0]['quarter_taken'] = '';
+        if (quarter_offered == 'fall_quarter') {
+            delete window.WorkingSchedule['fall_quarter']['ENGR1'];
+        }
+        if (quarter_offered == 'winter_quarter') {
+            delete window.WorkingSchedule['winter_quarter']['ENGR1'];
+        }
+        return;
+    }
 
-    if (total_units_fall <= total_units_winter && quarter_offered == 'winter_quarter') { //Move ENGR1 to fall
+    if (total_units_fall <= total_units_winter && quarter_offered != 'fall_quarter') { //Move ENGR1 to fall
         window.AllCourses['engineering_courses'][0]['quarter_taken'] = 'fall_quarter';
-        delete window.WorkingSchedule['winter_quarter']['ENGR1'];
+        if (quarter_offered == 'winter_quarter') {
+            delete window.WorkingSchedule['winter_quarter']['ENGR1'];
+        }
         window.WorkingSchedule['fall_quarter']['ENGR1'] = {
             name : 'Introduction to Engineering + Lab',
             department : 'ENGR',
@@ -341,9 +354,11 @@ function moveEngr1() {
         };
     }
 
-    else if (total_units_fall > total_units_winter && quarter_offered == 'fall_quarter') { //Move ENGR1 to winter
+    else if (total_units_fall > total_units_winter && quarter_offered != 'winter_quarter') { //Move ENGR1 to winter
         window.AllCourses['engineering_courses'][0]['quarter_taken'] = 'winter_quarter';
-        delete window.WorkingSchedule['fall_quarter']['ENGR1'];
+        if (quarter_offered == 'fall_quarter') {
+            delete window.WorkingSchedule['fall_quarter']['ENGR1'];
+        }
         window.WorkingSchedule['winter_quarter']['ENGR1'] = {
             name : 'Introduction to Engineering + Lab',
             department : 'ENGR',
@@ -457,7 +472,7 @@ function fixUnits() {
     var total_units_spring = computeTotalUnitsWithoutEngr1('spring_quarter');
 
 
-    while (total_units_fall > 20) {
+    while (total_units_fall > 19) {
         var made_change = false;
         
         var fall_core = getACoreForQuarter('fall_quarter');
@@ -495,14 +510,14 @@ function fixUnits() {
 
                 made_change = true;
             } else {
-                console.log('ERROR: CANNOT GET FALL QUARTER BELOW 20 UNITS');
+                console.log('ERROR: CANNOT GET FALL QUARTER BELOW 19 UNITS');
                 break;
             }
         }
         total_units_fall = computeTotalUnitsWithoutEngr1('fall_quarter');
     }
 
-    while (total_units_winter > 20) {
+    while (total_units_winter > 19) {
         var made_change = false;
         
         var winter_core = getACoreForQuarter('winter_quarter');
@@ -568,14 +583,14 @@ function fixUnits() {
 
                 made_change = true;
             } else {
-                console.log('ERROR: CANNOT GET FALL QUARTER BELOW 20 UNITS');
+                console.log('ERROR: CANNOT GET FALL QUARTER BELOW 19 UNITS');
                 break;
             }
         }
         total_units_winter = computeTotalUnitsWithoutEngr1('winter_quarter');
     }
 
-    while (total_units_spring > 20) {
+    while (total_units_spring > 19) {
         var made_change = false;
         
         var spring_core = getACoreForQuarter('spring_quarter');
@@ -613,7 +628,7 @@ function fixUnits() {
 
                 made_change = true;
             } else {
-                console.log('ERROR: CANNOT GET WINTER QUARTER BELOW 20 UNITS');
+                console.log('ERROR: CANNOT GET WINTER QUARTER BELOW 19 UNITS');
                 break;
             }
         }
