@@ -274,6 +274,21 @@ function nextCore(quarter) {
 }
 
 
+function computeTotalUnitsWithoutEngr1(quarter) {
+    var quarter_schedule = window.WorkingSchedule[quarter];
+    var units = 0;
+
+    for (course in quarter_schedule) {
+        if (course == 'ENGR1')
+            continue;
+        else
+            units += parseInt(quarter_schedule[course]['units']);
+    }
+
+    return units;
+}
+
+
 
 
 //---------------------------------------------------------------------------------
@@ -372,14 +387,10 @@ function fixCI() {
 }
 
 /*
- * This function is called to put COEN12 in the correct quarter, based on 
+ * This function is called to put COEN12 in the correct quarter, based on the completion of COEN10/11
  */
 function fixCoen12() {
     if (!window.WorkingSchedule['winter_quarter']['COEN12'] && !window.WorkingSchedule['spring_quarter']['COEN12'])//If COEN12 isn't even in schedule, return
-        return;
-    if (window.WorkingSchedule['fall_quarter']['C&I1']
-        && window.WorkingSchedule['winter_quarter']['C&I2']
-        && window.WorkingSchedule['spring_quarter']['COEN12']) //Schedule is fixed, return
         return;
 
     if (window.WorkingSchedule['fall_quarter'][getACoreForQuarter('fall_quarter')]
@@ -434,8 +445,181 @@ function fixCoen12() {
         prerequisites: core_course['prerequisites'],
     };
 }
-    //There may be unit issues now. There may be too many units under these cases:
-    //  fall_quarter: 
+
+/*
+ * This function is called to check each quarter for units, and removes CORES until there is a valid number of units
+ */
+function fixUnits() {
+    var core_course = getCourse('core_courses', 0);
+
+    var total_units_fall = computeTotalUnitsWithoutEngr1('fall_quarter');
+    var total_units_winter = computeTotalUnitsWithoutEngr1('winter_quarter');
+    var total_units_spring = computeTotalUnitsWithoutEngr1('spring_quarter');
+
+
+    while (total_units_fall > 20) {
+        var made_change = false;
+        
+        var fall_core = getACoreForQuarter('fall_quarter');
+        if (fall_core != -1) { //There is a core to remove
+            made_change = true;
+            delete window.WorkingSchedule['fall_quarter'][fall_core];
+        }
+        
+        if (!made_change) { //Cannot delete CORES alone, try to remove C&I's too
+            if (window.WorkingSchedule['fall_quarter']['C&I1']) {
+                delete window.WorkingSchedule['fall_quarter']['C&I1'];
+                delete window.WorkingSchedule['winter_quarter']['C&I2'];
+
+                var ci1_id = getCourseId('CI_courses', 'C&I', '1');
+                var ci2_id = getCourseId('CI_courses', 'C&I', '2');
+
+                window.AllCourses['CI_courses'][ci1_id]['credit'] = 'NO';
+                window.AllCourses['CI_courses'][ci1_id]['quarter_taken'] = '';
+                window.AllCourses['CI_courses'][ci2_id]['credit'] = 'NO';
+                window.AllCourses['CI_courses'][ci2_id]['quarter_taken'] = '';
+
+                var next_core = nextCore('winter_quarter');
+
+                window.WorkingSchedule['winter_quarter'][next_core] = {
+                    name : core_course['name'],
+                    department : core_course['department'],
+                    course_number : core_course['course_number'],
+                    description : core_course['description'],
+                    branch : 'core_courses',
+                    offering : core_course['offering'],
+                    category : core_course['category'],
+                    units : core_course['units'],
+                    prerequisites : core_course['prerequisites'],
+                };
+
+                made_change = true;
+            } else {
+                console.log('ERROR: CANNOT GET FALL QUARTER BELOW 20 UNITS');
+                break;
+            }
+        }
+        total_units_fall = computeTotalUnitsWithoutEngr1('fall_quarter');
+    }
+
+    while (total_units_winter > 20) {
+        var made_change = false;
+        
+        var winter_core = getACoreForQuarter('winter_quarter');
+        if (winter_core != -1) { //There is a core to remove
+            made_change = true;
+            delete window.WorkingSchedule['winter_quarter'][winter_core];
+        }
+        
+        if (!made_change) { //Cannot delete CORES alone, try to remove C&I's too
+            if (window.WorkingSchedule['winter_quarter']['C&I1']) {
+                delete window.WorkingSchedule['winter_quarter']['C&I1'];
+                delete window.WorkingSchedule['spring_quarter']['C&I2'];
+
+                var ci1_id = getCourseId('CI_courses', 'C&I', '1');
+                var ci2_id = getCourseId('CI_courses', 'C&I', '2');
+
+                window.AllCourses['CI_courses'][ci1_id]['credit'] = 'NO';
+                window.AllCourses['CI_courses'][ci1_id]['quarter_taken'] = '';
+                window.AllCourses['CI_courses'][ci2_id]['credit'] = 'NO';
+                window.AllCourses['CI_courses'][ci2_id]['quarter_taken'] = '';
+
+                var next_core = nextCore('spring_quarter');
+
+                window.WorkingSchedule['spring_quarter'][next_core] = {
+                    name : core_course['name'],
+                    department : core_course['department'],
+                    course_number : core_course['course_number'],
+                    description : core_course['description'],
+                    branch : 'core_courses',
+                    offering : core_course['offering'],
+                    category : core_course['category'],
+                    units : core_course['units'],
+                    prerequisites : core_course['prerequisites'],
+                };
+
+                made_change = true;
+            }
+            else if (window.WorkingSchedule['winter_quarter']['C&I2']) {
+                delete window.WorkingSchedule['fall_quarter']['C&I1'];
+                delete window.WorkingSchedule['winter_quarter']['C&I2'];
+
+                var ci1_id = getCourseId('CI_courses', 'C&I', '1');
+                var ci2_id = getCourseId('CI_courses', 'C&I', '2');
+
+                window.AllCourses['CI_courses'][ci1_id]['credit'] = 'NO';
+                window.AllCourses['CI_courses'][ci1_id]['quarter_taken'] = '';
+                window.AllCourses['CI_courses'][ci2_id]['credit'] = 'NO';
+                window.AllCourses['CI_courses'][ci2_id]['quarter_taken'] = '';
+
+                var next_core = nextCore('fall_quarter');
+
+                window.WorkingSchedule['fall_quarter'][next_core] = {
+                    name : core_course['name'],
+                    department : core_course['department'],
+                    course_number : core_course['course_number'],
+                    description : core_course['description'],
+                    branch : 'core_courses',
+                    offering : core_course['offering'],
+                    category : core_course['category'],
+                    units : core_course['units'],
+                    prerequisites : core_course['prerequisites'],
+                };
+
+                made_change = true;
+            } else {
+                console.log('ERROR: CANNOT GET FALL QUARTER BELOW 20 UNITS');
+                break;
+            }
+        }
+        total_units_winter = computeTotalUnitsWithoutEngr1('winter_quarter');
+    }
+
+    while (total_units_spring > 20) {
+        var made_change = false;
+        
+        var spring_core = getACoreForQuarter('spring_quarter');
+        if (spring_core != -1) { //There is a core to remove
+            made_change = true;
+            delete window.WorkingSchedule['spring_quarter'][spring_core];
+        }
+        
+        if (!made_change) {
+            if (window.WorkingSchedule['spring_quarter']['C&I2']) {
+                delete window.WorkingSchedule['winter_quarter']['C&I1'];
+                delete window.WorkingSchedule['spring_quarter']['C&I2'];
+
+                var ci1_id = getCourseId('CI_courses', 'C&I', '1');
+                var ci2_id = getCourseId('CI_courses', 'C&I', '2');
+
+                window.AllCourses['CI_courses'][ci1_id]['credit'] = 'NO';
+                window.AllCourses['CI_courses'][ci1_id]['quarter_taken'] = '';
+                window.AllCourses['CI_courses'][ci2_id]['credit'] = 'NO';
+                window.AllCourses['CI_courses'][ci2_id]['quarter_taken'] = '';
+
+                var next_core = nextCore('winter_quarter');
+
+                window.WorkingSchedule['winter_quarter'][next_core] = {
+                    name : core_course['name'],
+                    department : core_course['department'],
+                    course_number : core_course['course_number'],
+                    description : core_course['description'],
+                    branch : 'core_courses',
+                    offering : core_course['offering'],
+                    category : core_course['category'],
+                    units : core_course['units'],
+                    prerequisites : core_course['prerequisites'],
+                };
+
+                made_change = true;
+            } else {
+                console.log('ERROR: CANNOT GET WINTER QUARTER BELOW 20 UNITS');
+                break;
+            }
+        }
+        total_units_spring = computeTotalUnitsWithoutEngr1('spring_quarter');
+    }
+}
 
 /*
  * This function is called to remove a course from the default course list at a specific quarter
@@ -448,7 +632,8 @@ function removeCourse(course_title, quarter) {
     if (quarter == -1) {  //Base case, return and break out of recursion
         fixCoen12(); //Move COEN12 based on if COEN10/11 are completed
         moveEngr1(); //Move engineering 1 to a better quarter
-        fixCI();
+        fixUnits(); //Remove cores as necessary to get to required number of units
+        fixCI(); //Add C&I where you can
         return;
     }
 
@@ -534,7 +719,6 @@ function removeCourse(course_title, quarter) {
         console.log('recursively checking ' + nextOffering(next_course['offering'], quarter) + ' for ' + next_course['department'] + next_course['course_number']);
         removeCourse(next_course['department'] + next_course['course_number'], nextOffering(next_course['offering'], quarter));
     }
-    /* Engineering 1 Check */
 }
 
 

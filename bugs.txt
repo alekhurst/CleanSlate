@@ -28,8 +28,6 @@ KNOWN BUGS / FEATURE REQUESTS
     MAJOR: Fix as soon as possible. Very time constaining and/or will cost us significant points if not fixed
     MINOR: Fix after major bugs are finished. Minorly time consuming and/or will cost us minor points if not fixed
     FEATURE REQUEST: Fix if there is time. If not fixed, we may get docked points, or may just not get extra credit
-	
-[MAJOR] Testing out of certain classes can give too many units in a quarter (such as COEN10->PHYS31->COEN11, which puts C&I in and thus too many units)
 
 [FEATURE REQUEST] Console Log Clutter / No useful console log info
 	- (Scott): I understand using console logs in development.  I'd just like to comment 
@@ -49,6 +47,8 @@ KNOWN BUGS / FEATURE REQUESTS
 ——————————————————————————————————————————————————————
 
 CHANGELOG
+	
+[FIXED] Testing out of certain classes can give too many units in a quarter (such as COEN10->PHYS31->COEN11, which puts C&I in and thus too many units)
 
 [FIXED] Need to fix the logic for COEN 10/11/12/19/20/21/70
     - (Jordan) We need to sit down and determine what logic is best for these majors. It shouldn't take that long, but I'm not 100% sure how to handle them.
