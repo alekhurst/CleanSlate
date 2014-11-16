@@ -28,10 +28,8 @@ KNOWN BUGS / FEATURE REQUESTS
     MAJOR: Fix as soon as possible. Very time constaining and/or will cost us significant points if not fixed
     MINOR: Fix after major bugs are finished. Minorly time consuming and/or will cost us minor points if not fixed
     FEATURE REQUEST: Fix if there is time. If not fixed, we may get docked points, or may just not get extra credit
-
 	
-	
-[CRITICAL] No logic for adding courses (functions to implement: addCourse(), bestQuarterToAdd())
+[MAJOR] Testing out of certain classes can give too many units in a quarter (such as COEN10->PHYS31->COEN11, which puts C&I in and thus too many units)
 
 [FEATURE REQUEST] Console Log Clutter / No useful console log info
 	- (Scott): I understand using console logs in development.  I'd just like to comment 
