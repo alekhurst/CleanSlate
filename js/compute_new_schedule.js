@@ -867,6 +867,7 @@ function computeNewSchedule(student_input) {
     //              (obviously with new courses in each quarter)
 
     // RESET
+    //DO SOMETHING HERE TO ADD C&I WHERE NEEDED WHEREVER CORES ARE OFFERED
     window.WorkingSchedule = jQuery.extend(true,{},window.BasePlan);    // (defined above)
     window.AllCourses = jQuery.extend(true,{},window.CourseCatalogue);    // (defined in all_courses.js)
     
