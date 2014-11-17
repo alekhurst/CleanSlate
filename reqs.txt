@@ -1,0 +1,26 @@
+/* REQUIREMENTS */
+
+This document is meant to keep track of the various requirements that seem to go under the radar.
+
+FUNCTIONAL
+---------------------------------------------------------
+* Can be Printed
+* User can input their AP Scores
+* User can input their Transfer Credit
+* Our application will produce a FRESHMAN YEAR COURSE PLAN tailored to the student's input.
+
+
+NONFUNCTIONAL
+---------------------------------------------------------
+* User-Friendly
+* Modern
+* Responsive
+* Testable
+* Portable (?)
+
+
+CONSTRAINTS
+---------------------------------------------------------
+* Must work at DC computers on
+	(a) Safari and Firefox for Macs
+	(b) IE and Firefox for Windows
