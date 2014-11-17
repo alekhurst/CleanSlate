@@ -295,14 +295,6 @@ function computeTotalUnitsWithoutEngr1(quarter) {
 // SCHEDULE MANIPULATION FUNCTIONS
 //---------------------------------------------------------------------------------
 
-function countUnitsInQuarter(quarter){
-	var units = 0;
-	for (course in window.WorkingSchedule[quarter]) {
-        units += parseInt(window.WorkingSchedule[quarter][course]['units']);
-    }
-	return units;
-}
-
 function moveEngr1() {
     var quarter_offered;
 	
@@ -323,12 +315,8 @@ function moveEngr1() {
     var total_units_winter = 0;
 
 	// Count the Units
-    total_units_fall = countUnitsInQuarter('fall_quarter');
-    total_units_winter = countUnitsInQuarter('winter_quarter');
-	
-	// Subtract units for ENGR 1
-	if(quarter_offered == 'fall_quarter') total_units_fall -= 2;
-	if(quarter_offered == 'winter_quarter') total_units_winter -= 2;
+    total_units_fall = computeTotalUnitsWithoutEngr1('fall_quarter');
+    total_units_winter = computeTotalUnitsWithoutEngr1('winter_quarter');
 
 	// DEBUG: Print units.
     console.log(total_units_fall + ', ' + total_units_winter);
@@ -380,31 +368,57 @@ function moveEngr1() {
 }
 
 function fixCI() {
-    if(window.AllCourses['CI_courses'][getCourseId('CI_courses','C&I',1)]['quarter_taken'] == ''){
-        if (numberOfCoresInQuarter('fall_quarter') > 0 && numberOfCoresInQuarter('winter_quarter') > 0) {
-            var fall_core = getACoreForQuarter('fall_quarter');
-            var winter_core = getACoreForQuarter('winter_quarter');
-            delete WorkingSchedule.fall_quarter[fall_core]; delete WorkingSchedule.winter_quarter[winter_core];
-            WorkingSchedule.fall_quarter['C&I1'] = getCourse('CI_courses',getCourseId('CI_courses','C&I',1));
-            window.AllCourses['CI_courses'][getCourseId('CI_courses','C&I',1)]['quarter_taken'] = 'fall_quarter';
-            
-            WorkingSchedule.winter_quarter['C&I2'] = getCourse('CI_courses',getCourseId('CI_courses','C&I',2));
-            window.AllCourses['CI_courses'][getCourseId('CI_courses','C&I',2)]['quarter_taken'] = 'winter_quarter';
 
-            return;
-        }
-        if (numberOfCoresInQuarter('winter_quarter') > 0 && numberOfCoresInQuarter('spring_quarter') > 0) {
-            var winter_core = getACoreForQuarter('winter_quarter');
-            var spring_core = getACoreForQuarter('spring_quarter');
-            delete WorkingSchedule.winter_quarter[winter_core]; delete WorkingSchedule.spring_quarter[spring_core];
-            WorkingSchedule.winter_quarter['C&I1'] = getCourse('CI_courses',getCourseId('CI_courses','C&I',1));
-            window.AllCourses['CI_courses'][getCourseId('CI_courses','C&I',1)]['quarter_taken'] = 'winter_quarter';
-            WorkingSchedule.spring_quarter['C&I2'] = getCourse('CI_courses',getCourseId('CI_courses','C&I',2));
-            window.AllCourses['CI_courses'][getCourseId('CI_courses','C&I',2)]['quarter_taken'] = 'spring_quarter';
+	// Check if C&I Is Taken... If it is, return.
+	var ws = window.WorkingSchedule;
+	if(ws['fall_quarter']['C&I1'] || ws['winter_quarter']['C&I1'] || ws['spring_quarter']['C&I1']){ return; }
+	
+	// Count number of cores per quarter.
+	var fCore = numberOfCoresInQuarter('fall_quarter');
+	var wCore = numberOfCoresInQuarter('winter_quarter');
+	var sCore = numberOfCoresInQuarter('spring_quarter');
+	
+	// Put C&I in fall and winter if cores exist.
+	if(fCore && wCore){
+	
+		// Find the CORE classes.
+		var fall_core = getACoreForQuarter('fall_quarter');
+		var winter_core = getACoreForQuarter('winter_quarter');
+		
+		// Delete the CORE classes
+		delete WorkingSchedule.fall_quarter[fall_core]; delete WorkingSchedule.winter_quarter[winter_core];
+		
+		// Update C&I in Working Schedule
+		WorkingSchedule.fall_quarter['C&I1'] = getCourse('CI_courses',getCourseId('CI_courses','C&I',1));
+		WorkingSchedule.winter_quarter['C&I2'] = getCourse('CI_courses',getCourseId('CI_courses','C&I',2));
+				
+		// Update C&I in AllCourses
+		window.AllCourses['CI_courses'][getCourseId('CI_courses','C&I',1)]['quarter_taken'] = 'fall_quarter';
+		window.AllCourses['CI_courses'][getCourseId('CI_courses','C&I',2)]['quarter_taken'] = 'winter_quarter';
 
-            return;
-        }
-    }
+		return;	
+	}
+	
+	// Otherwise, if core courses exist in winter and spring, assign C&I then.
+	if (wCore && sCore) {
+	
+		// Find the CORE classes
+		var winter_core = getACoreForQuarter('winter_quarter');
+		var spring_core = getACoreForQuarter('spring_quarter');
+		
+		// Delete the CORE classes.
+		delete WorkingSchedule.winter_quarter[winter_core]; delete WorkingSchedule.spring_quarter[spring_core];
+		
+		// Update C&I in Working Schedule
+		WorkingSchedule.winter_quarter['C&I1'] = getCourse('CI_courses',getCourseId('CI_courses','C&I',1));
+		WorkingSchedule.spring_quarter['C&I2'] = getCourse('CI_courses',getCourseId('CI_courses','C&I',2));
+		
+		// Update C&I in AllCourses
+		window.AllCourses['CI_courses'][getCourseId('CI_courses','C&I',1)]['quarter_taken'] = 'winter_quarter';
+		window.AllCourses['CI_courses'][getCourseId('CI_courses','C&I',2)]['quarter_taken'] = 'spring_quarter';
+
+		return;
+	}
 }
 
 /*
