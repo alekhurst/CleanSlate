@@ -346,3 +346,7 @@ window.Steps = [
 ];
 
 window.WorkingSchedule = DefaultScheduleCSE;
+window.ModLog = {};
+window.BasePlan = {};
+
+window.BasePlan = {};
