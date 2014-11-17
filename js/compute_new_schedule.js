@@ -295,9 +295,19 @@ function computeTotalUnitsWithoutEngr1(quarter) {
 // SCHEDULE MANIPULATION FUNCTIONS
 //---------------------------------------------------------------------------------
 
+function countUnitsInQuarter(quarter){
+	var units = 0;
+	for (course in window.WorkingSchedule[quarter]) {
+        units += parseInt(window.WorkingSchedule[quarter][course]['units']);
+    }
+	return units;
+}
+
 function moveEngr1() {
     var quarter_offered;
-    for (quarter in window.WorkingSchedule) { //Find the quarter that ENGR1 
+	
+	// Find the quarter that currently has ENGR1
+    for (quarter in window.WorkingSchedule) {
         for (course in window.WorkingSchedule[quarter]) {
             if (course == 'ENGR1') {
                 quarter_offered = quarter;
@@ -308,23 +318,24 @@ function moveEngr1() {
             break;
     }
 
+	// Initialize the units.
     var total_units_fall = 0;
     var total_units_winter = 0;
 
-    for (course in window.WorkingSchedule['fall_quarter']) {
-        if (course == 'ENGR1')
-            continue;
-        else
-            total_units_fall += parseInt(window.WorkingSchedule['fall_quarter'][course]['units']);
-    }
+	// Count the Units
+    total_units_fall = countUnitsInQuarter('fall_quarter');
+    total_units_winter = countUnitsInQuarter('winter_quarter');
+	
+	// Subtract units for ENGR 1
+	if(quarter_offered == 'fall_quarter') total_units_fall -= 2;
+	if(quarter_offered == 'winter_quarter') total_units_winter -= 2;
 
-    for (course in window.WorkingSchedule['winter_quarter']) {
-        if (course == 'ENGR1')
-            continue;
-        else
-            total_units_winter += parseInt(window.WorkingSchedule['winter_quarter'][course]['units']);
-    }
+	// DEBUG: Print units.
     console.log(total_units_fall + ', ' + total_units_winter);
+	
+	/*
+	// ??? : Don't want to delete ENGR 1 entirely...
+	
     if (total_units_fall > 17 && total_units_winter > 17) { //Cannot be placed anywhere, remove from schedule
         window.AllCourses['engineering_courses'][0]['quarter_taken'] = '';
         if (quarter_offered == 'fall_quarter') {
@@ -335,13 +346,10 @@ function moveEngr1() {
         }
         return;
     }
-
-    if (total_units_fall <= total_units_winter && quarter_offered != 'fall_quarter') { //Move ENGR1 to fall
-        window.AllCourses['engineering_courses'][0]['quarter_taken'] = 'fall_quarter';
-        if (quarter_offered == 'winter_quarter') {
-            delete window.WorkingSchedule['winter_quarter']['ENGR1'];
-        }
-        window.WorkingSchedule['fall_quarter']['ENGR1'] = {
+	*/
+	
+	// Initialize ENGR 1
+	var engr1 = {
             name : 'Introduction to Engineering + Lab',
             department : 'ENGR',
             course_number : '1',
@@ -352,6 +360,14 @@ function moveEngr1() {
             units : '2',
             prerequisites : [],
         };
+	
+
+    if (total_units_fall <= total_units_winter && quarter_offered != 'fall_quarter') { //Move ENGR1 to fall
+        window.AllCourses['engineering_courses'][0]['quarter_taken'] = 'fall_quarter';
+        if (quarter_offered == 'winter_quarter') {
+            delete window.WorkingSchedule['winter_quarter']['ENGR1'];
+        }
+        window.WorkingSchedule['fall_quarter']['ENGR1'] = engr1;
     }
 
     else if (total_units_fall > total_units_winter && quarter_offered != 'winter_quarter') { //Move ENGR1 to winter
@@ -359,17 +375,7 @@ function moveEngr1() {
         if (quarter_offered == 'fall_quarter') {
             delete window.WorkingSchedule['fall_quarter']['ENGR1'];
         }
-        window.WorkingSchedule['winter_quarter']['ENGR1'] = {
-            name : 'Introduction to Engineering + Lab',
-            department : 'ENGR',
-            course_number : '1',
-            description : 'something',
-            branch : 'engineering_courses',
-            offering : ['fall_quarter', 'winter_quarter'],
-            category : 'engineering',
-            units : '2',
-            prerequisites : [],
-        };
+        window.WorkingSchedule['winter_quarter']['ENGR1'] = engr1;
     }
 }
 
