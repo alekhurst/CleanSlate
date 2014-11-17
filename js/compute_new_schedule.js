@@ -185,6 +185,9 @@ function nextCourseAfter(course_data, id, quarter) {
 
 	// Get potential next course.
     current_course = getCourse(branch, current_id);
+    if (!current_course) { 
+        return null;
+    }
 	
 	// DEBUG: Course Info
     // console.log(current_course['department'] + current_course['course_number'] + ': ' + takenBeforeOrDuringThisQuarter(current_course, quarter) + ', ' + !offeredThisQuarter(current_course, quarter) + ', ' +  !prereqsCompleted(current_course, quarter));
