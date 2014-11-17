@@ -28,7 +28,7 @@
  * @param {int} id : The id of the course on the branch
  */
 function getCourse(branch, id) {
-    return window.CourseCatalogue[branch][id];
+    return window.AllCourses[branch][id];
 }
 
 /*
@@ -39,7 +39,7 @@ function getCourse(branch, id) {
  * @param {string} course_number : The course number (i.e. "11")
  */
 function getCourseId(branch, department, course_number) {
-    var _branch = window.CourseCatalogue[branch];
+    var _branch = window.AllCourses[branch];
     for (course in _branch) {
         if (_branch[course]['department'] == department && _branch[course]['course_number'] == course_number)
             return course;
@@ -482,8 +482,37 @@ function fixUnits() {
         }
         
         if (!made_change) { //Cannot delete CORES alone, try to remove C&I's too
-            console.log('ERROR: CANNOT GET FALL QUARTER BELOW 19 UNITS');
-            break;
+            if (window.WorkingSchedule['fall_quarter']['C&I1']) {
+                delete window.WorkingSchedule['fall_quarter']['C&I1'];
+                delete window.WorkingSchedule['winter_quarter']['C&I2'];
+
+                var ci1_id = getCourseId('CI_courses', 'C&I', '1');
+                var ci2_id = getCourseId('CI_courses', 'C&I', '2');
+
+                window.AllCourses['CI_courses'][ci1_id]['credit'] = 'NO';
+                window.AllCourses['CI_courses'][ci1_id]['quarter_taken'] = '';
+                window.AllCourses['CI_courses'][ci2_id]['credit'] = 'NO';
+                window.AllCourses['CI_courses'][ci2_id]['quarter_taken'] = '';
+
+                var next_core = nextCore('winter_quarter');
+
+                window.WorkingSchedule['winter_quarter'][next_core] = {
+                    name : core_course['name'],
+                    department : core_course['department'],
+                    course_number : core_course['course_number'],
+                    description : core_course['description'],
+                    branch : 'core_courses',
+                    offering : core_course['offering'],
+                    category : core_course['category'],
+                    units : core_course['units'],
+                    prerequisites : core_course['prerequisites'],
+                };
+
+                made_change = true;
+            } else {
+                console.log('ERROR: CANNOT GET FALL QUARTER BELOW 19 UNITS');
+                break;
+            }
         }
         total_units_fall = computeTotalUnitsWithoutEngr1('fall_quarter');
     }
@@ -498,8 +527,65 @@ function fixUnits() {
         }
         
         if (!made_change) { //Cannot delete CORES alone, try to remove C&I's too
-            console.log('ERROR: CANNOT GET FALL QUARTER BELOW 19 UNITS');
-            break;
+            if (window.WorkingSchedule['winter_quarter']['C&I1']) {
+                delete window.WorkingSchedule['winter_quarter']['C&I1'];
+                delete window.WorkingSchedule['spring_quarter']['C&I2'];
+
+                var ci1_id = getCourseId('CI_courses', 'C&I', '1');
+                var ci2_id = getCourseId('CI_courses', 'C&I', '2');
+
+                window.AllCourses['CI_courses'][ci1_id]['credit'] = 'NO';
+                window.AllCourses['CI_courses'][ci1_id]['quarter_taken'] = '';
+                window.AllCourses['CI_courses'][ci2_id]['credit'] = 'NO';
+                window.AllCourses['CI_courses'][ci2_id]['quarter_taken'] = '';
+
+                var next_core = nextCore('spring_quarter');
+
+                window.WorkingSchedule['spring_quarter'][next_core] = {
+                    name : core_course['name'],
+                    department : core_course['department'],
+                    course_number : core_course['course_number'],
+                    description : core_course['description'],
+                    branch : 'core_courses',
+                    offering : core_course['offering'],
+                    category : core_course['category'],
+                    units : core_course['units'],
+                    prerequisites : core_course['prerequisites'],
+                };
+
+                made_change = true;
+            }
+            else if (window.WorkingSchedule['winter_quarter']['C&I2']) {
+                delete window.WorkingSchedule['fall_quarter']['C&I1'];
+                delete window.WorkingSchedule['winter_quarter']['C&I2'];
+
+                var ci1_id = getCourseId('CI_courses', 'C&I', '1');
+                var ci2_id = getCourseId('CI_courses', 'C&I', '2');
+
+                window.AllCourses['CI_courses'][ci1_id]['credit'] = 'NO';
+                window.AllCourses['CI_courses'][ci1_id]['quarter_taken'] = '';
+                window.AllCourses['CI_courses'][ci2_id]['credit'] = 'NO';
+                window.AllCourses['CI_courses'][ci2_id]['quarter_taken'] = '';
+
+                var next_core = nextCore('fall_quarter');
+
+                window.WorkingSchedule['fall_quarter'][next_core] = {
+                    name : core_course['name'],
+                    department : core_course['department'],
+                    course_number : core_course['course_number'],
+                    description : core_course['description'],
+                    branch : 'core_courses',
+                    offering : core_course['offering'],
+                    category : core_course['category'],
+                    units : core_course['units'],
+                    prerequisites : core_course['prerequisites'],
+                };
+
+                made_change = true;
+            } else {
+                console.log('ERROR: CANNOT GET FALL QUARTER BELOW 19 UNITS');
+                break;
+            }
         }
         total_units_winter = computeTotalUnitsWithoutEngr1('winter_quarter');
     }
@@ -514,8 +600,37 @@ function fixUnits() {
         }
         
         if (!made_change) {
-            console.log('ERROR: CANNOT GET WINTER QUARTER BELOW 19 UNITS');
-            break;
+            if (window.WorkingSchedule['spring_quarter']['C&I2']) {
+                delete window.WorkingSchedule['winter_quarter']['C&I1'];
+                delete window.WorkingSchedule['spring_quarter']['C&I2'];
+
+                var ci1_id = getCourseId('CI_courses', 'C&I', '1');
+                var ci2_id = getCourseId('CI_courses', 'C&I', '2');
+
+                window.AllCourses['CI_courses'][ci1_id]['credit'] = 'NO';
+                window.AllCourses['CI_courses'][ci1_id]['quarter_taken'] = '';
+                window.AllCourses['CI_courses'][ci2_id]['credit'] = 'NO';
+                window.AllCourses['CI_courses'][ci2_id]['quarter_taken'] = '';
+
+                var next_core = nextCore('winter_quarter');
+
+                window.WorkingSchedule['winter_quarter'][next_core] = {
+                    name : core_course['name'],
+                    department : core_course['department'],
+                    course_number : core_course['course_number'],
+                    description : core_course['description'],
+                    branch : 'core_courses',
+                    offering : core_course['offering'],
+                    category : core_course['category'],
+                    units : core_course['units'],
+                    prerequisites : core_course['prerequisites'],
+                };
+
+                made_change = true;
+            } else {
+                console.log('ERROR: CANNOT GET WINTER QUARTER BELOW 19 UNITS');
+                break;
+            }
         }
         total_units_spring = computeTotalUnitsWithoutEngr1('spring_quarter');
     }
@@ -530,9 +645,6 @@ function fixUnits() {
 function removeCourse(course_title, quarter) {
     console.log(course_title + ', ' + quarter);
     if (quarter == -1) {  //Base case, return and break out of recursion
-        fixCoen12(); //Move COEN12 based on if COEN10/11 are completed
-        moveEngr1(); //Move engineering 1 to a better quarter
-        fixUnits(); //Remove cores as necessary to get to required number of units
         return;
     }
 
@@ -702,6 +814,8 @@ function getEquivalentAPTest(ap_test)
 // MODIFICATION LOG FUNCTIONS
 //---------------------------------------------------------------------------------
 
+window.ModLog = {};
+
 function applyMods(id,mods){
     if(!id || !mods) return;
     window.ModLog[id] = mods;
@@ -709,9 +823,10 @@ function applyMods(id,mods){
 
 function removeMods(id){
     if(!id) return;
-    console.log('THERE: ' + id);
     delete window.ModLog[id];
 }
+
+
 
 
 
@@ -724,13 +839,6 @@ function removeMods(id){
 //---------------------------------------------------------------------------------
 
 function setBasePlan(maj){
-    //Mark all courses as not taken
-    for (branch in window.CourseCatalogue) {
-        for (course in window.CourseCatalogue[branch]) {
-            window.CourseCatalogue[branch][course]['credit'] = 'NO';
-            window.CourseCatalogue[branch][course]['quarter_taken'] = '';
-        }
-    }
     
     switch(maj){
         case 'cse':
@@ -741,30 +849,13 @@ function setBasePlan(maj){
             break;
             
     }
-    for (quarter in window.BasePlan) {
-        for (course in window.BasePlan[quarter]) {
-            if (course.indexOf('CORE') > -1) //CORE## found in schedule
-                continue;
-
-            var start = 1;
-            for (; start < course.length; start++) {
-                if (parseInt(course[start]) == course[start]) //You found the first number, start of course_number
-                    break;
-            }
-            var branch = window.BasePlan[quarter][course]['branch'];
-            var department = course.substring(0, start);
-            var course_number = course.substring(start, course.length);
-            var course_id = getCourseId(branch, department, course_number);
-
-            window.CourseCatalogue[branch][course_id]['credit'] = 'YES';
-            window.CourseCatalogue[branch][course_id]['quarter_taken'] = quarter;
-        }
-    }
-    window.AllCourses = jQuery.extend(true,{},window.CourseCatalogue);
 }
+
 
 /*
  * This function is initially called for CSE students when the student's input from the view has changed.
+ * 
+ * @param {Object} student_input - object containing the current state of input from the user
  */
 function computeNewSchedule() {
     // A SCHEDULE OBJECT IN THE SAME FORMAT AS THE DECLARATION MUST BE RETURNED HERE
@@ -782,7 +873,13 @@ function computeNewSchedule() {
             window[record['function']].apply(window,record['parameters']);
         }
     }
+	
+	// POST MAIN
+	
+        fixCoen12(); //Move COEN12 based on if COEN10/11 are completed
+        moveEngr1(); //Move engineering 1 to a better quarter
+        fixUnits(); //Remove cores as necessary to get to required number of units
+        fixCI(); //Add C&I where you can
     
-    fixCI();
     return window.WorkingSchedule;
 }

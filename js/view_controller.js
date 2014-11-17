@@ -26,7 +26,7 @@ CleanSlateApp.controller('CleanSlateController', function ($scope) {
 	$scope.APTests = [];
 	$scope.currently_viewing_ap_test = {};
 	$scope.current_major = 'Computer Science & Engineering';
-	setBasePlan('cse'); /* reflect in base plan */
+	window.setBasePlan('cse'); /* reflect in base plan */
 
 	/* View Controller Variable Initialization */
 	$scope.CurrentStep = window.Steps[1];
