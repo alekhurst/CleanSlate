@@ -365,3 +365,4 @@ function setBasePlan(maj){
 }
 
 setBasePlan('cse');
+window.WorkingSchedule = {};
