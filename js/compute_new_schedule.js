@@ -384,17 +384,18 @@ function moveEngr1() {
 	*/
 	
 	// Initialize ENGR 1
+	var engr1_ref = window.AllCourses['engineering_courses'][0];
 	var engr1 = {
-            name : 'Introduction to Engineering + Lab',
-            department : 'ENGR',
-            course_number : '1',
-            description : 'something',
-            branch : 'engineering_courses',
-            offering : ['fall_quarter', 'winter_quarter'],
-            category : 'engineering',
-            units : '2',
-            prerequisites : [],
-        };
+			name: engr1_ref["name"],
+			department: engr1_ref["department"],
+			course_number: engr1_ref["course_number"],
+			description: engr1_ref["description"],
+			branch: "engineering_courses",
+			offering: engr1_ref["offering"],
+			category: engr1_ref["category"],
+			units: engr1_ref["units"],
+			prerequisites: engr1_ref["prerequisites"]
+		};
 	
 	// If ENGR 1 is in Winter, but Fall has less units, move ENGR 1 to Fall.
     if (total_units_fall <= total_units_winter && quarter_offered != 'fall_quarter') {
