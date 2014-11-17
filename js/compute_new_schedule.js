@@ -411,7 +411,7 @@ function moveEngr1() {
     }
 
 	// Otherwise, move ENGR 1 to Winter (unless it's already there...)
-    else if (quarter_offered != 'winter_quarter') { 
+    else if ( total_units_fall > total_units_winter && quarter_offered != 'winter_quarter') { 
 	
 		// Update AllCourses
         window.AllCourses['engineering_courses'][0]['quarter_taken'] = 'winter_quarter';
