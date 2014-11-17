@@ -88,7 +88,7 @@ CleanSlateApp.controller('CleanSlateController', function ($scope) {
 		}
 
 		setBasePlan(major);
-		$scope.Schedule = computeNewSchedule([]);
+		$scope.Schedule = computeNewSchedule();
 		//$scope.StudentInput = {};
 		//$scope.CurrentStep = window.Steps[1];
 		//$scope.currently_viewing_ap_test = {};
@@ -136,7 +136,7 @@ CleanSlateApp.controller('CleanSlateController', function ($scope) {
 		applyMods('AP_'+$scope.currently_viewing_ap_test.id,mods);
 		
 		// Recalculate.
-		$scope.Schedule = computeNewSchedule([]);
+		$scope.Schedule = computeNewSchedule();
 		
 		
 		
@@ -153,7 +153,7 @@ CleanSlateApp.controller('CleanSlateController', function ($scope) {
 		
 		
 		// Recalculate.
-		$scope.Schedule = computeNewSchedule([]);
+		$scope.Schedule = computeNewSchedule();
 		
 		//$scope.Schedule = preComputeScheduleAPCSE( {id: $scope.currently_viewing_ap_test.id, score:$scope.currently_viewing_ap_test.score } )
 	}
@@ -172,7 +172,7 @@ CleanSlateApp.controller('CleanSlateController', function ($scope) {
 		applyMods('TR_'+$scope.currently_viewing_transfer.id,mods);
 		
 		// Recalculate.
-		$scope.Schedule = computeNewSchedule([]);
+		$scope.Schedule = computeNewSchedule();
 		
 		//$scope.Schedule = preComputeScheduleTransferCSE( );
 	}
@@ -184,7 +184,7 @@ CleanSlateApp.controller('CleanSlateController', function ($scope) {
 		$scope.StudentInput.transfer_credit.splice(index,1); // remove the AP test from the array.
 		
 		// Recalculate.
-		$scope.Schedule = computeNewSchedule([]);
+		$scope.Schedule = computeNewSchedule();
 		
 		//$scope.Schedule = preComputeScheduleTransferCSE( {id: $scope.currently_viewing_ap_test.id, score:$scope.currently_viewing_ap_test.score } )
 	}
@@ -202,7 +202,7 @@ CleanSlateApp.controller('CleanSlateController', function ($scope) {
 		else removeMods('M_01');
 		
 		// Recalculate.
-		$scope.Schedule = computeNewSchedule([]);
+		$scope.Schedule = computeNewSchedule();
 	}
 	
 	$scope.updateCalcReady = function(){
@@ -217,7 +217,7 @@ CleanSlateApp.controller('CleanSlateController', function ($scope) {
 		else removeMods('M_02');
 
 		// Recalculate.
-		$scope.Schedule = computeNewSchedule([]);
+		$scope.Schedule = computeNewSchedule();
 	}
 	
 	$scope.updateHonors = function(){

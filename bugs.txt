@@ -29,12 +29,12 @@ KNOWN BUGS / FEATURE REQUESTS
     MINOR: Fix after major bugs are finished. Minorly time consuming and/or will cost us minor points if not fixed
     FEATURE REQUEST: Fix if there is time. If not fixed, we may get docked points, or may just not get extra credit
 
-[MAJOR] Application is way too large in window. It needs to be about 75-80% the size (font, buttons, etc.)
+[MAJOR] Application is way too large in window. It needs to be about 75-80% the size (font, buttons, etc.) (TEMPORARY FIX: Zoom out to ~70%)
 
 [MAJOR] Descriptions are really vague (get AP/transfer credit descriptions from website, third tab needs to be reworded completely)
 
-[MINOR] Certain combinations put C&I in multiple times, and additionally causes too few units
-    - (Jordan): For example with APs: Computer Science A(5) and Transfer scores: MATH13, your schedule ends up with C&I1 in fall, C&I1/2 in winter, and C&I2 in spring, and also 13 units in spring.
+[MAJOR] Undoing removals doesn't work
+    - (Jordan) : I have checked the Window.ModLog in computeNewSchedule() right before changes are made, which shows that it responds correctly to the view. However, for some reason, the view is not changed when the button is pressed, but will change when majors are switched.
 
 [FEATURE REQUEST] Console Log Clutter / No useful console log info
 	- (Scott): I understand using console logs in development.  I'd just like to comment 
@@ -54,6 +54,10 @@ KNOWN BUGS / FEATURE REQUESTS
 ——————————————————————————————————————————————————————
 
 CHANGELOG
+
+[MINOR] Certain combinations put C&I in multiple times, and additionally causes too few units
+    - (Jordan): For example with APs: Computer Science A(5) and Transfer scores: MATH13, your schedule ends up with C&I1 in fall, C&I1/2 in winter, and C&I2 in spring, and also 13 units in spring.
+    - See https://github.com/alekhurst/CleanSlate/commit/d5d00719c35a71e088cff8c23d264531833c5458
 	
 [FIXED] Testing out of certain classes can give too many units in a quarter (such as COEN10->PHYS31->COEN11, which puts C&I in and thus too many units)
 

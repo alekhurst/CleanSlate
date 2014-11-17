@@ -704,7 +704,6 @@ function getEquivalentAPTest(ap_test)
 
 function applyMods(id,mods){
     if(!id || !mods) return;
-    console.log('HERE: ' + id + ', ' + mods);
     window.ModLog[id] = mods;
 }
 
@@ -762,14 +761,13 @@ function setBasePlan(maj){
         }
     }
     window.AllCourses = window.CourseCatalogue;
+    computeNewSchedule();
 }
 
 /*
  * This function is initially called for CSE students when the student's input from the view has changed.
- * 
- * @param {Object} student_input - object containing the current state of input from the user
  */
-function computeNewSchedule(student_input) {
+function computeNewSchedule() {
     // A SCHEDULE OBJECT IN THE SAME FORMAT AS THE DECLARATION MUST BE RETURNED HERE
     //              (obviously with new courses in each quarter)
 
