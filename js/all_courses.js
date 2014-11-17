@@ -1,3 +1,6 @@
+
+window.AllCourses = {};
+
 window.CourseCatalogue = {
 	math_courses : [
 		{
