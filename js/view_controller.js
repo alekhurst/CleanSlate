@@ -138,7 +138,8 @@ CleanSlateApp.controller('CleanSlateController', function ($scope) {
 		// Recalculate.
 		$scope.Schedule = computeNewSchedule();
 		
-		
+		// Update explanations.
+		$scope.updateExplanation();
 		
 		$scope.setCurrentlyViewingAPTestScore(3);
 
@@ -154,6 +155,9 @@ CleanSlateApp.controller('CleanSlateController', function ($scope) {
 		
 		// Recalculate.
 		$scope.Schedule = computeNewSchedule();
+		
+		// Update explanations.
+		$scope.updateExplanation();
 		
 		//$scope.Schedule = preComputeScheduleAPCSE( {id: $scope.currently_viewing_ap_test.id, score:$scope.currently_viewing_ap_test.score } )
 	}
@@ -174,6 +178,9 @@ CleanSlateApp.controller('CleanSlateController', function ($scope) {
 		// Recalculate.
 		$scope.Schedule = computeNewSchedule();
 		
+		// Update explanations.
+		$scope.updateExplanation();
+		
 		//$scope.Schedule = preComputeScheduleTransferCSE( );
 	}
 	
@@ -185,6 +192,9 @@ CleanSlateApp.controller('CleanSlateController', function ($scope) {
 		
 		// Recalculate.
 		$scope.Schedule = computeNewSchedule();
+		
+		// Update explanations.
+		$scope.updateExplanation();
 		
 		//$scope.Schedule = preComputeScheduleTransferCSE( {id: $scope.currently_viewing_ap_test.id, score:$scope.currently_viewing_ap_test.score } )
 	}
@@ -203,6 +213,9 @@ CleanSlateApp.controller('CleanSlateController', function ($scope) {
 		
 		// Recalculate.
 		$scope.Schedule = computeNewSchedule();
+		
+		// Update explanations.
+		$scope.updateExplanation();
 	}
 	
 	$scope.updateCalcReady = function(){
@@ -218,6 +231,9 @@ CleanSlateApp.controller('CleanSlateController', function ($scope) {
 
 		// Recalculate.
 		$scope.Schedule = computeNewSchedule();
+		
+		// Update explanations.
+		$scope.updateExplanation();
 	}
 	
 	$scope.updateHonors = function(){
@@ -225,6 +241,9 @@ CleanSlateApp.controller('CleanSlateController', function ($scope) {
 			//$scope.Schedule = preComputeReadinessExamCSE();
 			//alert("Honors");
 		}
+		
+		// Update explanations.
+		$scope.updateExplanation();
 	}
 	
 	$scope.updateLEAD = function(){
@@ -232,6 +251,9 @@ CleanSlateApp.controller('CleanSlateController', function ($scope) {
 			//$scope.Schedule = preComputeReadinessExamCSE();
 			//alert("LEAD");
 		}
+		
+		// Update explanations.
+		$scope.updateExplanation();
 	}
 
 	/**
@@ -264,20 +286,16 @@ CleanSlateApp.controller('CleanSlateController', function ($scope) {
 	$scope.toggleReview = function(){
 		$scope.reviewMode = !$scope.reviewMode;
 		
-		if($scope.reviewMode){
-			$scope.reviewButtonText = "Back";	
-			
-			// parse out modification log into credit obtained strings.
-			for(var i in window.ModLog){
-				$scope.creditObtainedStrings[i] = $scope.parseMods(window.ModLog[i]);
-			}
-		}
-		else{
-			$scope.reviewButtonText = "Review";
-		
-		}
+		if($scope.reviewMode) $scope.reviewButtonText = "Back";	
+		else $scope.reviewButtonText = "Review";
 	}
 	
+	$scope.updateExplanation = function(){
+		// parse out modification log into credit obtained strings.
+		for(var i in window.ModLog){
+			$scope.creditObtainedStrings[i] = $scope.parseMods(window.ModLog[i]);
+		}
+	}
 	
 	$scope.parseMods = function(mods){
 		var str = "";
