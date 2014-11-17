@@ -34,7 +34,7 @@ KNOWN BUGS / FEATURE REQUESTS
 [MAJOR] Descriptions are really vague (get AP/transfer credit descriptions from website, third tab needs to be reworded completely)
 
 [MINOR] Certain combinations put C&I in multiple times, and additionally causes too few units
-    - (Jordan): For example with APs: Computer Science A(5)->Chemistry(5) and Transfer scores: MATH11->MATH13, your schedule ends up with C&I1 in fall, C&I1/2 in winter, and C&I2 in spring, and also 13 units in spring.
+    - (Jordan): For example with APs: Computer Science A(5) and Transfer scores: MATH13, your schedule ends up with C&I1 in fall, C&I1/2 in winter, and C&I2 in spring, and also 13 units in spring.
 
 [FEATURE REQUEST] Console Log Clutter / No useful console log info
 	- (Scott): I understand using console logs in development.  I'd just like to comment 
