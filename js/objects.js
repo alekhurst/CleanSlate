@@ -345,4 +345,23 @@ window.Steps = [
 	}
 ];
 
-window.WorkingSchedule = DefaultScheduleCSE;
+
+//================================================================
+// BASE PLAN -- MUTABLE COPY
+
+window.BasePlan = {};
+
+function setBasePlan(maj){
+    
+    switch(maj){
+        case 'cse':
+            window.BasePlan = jQuery.extend(true,{},window.DefaultScheduleCSE);    // (defined in objects.js)
+            break;
+        case 'wde':
+            window.BasePlan = jQuery.extend(true,{},window.DefaultScheduleWDE);    // (defined in objects.js)
+            break;
+            
+    }
+}
+
+setBasePlan('cse');

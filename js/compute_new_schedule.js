@@ -818,8 +818,6 @@ function getEquivalentAPTest(ap_test)
 // MODIFICATION LOG FUNCTIONS
 //---------------------------------------------------------------------------------
 
-window.AllCourses = {};
-
 window.ModLog = {};
 
 function applyMods(id,mods){
@@ -841,21 +839,6 @@ function removeMods(id){
 //---------------------------------------------------------------------------------
 // COMPUTATION FUNCTIONS
 //---------------------------------------------------------------------------------
-
-window.BasePlan = {};
-
-function setBasePlan(maj){
-    
-    switch(maj){
-        case 'cse':
-            window.BasePlan = jQuery.extend(true,{},window.DefaultScheduleCSE);    // (defined in objects.js)
-            break;
-        case 'wde':
-            window.BasePlan = jQuery.extend(true,{},window.DefaultScheduleWDE);    // (defined in objects.js)
-            break;
-            
-    }
-}
 
 /*
  * This function is initially called for CSE students when the student's input from the view has changed.
