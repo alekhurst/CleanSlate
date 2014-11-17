@@ -40,7 +40,7 @@ function getCourse(branch, id) {
  */
 function getCourseId(branch, department, course_number) {
     var _branch = window.AllCourses[branch];
-    for (course in _branch) {
+    for (var course = 0; course < _branch.length; course++) {
         if (_branch[course]['department'] == department && _branch[course]['course_number'] == course_number)
             return course;
     }
@@ -48,13 +48,24 @@ function getCourseId(branch, department, course_number) {
 }
 
 function parentCourseInSameBranch(current_course, branch) {
-    var prereqs = current_course['prerequisites'];
-    for (prereq in current_course['prerequisites']) {
-        if (current_course['prerequisites'][prereq][0] == branch) { //Found prereq in department, return that
+	
+	// Get prereqs.
+    var PreReqs = current_course['prerequisites'];
+	
+	// Search within prereqs...
+    for (ind in PreReqs) {
+	
+		//If branch matches, return the course.
+        if (PreReqs[ind][0] == branch) {
+			// Get course info.
             var branch = branch;
-            var department = current_course['prerequisites'][prereq][1];
-            var course_number = current_course['prerequisites'][prereq][2];
+            var department = PreReqs[ind][1];
+            var course_number = PreReqs[ind][2];
+			
+			// Get course id.
             var course_id = getCourseId(branch, department, course_number);
+			
+			// Return course.
             return getCourse(branch, course_id);
         }
     }
@@ -68,24 +79,26 @@ function parentCourseInSameBranch(current_course, branch) {
  * @param {string} quarter - The current quarter ("fall_quarter", "winter_quarter", or "spring_quarter")
  */
 function takenBeforeOrDuringThisQuarter(course, quarter) {
+
+	// If course has not been taken, return false
+    if (course['credit'] == 'NO') return false;
+	
+	// Get the quarter that the course was taken.
     var quarter_taken = course['quarter_taken'];
+	
+	//If the course was taken, but is no longer on the schedule
+    if (quarter_taken == '' && course['credit'] == 'YES') return true;
+   
+    // If testing against spring_quarter, automatically true.
+    if (quarter == 'spring_quarter') return true;
+	
+	// Only fall courses may be taken before or during fall.
+    if (quarter == 'fall_quarter' && quarter_taken == 'fall_quarter') return true;
+	
+	// Fall or Winter courses may be taken before or during spring.
+    if (quarter == 'winter_quarter' && quarter_taken != 'spring_quarter') return true;
 
-    if (course['credit'] == 'NO') { //If the course has never been taken, return false
-        return false;
-    }
-    if (quarter_taken == '' && course['credit'] == 'YES') { //If the course was taken, but is no longer on the schedule
-        return true;
-    }
-    if (quarter == 'spring_quarter') { //Must be taken before or during this quarter
-        return true;
-    }
-    if (quarter == 'fall_quarter' && quarter_taken == 'fall_quarter') {
-        return true;
-    }
-    if (quarter == 'winter_quarter' && quarter_taken != 'spring_quarter') {
-        return true;
-    }
-
+	// Unless specified, return false.
     return false;
 }
 
@@ -96,7 +109,7 @@ function takenBeforeOrDuringThisQuarter(course, quarter) {
  * @param {string} quarter - The current quarter ("fall_quarter", "winter_quarter", or "spring_quarter")
  */
 function offeredThisQuarter(course, quarter) {
-    for (_quarter in course['offering']) {
+    for (var _quarter in course['offering']) {
         if (quarter == course['offering'][_quarter])
             return true;
     }
@@ -110,16 +123,22 @@ function offeredThisQuarter(course, quarter) {
  * @param {string} quarter - Current quarter to check after ("fall_quarter", "winter_quarter", or "spring_quarter")
  */
 function prereqsCompleted(course, quarter) {
-    for (prereq in course['prerequisites']) {
+	
+	// Check each prerequisite.
+    for (var prereq in course['prerequisites']) {
+	
+		// Get course information.
         var prereq_branch = course['prerequisites'][prereq][0];
         var prereq_department = course['prerequisites'][prereq][1];
         var prereq_course_number = course['prerequisites'][prereq][2];
 
+		// Get course.
         var prereq_course = getCourse(prereq_branch, getCourseId(prereq_branch, prereq_department, prereq_course_number));
+		
+		//Prereq is not completed at all, return false
+        if (prereq_course['credit'] == 'NO') return false;		
+		
         //Look when prereq_course is in schedule, and if it is during/after current_quarter, then return false
-        if (prereq_course['credit'] == 'NO') { //Prereq is not completed at all, return false
-            return false;
-        }
         switch(prereq_course['quarter_taken']){
             case 'spring_quarter':
                 return false;
@@ -145,33 +164,53 @@ function prereqsCompleted(course, quarter) {
  * @param {string} quarter - Current quarter to check after ("fall_quarter", "winter_quarter", or "spring_quarter")
  */
 function nextCourseAfter(course_data, id, quarter) {
+
+	// Get old course information.
     var branch = course_data[0];
     var department = course_data[1];
     var course_number = course_data[2];
 
+	// Get old course.
     var current_id = parseInt(id);
     var current_course = getCourse(branch, current_id);
 
+	// Find "parent" course.
     var parent_course = parentCourseInSameBranch(current_course, branch);
-    if (parent_course == null) //No parent course, just increment pointer
-        current_id++;
-    else //Set current_id to element after parent's course
-        current_id = parseInt(getCourseId(parent_course['branch'], parent_course['department'], parent_course['course_number'])) + 1;
+	
+	 //If no parent course, just take next course.
+    if (parent_course == null) current_id++;
+	
+	// Otherwise, set current_id to element after parent's course
+    else current_id = parseInt(getCourseId(branch, parent_course['department'], parent_course['course_number'])) + 1;
 
+	// Get potential next course.
     current_course = getCourse(branch, current_id);
-    console.log(current_course['department'] + current_course['course_number'] + ': ' + takenBeforeOrDuringThisQuarter(current_course, quarter) + ', ' + !offeredThisQuarter(current_course, quarter) + ', ' +  !prereqsCompleted(current_course, quarter));
-    while (takenBeforeOrDuringThisQuarter(current_course, quarter) || !offeredThisQuarter(current_course, quarter) || !prereqsCompleted(current_course, quarter)) {
-        //If the course has been taken before, if the course is not being offered this quarter, or the prereqs are not completed
-        //This means the course is not the next one to take, so continue along the branch and look for a different one to take
-        if (current_id == window.AllCourses[branch].length - 1) { //At the last element, no more courses
-            return null;
-        }
-        current_id++; //Go along branch
-        current_course = getCourse(branch, current_id); //Get next course in branch
-        console.log(current_course['department'] + current_course['course_number'] + ': ' + takenBeforeOrDuringThisQuarter(current_course, quarter) + ', ' + !offeredThisQuarter(current_course, quarter) + ', ' +  !prereqsCompleted(current_course, quarter));
+	
+	// DEBUG: Course Info
+    // console.log(current_course['department'] + current_course['course_number'] + ': ' + takenBeforeOrDuringThisQuarter(current_course, quarter) + ', ' + !offeredThisQuarter(current_course, quarter) + ', ' +  !prereqsCompleted(current_course, quarter));
+   
+	// If the course...
+	// 		(a) is taken before or in this quarter
+	//		(b) is not offered this quarter
+	//		(c) does not have its prereqs completed
+	// ...then determine another course.
+	while (takenBeforeOrDuringThisQuarter(current_course, quarter) || !offeredThisQuarter(current_course, quarter) || !prereqsCompleted(current_course, quarter)) {
+	
+		// Last element -- no more courses.
+        if (current_id == window.AllCourses[branch].length - 1) return null;
+		
+		// Otherwise, move to next course in branch.
+        current_id++;
+        current_course = getCourse(branch, current_id);
+		
+		// DEBUG: Course info.
+        //console.log(current_course['department'] + current_course['course_number'] + ': ' + takenBeforeOrDuringThisQuarter(current_course, quarter) + ', ' + !offeredThisQuarter(current_course, quarter) + ', ' +  !prereqsCompleted(current_course, quarter));
     }
 
-    console.log('returning ' + current_course['department'] + current_course['course_number']);
+	// DEBUG: Replacement course found.
+    //console.log('returning ' + current_course['department'] + current_course['course_number']);
+	
+	// Return replacement course.
     return [getCourse(branch, current_id), current_id];
 }
 
@@ -182,8 +221,20 @@ function nextCourseAfter(course_data, id, quarter) {
  * @param {string} quarter - The current quarter ("fall_quarter", "winter_quarter", or "spring_quarter")
  */
 function nextOffering(offerings, quarter) {
-    if (quarter == 'spring_quarter') //No other courses, return -1
-        return -1;
+
+	// Spring Quarter: No courses after. Return -1.
+    if (quarter == 'spring_quarter') return -1;
+	
+	// Winter Quarter: Only if offered in Spring.
+	if (quarter == 'winter_quarter') {
+        for (offering in offerings) {
+            if (offerings[offering] == 'spring_quarter')
+                return 'spring_quarter';
+        }
+        return -1; //No other offerings after winter, return null
+    }
+
+	// Fall Quarter: Winter or Spring.
     else if (quarter == 'fall_quarter') {
         var next_offering = '';
         for (offering in offerings) {
@@ -192,15 +243,9 @@ function nextOffering(offerings, quarter) {
             if (offerings[offering] == 'spring_quarter' && next_offering != 'winter_quarter')
                 next_offering = 'spring_quarter';
         }
-        if (next_offering == '') //No other offerings after fall, return null
-            return -1;
+		//No other offerings after fall, return -1.
+        if (next_offering == '') return -1;
         return next_offering;
-    } else if (quarter == 'winter_quarter') {
-        for (offering in offerings) {
-            if (offerings[offering] == 'spring_quarter')
-                return 'spring_quarter';
-        }
-        return -1; //No other offerings after winter, return null
     }
 }
 
@@ -210,15 +255,17 @@ function nextOffering(offerings, quarter) {
  * @param {Object} course_title - Title of course to be removed (i.e. "COEN10")
  */
 function quarterTaken(course_title) {
-    for (quarter in window.WorkingSchedule) {
-        for (course in window.WorkingSchedule[quarter]) {
-            if (course_title == course) {
-                console.log(course_title + ' taken previously: ' + quarter);
-                return quarter;
-            }
-        }
-    }
-    return ''; //Not taken before, return null
+
+	// (Shorthand schedule)
+	var ws = window.WorkingSchedule;
+	
+	// If found in a quarter, return that quarter.
+	if(ws['fall_quarter'][course_title]) return 'fall_quarter';
+	if(ws['winter_quarter'][course_title]) return 'winter_quarter';
+	if(ws['spring_quarter'][course_title]) return 'spring_quarter';
+	
+	// If not found, return ''.
+	return '';
 }
 
 /*
@@ -463,21 +510,37 @@ function fixCoen12() {
 	
 	// Get Class info for CORE
     var core_course = getCourse('core_courses', 0);
-	
-	// Make copies of COEN 12 and Core
-	var copyOfCoen12 = jQuery.extend(true,{},coen12);
-	var copyOfCore = jQuery.extend(true,{},core_course);
 
     // Delete Old COEN 12 (from Winter) and CORE (from Spring)
     delete window.WorkingSchedule['spring_quarter'][getACoreForQuarter('spring_quarter')];
     delete window.WorkingSchedule['winter_quarter']['COEN12'];
 	
 	// Copy the Class over.
-    window.WorkingSchedule['spring_quarter']['COEN12'] = copyOfCoen12;
+    window.WorkingSchedule['spring_quarter']['COEN12'] = {
+			name: coen12["name"],
+			department: coen12["department"],
+			course_number: coen12["course_number"],
+			description: coen12["description"],
+			branch: 'coen_courses',
+			offering: coen12["offering"],
+			category: coen12["category"],
+			units: coen12["units"],
+			prerequisites: coen12["prerequisites"]
+		};
 
 	// Determine next Core and copy.
     var winter_core = nextCore('winter_quarter');
-    window.WorkingSchedule['winter_quarter'][winter_core] = copyOfCore;
+    window.WorkingSchedule['winter_quarter'][winter_core] = {
+			name: core_course["name"],
+			department: core_course["department"],
+			course_number: core_course["course_number"],
+			description: core_course["description"],
+			branch: 'core_courses',
+			offering: core_course["offering"],
+			category: core_course["category"],
+			units: core_course["units"],
+			prerequisites: core_course["prerequisites"]
+		};
 }
 
 /*
@@ -514,12 +577,18 @@ function fixUnits() {
  * @param {string} quarter - The current quarter ("fall_quarter", "winter_quarter", or "spring_quarter")
  */
 function removeCourse(course_title, quarter) {
-    console.log(course_title + ', ' + quarter);
-    if (quarter == -1) {  //Base case, return and break out of recursion
-        return;
-    }
 
-    if (!quarter) { //If no quarter specified (first time), find the quarter and try again
+	// DEBUG: Check course and quarter...
+    //console.log(course_title + ', ' + quarter);
+    
+	  //Base case, return and break out of recursion
+	if (quarter == -1) return;
+
+	//If no quarter specified (first time), find the quarter and try again
+    if (!quarter) { 
+		var _quarter, course_title;
+		
+		// Search for quarter; if found, removeCourse from the specified quarter.
         for (_quarter in window.WorkingSchedule) {
             if (course_title in window.WorkingSchedule[_quarter]) {
                 removeCourse(course_title, _quarter);
@@ -527,78 +596,109 @@ function removeCourse(course_title, quarter) {
             }
         }
 
-        //If here, that means the course has not been taken yet. Find that course and set it to 'taken'.
-        var start = 1;
-        for (; start < course_title.length; start++) {
-            if (parseInt(course_title[start]) == course_title[start]) //You found the first number, start of course_number
-                break;
-        }
-        var course_department = course_title.substring(0, start);
-        var course_c_number = course_title.substring(start, course_title.length);
+        //If not found, the course has not been taken yet.
+		// Find that course and set it to 'taken'.
+		
+		// Shouldn't move CTW, but just in case... (Meanwhile, C&I shouldn't be here.)
+		if(course_title == "CTW1" || course_title == "CTW2"){
+			console.log("Trying to remove CTW...");
+			var course_department = course_title.substring(0, 3);		
+			var course_c_number = course_title.substring(3, course_title.length);
+		}
+		
+		// Get the course dept. and number.
+        var course_department = course_title.substring(0, 4);		
+        var course_c_number = course_title.substring(4, course_title.length);
 
-        for (branch in window.AllCourses) {
-            for (course in window.AllCourses[branch]) {
+		// Update the Course in AllCourses.
+        for (var branch in window.AllCourses) {
+            for (var course in window.AllCourses[branch]) {
                 if (window.AllCourses[branch][course]['department'] == course_department && window.AllCourses[branch][course]['course_number'] == course_c_number) {
                     window.AllCourses[branch][course]['credit'] = 'YES'; 
-                    console.log(JSON.stringify(window.AllCourses[branch][course]));
+					
+					// DEBUG: Display class that now has Credit.
+                    //console.log(JSON.stringify(window.AllCourses[branch][course]));
                     return;
                 }
             }
         }
     }
 
+	// Get the course.
     var course = window.WorkingSchedule[quarter][course_title];
-    if(!course){
-        console.log('course in quarter not found');
-        removeCourse('BASECASE', -1);
-        return;
-    }
+	
+	// If no course exists, return.
+    if(!course){ return;}
+	
+	// Get Course Id
     var id = getCourseId(course['branch'], course['department'], course['course_number']);
+	
+	// Get the Next Course in the Series
     var next_course_in_series = nextCourseAfter([course.branch, course.department, course.course_number], id, quarter);
 
-    console.log(JSON.stringify(window.AllCourses[course['branch']][id]));
-    console.log('removing ' + course_title + ' for ' + quarter);
-    delete window.WorkingSchedule[quarter][course_title]; //Remove the course
-    window.AllCourses[course['branch']][id]['quarter_taken'] = quarterTaken(course['department'] + course['course_number']); //Record that the course is no longer being taken
+	// DEBUG: Course removal info.
+    // console.log(JSON.stringify(window.AllCourses[course['branch']][id]));
+    // console.log('removing ' + course_title + ' for ' + quarter);
+	
+	// Remove the course.
+    delete window.WorkingSchedule[quarter][course_title];
+	
+	// Reflect removal in AllCourses
+    window.AllCourses[course['branch']][id]['quarter_taken'] = quarterTaken(course['department'] + course['course_number']);
 
-    if(next_course_in_series == null) { //Take core course
+	// If there isn't a next course in the series, take CORE.
+    if(next_course_in_series == null) {
+	
+		// Get Core Information
         var core_course = getCourse('core_courses', 0);
         var next_core = nextCore(quarter);
 
+		// Copy Over.
         window.WorkingSchedule[quarter][next_core] = {
-            name : core_course['name'],
-            department : core_course['department'],
-            course_number : core_course['course_number'],
-            description : core_course['description'],
-            branch : 'core_courses',
-            offering : core_course['offering'],
-            category : core_course['category'],
-            units : core_course['units'],
-            prerequisites : core_course['prerequisites'],
-        };
+			name: core_course["name"],
+			department: core_course["department"],
+			course_number: core_course["course_number"],
+			description: core_course["description"],
+			branch: 'core_courses',
+			offering: core_course["offering"],
+			category: core_course["category"],
+			units: core_course["units"],
+			prerequisites: core_course["prerequisites"]
+		};
         
-        removeCourse('BASECASE', -1);
-    } else { //Take the next course in the series, if there is one
+    }  
+	// Otherwise, take the next course in the series.
+	else {
+	
+		// Get information on next course.
         var next_course = next_course_in_series[0];
         var next_course_id = next_course_in_series[1];
 
-        window.AllCourses[course['branch']][next_course_id]['quarter_taken'] = quarter; //This course is now to be taken, give student credit
-        window.AllCourses[course['branch']][next_course_id]['credit'] = 'YES'; //This course is now to be taken, give student credit
-        console.log('adding ' + next_course['department'] + next_course['course_number'] + ' for ' + quarter);
-        console.log('adding quarter taken for ' + next_course['department'] + next_course['course_number']);
+		// Refect Quarter Taken and Credit in AllCourses.
+        window.AllCourses[course['branch']][next_course_id]['quarter_taken'] = quarter;
+        window.AllCourses[course['branch']][next_course_id]['credit'] = 'YES';
+		
+		// DEBUG: Course Addition Information.
+        //console.log('adding ' + next_course['department'] + next_course['course_number'] + ' for ' + quarter);
+        //console.log('adding quarter taken for ' + next_course['department'] + next_course['course_number']);
 
+		// Construct course from AllCoursesInfo.
         window.WorkingSchedule[quarter][next_course['department'] + next_course['course_number']] = {
-            name : next_course['name'],
-            department : next_course['department'],
-            course_number : next_course['course_number'],
-            description : next_course['description'],
-            branch : course.branch,
-            offering : next_course['offering'],
-            category : next_course['category'],
-            units : next_course['units'],
-            prerequisites : next_course['prerequisites'],
-        };
-        console.log('recursively checking ' + nextOffering(next_course['offering'], quarter) + ' for ' + next_course['department'] + next_course['course_number']);
+			name: next_course["name"],
+			department: next_course["department"],
+			course_number: next_course["course_number"],
+			description: next_course["description"],
+			branch: course.branch,
+			offering: next_course["offering"],
+			category: next_course["category"],
+			units: next_course["units"],
+			prerequisites: next_course["prerequisites"]
+		};
+		
+		// DEBUG: Recursive check.
+        //console.log('recursively checking ' + nextOffering(next_course['offering'], quarter) + ' for ' + next_course['department'] + next_course['course_number']);
+		
+		// Removed the added course from subsequent quarters.
         removeCourse(next_course['department'] + next_course['course_number'], nextOffering(next_course['offering'], quarter));
     }
 }
