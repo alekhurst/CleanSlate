@@ -760,8 +760,7 @@ function setBasePlan(maj){
             window.CourseCatalogue[branch][course_id]['quarter_taken'] = quarter;
         }
     }
-    window.AllCourses = window.CourseCatalogue;
-    computeNewSchedule();
+    window.AllCourses = jQuery.extend(true,{},window.CourseCatalogue);
 }
 
 /*
@@ -773,8 +772,8 @@ function computeNewSchedule() {
 
     // RESET
     //DO SOMETHING HERE TO ADD C&I WHERE NEEDED WHEREVER CORES ARE OFFERED
-    window.WorkingSchedule = window.BasePlan;    // (defined above)
-    window.AllCourses = window.CourseCatalogue;    // (defined in all_courses.js)
+    window.WorkingSchedule = jQuery.extend(true,{},window.BasePlan);    // (defined above)
+    window.AllCourses = jQuery.extend(true,{},window.CourseCatalogue);    // (defined in all_courses.js)
     
     for(id in window.ModLog){
         for(course in window.ModLog[id]){
