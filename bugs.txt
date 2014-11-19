@@ -33,15 +33,27 @@ KNOWN BUGS / FEATURE REQUESTS
 
 [MAJOR] Descriptions are really vague (get AP/transfer credit descriptions from website, third tab needs to be reworded completely)
 
-[MAJOR] Undoing removals doesn't work
-    - (Jordan) : I have checked the Window.ModLog in computeNewSchedule() right before changes are made, which shows that it responds correctly to the view. However, for some reason, the view is not changed when the button is pressed, but will change when majors are switched.
+[MINOR] Fix Calculus Readiness Option -- default YES, ask "Did the Calculus Readiness Exam suggest you take MATH 9 (Precalculus)?"
 
-[FEATURE REQUEST] Console Log Clutter / No useful console log info
-	- (Scott): I understand using console logs in development.  I'd just like to comment 
-			   them out so writing to console log doesn't require looking for a needle
-			   in a haystack with other's log statements.
+[MINOR] Add Reset Button
 
-[FEATURE REQUEST] No Honors/LEAD courses
+[FEATURE REQUEST] Honors Program
+
+[FEATURE REQUEST] LEAD Program
+
+[FEATURE REQUEST] IB Tests
+
+[FEATURE REQUEST] Don't allow 3+ Core
+
+[FEATURE REQUEST] Have Replacement Logic / Courses Based off Major (for Extensibility)
+
+[FEATURE REQUEST] Separate Programming Experience, Calculus Readiness, "Miscellaneous is a bit vague"
+
+[FEATURE REQUEST] Have Calculus Readiness outweigh AP Tests / Credit
+
+[FEATURE REQUEST] Simplify CourseCatalogue.
+
+[FEATURE REQUEST] Explanations for AP Tests etc.
 
 [FEATURE REQUEST] Window Resizing
 	- (Scott): I like to only use half of my screen real estate for the application, but
