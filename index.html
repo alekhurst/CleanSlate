@@ -82,8 +82,8 @@
 					<p class="prev-exp-paragraph" id="prev-exp-programming"> Do you have previous programming experience in a C-based language? (C, C++, Java)
 						<input id="prevProgramming" type="checkbox" ng-model="previousProgramming" ng-click="updateProgExp()" />
 					</p>
-					<p class="prev-exp-paragraph" id="prev-exp-precalc">Did you get an 80 or above on the Calculus Readiness Exam?
-						<input id="calculusReady" type="checkbox"  ng-model="calculusReady" ng-click="updateCalcReady()" />
+					<p class="prev-exp-paragraph" id="prev-exp-precalc">Did the Calculus Readiness Exam suggest you take MATH 9 (Precalculus)?
+						<input id="calculusReady" type="checkbox"  ng-model="math9Suggested" ng-click="updateCalcReady()" />
 					</p>
 					<!--p class="prev-exp-paragraph" id="prev-exp-honors"> Are you enrolled in the Honors Program?
 						<input id="honorStudent" type="checkbox"  ng-model="honorStudent" ng-click="updateHonors()" />
@@ -139,9 +139,9 @@
 				<h4>{{current_major}}</h4>
 			</section>
 			<section id="profile-component" ng-cloak="CurrentStep.view === 'main'" ng-show="CurrentStep.view === 'main'"  ng-class="{reviewed: reviewMode}">
-				<h3 ng-show="calculusReady || previousProgramming || honorStudent || leadStudent">GENERAL INFORMATION</h3>
+				<h3 ng-show="math9Suggested || previousProgramming || honorStudent || leadStudent">GENERAL INFORMATION</h3>
 				<ul>
-					<li ng-show="calculusReady">Passed the Calculus Readiness Exam : Does not need to take MATH 9.</li>
+					<li ng-show="math9Suggested">The Calculus Readiness Exam suggests you should take MATH 9.</li>
 					<li ng-show="previousProgramming">Has previous programming experience : Does not need to take COEN 10</li>
 					<!--li ng-show="honorStudent">Honors Student</li-->
 					<!--li ng-show="leadStudent">LEAD Student</li-->					

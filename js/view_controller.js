@@ -40,7 +40,8 @@ CleanSlateApp.controller('CleanSlateController', function ($scope) {
 		
 		// Miscellaneous
 		$scope.previousProgramming = false;
-		$scope.calculusReady = false;
+		$scope.math9Suggested = false;
+			applyMods('M_02',getEquivalentReadinessExam()); /* natural consequence */
 		$scope.honorsStudent = false;
 		$scope.leadStudent = false;
 
@@ -220,9 +221,7 @@ CleanSlateApp.controller('CleanSlateController', function ($scope) {
 	
 	$scope.updateCalcReady = function(){
 	
-		// If calculusReady was previously unchecked,
-		// calculate the schedule with the it checked.
-		if(!$scope.calculusReady){
+		if($scope.math9Suggested){
 			// Determine which classes are affected.
 			var mods = getEquivalentReadinessExam();
 			applyMods('M_02',mods);
@@ -308,5 +307,8 @@ CleanSlateApp.controller('CleanSlateController', function ($scope) {
 		}
 		return str;
 	}
+	
+	/* to apply initial modifications */
+	$scope.Schedule = computeNewSchedule();
 	
 });

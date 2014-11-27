@@ -33,8 +33,6 @@ KNOWN BUGS / FEATURE REQUESTS
 
 [MAJOR] Descriptions are really vague (get AP/transfer credit descriptions from website, third tab needs to be reworded completely)
 
-[MINOR] Fix Calculus Readiness Option -- default YES, ask "Did the Calculus Readiness Exam suggest you take MATH 9 (Precalculus)?"
-
 [MINOR] Add Reset Button
 
 [FEATURE REQUEST] Honors Program
@@ -70,6 +68,8 @@ CHANGELOG
 [MINOR] Certain combinations put C&I in multiple times, and additionally causes too few units
     - (Jordan): For example with APs: Computer Science A(5) and Transfer scores: MATH13, your schedule ends up with C&I1 in fall, C&I1/2 in winter, and C&I2 in spring, and also 13 units in spring.
     - See https://github.com/alekhurst/CleanSlate/commit/d5d00719c35a71e088cff8c23d264531833c5458
+
+[FIXED] Fix Calculus Readiness Option -- default YES, ask "Did the Calculus Readiness Exam suggest you take MATH 9 (Precalculus)?"
 	
 [FIXED] Testing out of certain classes can give too many units in a quarter (such as COEN10->PHYS31->COEN11, which puts C&I in and thus too many units)
 
