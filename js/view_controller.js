@@ -28,22 +28,23 @@ CleanSlateApp.controller('CleanSlateController', function ($scope) {
 	$scope.current_major = 'Computer Science & Engineering';
 	window.setBasePlan('cse'); /* reflect in base plan */
 
-	/* View Controller Variable Initialization */
-	$scope.CurrentStep = window.Steps[1];
-	
-		// AP Tests
-		$scope.APTests = window.APTests;
-		$scope.currently_viewing_ap_test.score = 3;
 		
-		// Transfer Credit
-		$scope.TransferCredit = window.TransferCredit;
+		/* View Controller Variable Initialization */
+		$scope.CurrentStep = window.Steps[1];
 		
-		// Miscellaneous
-		$scope.previousProgramming = false;
-		$scope.math9Suggested = false;
-			applyMods('M_02',getEquivalentReadinessExam()); /* natural consequence */
-		$scope.honorsStudent = false;
-		$scope.leadStudent = false;
+			// AP Tests
+			$scope.APTests = window.APTests;
+			$scope.currently_viewing_ap_test.score = 3;
+			
+			// Transfer Credit
+			$scope.TransferCredit = window.TransferCredit;
+			
+			// Miscellaneous
+			$scope.previousProgramming = false;
+			$scope.math9Suggested = false;
+				applyMods('M_02',getEquivalentReadinessExam()); /* natural consequence */
+			$scope.honorsStudent = false;
+			$scope.leadStudent = false;
 
 	/* Event listeners */
 	$scope.$watch('CurrentStep', function() {
@@ -52,6 +53,31 @@ CleanSlateApp.controller('CleanSlateController', function ($scope) {
 
 	
 	/* Methods */
+	
+	$scope.reset = function(){
+	
+		// clear ModLog
+		window.ModLog = {};
+		
+		// reset ap tests / transfer credit
+		$scope.StudentInput = {
+			ap_credit : [],
+			transfer_credit : [],
+			previous_experience : [] // <- realizing this isn't used...
+		};  
+		
+		// reset miscellaneous
+			$scope.previousProgramming = false;
+			$scope.math9Suggested = false;
+				applyMods('M_02',getEquivalentReadinessExam()); /* natural consequence */
+			$scope.honorsStudent = false;
+			$scope.leadStudent = false;
+			
+		// recompute
+		$scope.Schedule = computeNewSchedule();
+			
+		return;
+	}
 
 	/**
 	 * Used to assign a CSS class that changes the color of the element based on 

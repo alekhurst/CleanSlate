@@ -109,6 +109,19 @@ body {
 	} #top-bar .step-button-ie:hover {
 		color: white;
 		background-color: #e36365;
+	}#top-bar #clearButton{
+		z-index: 2;
+		cursor: pointer;
+		float: right;
+		background-color: white;
+		color: #941A1E;
+		padding: 8px 15px;
+		border-radius: 15px;
+		position:relative;
+		top:5px;
+		right:10px;
+		border:none;
+		font-size:1.0em;
 	}
 
 	
