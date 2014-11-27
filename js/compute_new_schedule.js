@@ -843,9 +843,9 @@ function removeMods(id){
 //---------------------------------------------------------------------------------
 // COMPUTATION FUNCTIONS
 //---------------------------------------------------------------------------------
-
+window.MajorAbbr = 'cse';
 function setBasePlan(maj){
-    
+    window.MajorAbbr = maj;
     switch(maj){
         case 'cse':
             window.BasePlan = jQuery.extend(true,{},window.DefaultScheduleCSE);    // (defined in objects.js)
@@ -879,6 +879,11 @@ function computeNewSchedule() {
             window[record['function']].apply(window,record['parameters']);
         }
     }
+	
+	var exemptions = window.CourseExemptions[window.MajorAbbr];
+	for(var i = 0; i < exemptions.length; i++){
+		window.removeCourse(exemptions[i]);
+	}
 	
 	// POST MAIN
 	

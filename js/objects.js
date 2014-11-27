@@ -352,6 +352,12 @@ window.Steps = [
 	}
 ];
 
+// Course Exemptions
+window.CourseExemptions = {
+	"cse":[],
+	"wde":["AMTH106"]
+};
+
 window.WorkingSchedule = DefaultScheduleCSE;
 window.ModLog = {};
 window.BasePlan = {};
