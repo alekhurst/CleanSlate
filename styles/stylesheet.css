@@ -287,6 +287,35 @@ body {
 				color: white !important;
 				background-color: #941A1E;		
 			}
+		#input-component #ib-test-score {
+			position:absolute;
+			left: 40px;
+			bottom: 50px;
+			margin-left: 40px;
+			width: 100px;
+			height: 30px;
+			display: block;
+			list-style: none;
+			padding: 0;
+			margin: 0;
+			background-color: white;
+			border-radius: 15px;
+			border: solid 2px #941A1E;
+		}
+			#input-component #ib-test-score li {
+				width: 50px;
+				cursor: pointer;
+				display: block;
+				font-size: 20px;
+				float: left;
+				height: 30px;
+				color: #941A1E;
+				text-align: center;
+				border-radius: 13px;
+			} .selected-ib-test-score {
+				color: white !important;
+				background-color: #941A1E;		
+			}
 		#input-component .add-selection {
 			position: absolute;
 			bottom: 50px;

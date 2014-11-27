@@ -39,8 +39,9 @@
 				<nav>
 					<ul>
 						<li ng-click="skipToStep(1)"><a href="#">AP Credit</a></li>
-						<li ng-click="skipToStep(2)"><a href="#">Transfer Credit</a></li>
-						<li ng-click="skipToStep(3)"><a href="#">Miscellaneous</a></li>
+						<li ng-click="skipToStep(2)"><a href="#">IB Credit</a></li>
+						<li ng-click="skipToStep(3)"><a href="#">Transfer Credit</a></li>
+						<li ng-click="skipToStep(4)"><a href="#">Miscellaneous</a></li>
 					</ul>
 				</nav>
 				<div id="ap-credit-field" ng-show="CurrentStep.step_number === 2">
@@ -64,7 +65,27 @@
 						</ul>
 					</div>
 				</div>
-				<div id="transfer-credit-field" ng-cloak="CurrentStep.step_number === 3" ng-show="CurrentStep.step_number === 3">
+				<div id="ib-credit-field" ng-cloak="CurrentStep.step_number === 3" ng-show="CurrentStep.step_number === 3">
+					<h2 class="input-label">IB Credit: </h2>
+					<select ng-model="currently_viewing_ib_test.id" ng-options="IBTest.id as IBTest.name for IBTest in IBTests">
+					</select>
+					<p class="selection-description" ng-model="currently_viewing_ib_test.description"> {{ IBTests[ currently_viewing_ib_test.id ].description }}</p>
+					<ul id="ib-test-score" ng-show="currently_viewing_ib_test.id >= 0">
+						<li class="selected-ib-test-score" ng-click="setCurrentlyViewingIBTestScore(6)">6</li>
+						<li ng-click="setCurrentlyViewingIBTestScore(7)">7</li>
+					</ul>
+					<button class="add-selection" ng-show="currently_viewing_ib_test.id >= 0" ng-click="addIBTest()">Add</button>
+					<div class="added-selections">
+						<h2>Your Added IB Scores</h2>
+						<ul>
+							<li ng-repeat="test in StudentInput.ib_credit">
+								<button ng-click="removeIBTest($index)" >Remove</button>
+								{{ IBTests[ test.id ].name }} ({{ test.score }}) 
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div id="transfer-credit-field" ng-cloak="CurrentStep.step_number === 4" ng-show="CurrentStep.step_number === 4">
 					<h2 class="input-label">Transfer Credit: </h2>
 					<select ng-model="currently_viewing_transfer.id" ng-options="TransCred.id as TransCred.name for TransCred in TransferCredit">
 					</select>
@@ -80,7 +101,7 @@
 						</ul>
 					</div>
 				</div>
-				<div id="prev-exp-field" ng-show="CurrentStep.step_number === 4">
+				<div id="prev-exp-field" ng-show="CurrentStep.step_number === 5">
 					<h2 class="input-label">Miscellaneous</h2>
 					<p class="prev-exp-paragraph" id="prev-exp-programming"> Do you have previous programming experience in a C-based language? (C, C++, Java)
 						<input id="prevProgramming" type="checkbox" ng-model="previousProgramming" ng-click="updateProgExp()" />
@@ -155,6 +176,12 @@
 						<b>{{ APTests[ test.id ].name }} ({{ test.score }})</b> : Credit obtained for {{ creditObtainedStrings["AP_"+test.id] }}
 					</li>
 				</ul>
+				<h3 ng-show="StudentInput.ib_credit.length">IB TESTS</h4>
+				<ul>
+					<li ng-repeat="test in StudentInput.ib_credit">
+						<b>{{ IBTests[ test.id ].name }} ({{ test.score }})</b> : Credit obtained for {{ creditObtainedStrings["IB_"+test.id] }}
+					</li>
+				</ul>
 				<h3 ng-show="StudentInput.transfer_credit.length">TRANSFER CREDIT</h4>
 				<ul>
 					<li ng-repeat="test in StudentInput.transfer_credit">
@@ -171,6 +198,7 @@
 		<script src="js/objects.js"></script>
 		<script src="js/compute_new_schedule.js"></script>
 		<script src="js/ap_tests.js"></script>
+		<script src="js/ib_tests.js"></script>
 		<script src="js/transfer_credit.js"></script>
 		<script src="js/all_courses.js"></script>
 	</body>

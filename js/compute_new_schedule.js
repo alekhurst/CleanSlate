@@ -777,6 +777,37 @@ function getEquivalentAPTest(ap_test)
         }
     return mods;
 }
+// IB CREDIT-----------------------------------------------------------------------
+function getEquivalentIBTest(ib_test)
+{
+    var mods = new Array();
+    var test = window.IBTests[ib_test.id];
+        if (test.multiple_fulfillments) { //If there are multiple possibilities for IB test scores, go through each one and find the range that ib_test.score falls within, then test out of those classes
+            for (test_fulfillment in test.multiple_fulfillments) { //For each fulfillment 
+                var this_fulfillment = test.multiple_fulfillments[test_fulfillment];
+                if (ib_test.score >= this_fulfillment.min_score && ib_test.score <= this_fulfillment.max_score) { //If ib_test.score falls within a certain range
+                    for (course in this_fulfillment.fulfillment) { //For each course that is fulfilled
+                        var this_course = this_fulfillment.fulfillment[course];
+                        mods.push({
+                            function : 'removeCourse',
+                            parameters : [this_fulfillment.fulfillment[course][1] + this_fulfillment.fulfillment[course][2]]
+                        });
+                    }
+                    return mods;
+                }
+            }
+        } else {
+            if (ib_test.score >= window.IBTests[ib_test.id].min_score && ib_test.score <= window.IBTests[ib_test.id].max_score) {
+                for (course in window.IBTests[ib_test.id].fulfillment) {
+                    mods.push({
+                        function : 'removeCourse',
+                        parameters : [window.IBTests[ib_test.id].fulfillment[course][1] + window.IBTests[ib_test.id].fulfillment[course][2]]
+                    } );
+                }    
+            }
+        }
+    return mods;
+}
 
 
 

@@ -38,7 +38,6 @@ KNOWN BUGS / FEATURE REQUESTS
 
 [FEATURE REQUEST] LEAD Program
 
-[FEATURE REQUEST] IB Tests
 
 [FEATURE REQUEST] Don't allow 3+ Core
 
@@ -63,6 +62,8 @@ KNOWN BUGS / FEATURE REQUESTS
 ——————————————————————————————————————————————————————
 
 CHANGELOG
+
+[FIXED] IB Tests
 
 [FIXED] Add Reset Button
 

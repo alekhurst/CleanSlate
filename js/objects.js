@@ -324,20 +324,27 @@ window.Steps = [
 	},
 	{
 		step_number : 3,
-		description : 'Add your transfer credit',
+		description : 'Add your IB test scores',
 		prev_button : 'true',
 		next_button : 'true',
 		view : 'main'
 	},
 	{
 		step_number : 4,
-		description : 'Fill out miscellaneous information',
+		description : 'Add your transfer credit',
 		prev_button : 'true',
 		next_button : 'true',
 		view : 'main'
 	},
 	{
 		step_number : 5,
+		description : 'Fill out miscellaneous information',
+		prev_button : 'true',
+		next_button : 'true',
+		view : 'main'
+	},
+	{
+		step_number : 6,
 		description : 'All done! Just print and bring to your advisor meeting',
 		prev_button : 'true',
 		next_button : 'false',

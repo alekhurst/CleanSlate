@@ -19,12 +19,15 @@ CleanSlateApp.controller('CleanSlateController', function ($scope) {
 	$scope.Schedule = angular.copy(window.DefaultScheduleCSE);
 	$scope.StudentInput = {
 		ap_credit : [],
+		ib_credit : [],
 		transfer_credit : [],
 		previous_experience : []
 	};  
 	$scope.CurrentStep = {};
 	$scope.APTests = [];
+	$scope.IBTests = [];
 	$scope.currently_viewing_ap_test = {};
+	$scope.currently_viewing_ib_test = {};
 	$scope.current_major = 'Computer Science & Engineering';
 	window.setBasePlan('cse'); /* reflect in base plan */
 
@@ -35,6 +38,10 @@ CleanSlateApp.controller('CleanSlateController', function ($scope) {
 			// AP Tests
 			$scope.APTests = window.APTests;
 			$scope.currently_viewing_ap_test.score = 3;
+			
+			// IB Tests
+			$scope.IBTests = window.IBTests;
+			$scope.currently_viewing_ib_test.score = 6;
 			
 			// Transfer Credit
 			$scope.TransferCredit = window.TransferCredit;
@@ -62,6 +69,7 @@ CleanSlateApp.controller('CleanSlateController', function ($scope) {
 		// reset ap tests / transfer credit
 		$scope.StudentInput = {
 			ap_credit : [],
+			ib_credit : [],
 			transfer_credit : [],
 			previous_experience : [] // <- realizing this isn't used...
 		};  
@@ -147,6 +155,12 @@ CleanSlateApp.controller('CleanSlateController', function ($scope) {
 		$('#ap-test-score li').removeClass('selected-ap-test-score');
 		$($('#ap-test-score li')[ score - 3 ]).addClass('selected-ap-test-score');
 	}
+	
+	$scope.setCurrentlyViewingIBTestScore = function(score) {
+		$scope.currently_viewing_ib_test.score = score;
+		$('#ib-test-score li').removeClass('selected-ib-test-score');
+		$($('#ib-test-score li')[ score - 6 ]).addClass('selected-ib-test-score');
+	}
 
 	$scope.addAPTest = function() {
 		for(var i in $scope.StudentInput.ap_credit){
@@ -178,6 +192,48 @@ CleanSlateApp.controller('CleanSlateController', function ($scope) {
 		removeMods('AP_'+obj.id);
 		
 		$scope.StudentInput.ap_credit.splice(index,1); // remove the AP test from the array.
+		
+		
+		// Recalculate.
+		$scope.Schedule = computeNewSchedule();
+		
+		// Update explanations.
+		$scope.updateExplanation();
+		
+		//$scope.Schedule = preComputeScheduleAPCSE( {id: $scope.currently_viewing_ap_test.id, score:$scope.currently_viewing_ap_test.score } )
+	}
+	
+	
+	$scope.addIBTest = function() {
+		for(var i in $scope.StudentInput.ib_credit){
+			if($scope.StudentInput.ib_credit[i].id == $scope.currently_viewing_ib_test.id) $scope.removeIBTest(i);
+		}
+		if(!$scope.StudentInput.ib_credit)
+			$scope.StudentInput.ib_credit = {};
+		$scope.StudentInput.ib_credit.push( { id:$scope.currently_viewing_ib_test.id, score:$scope.currently_viewing_ib_test.score } );
+		
+		
+		// Determine which classes are affected.
+		var mods = getEquivalentIBTest( {id: $scope.currently_viewing_ib_test.id, score:$scope.currently_viewing_ib_test.score } );
+	
+		applyMods('IB_'+$scope.currently_viewing_ib_test.id,mods);
+		
+		// Recalculate.
+		$scope.Schedule = computeNewSchedule();
+		
+		// Update explanations.
+		$scope.updateExplanation();
+		
+		$scope.setCurrentlyViewingIBTestScore(6);
+
+	}
+	
+	$scope.removeIBTest = function(index){
+		
+		var obj = $scope.StudentInput.ib_credit[index];
+		removeMods('IB_'+obj.id);
+		
+		$scope.StudentInput.ib_credit.splice(index,1); // remove the IB test from the array.
 		
 		
 		// Recalculate.
