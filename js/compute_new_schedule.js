@@ -872,7 +872,20 @@ function computeNewSchedule() {
     window.WorkingSchedule = jQuery.extend(true,{},window.BasePlan);    // (defined above)
     window.AllCourses = jQuery.extend(true,{},window.CourseCatalogue);    // (defined in all_courses.js)
     
+	// PRE MAIN
+	var ignoredKeys = {};
+	if(!window.ModLog['M_02']){
+		ignoredKeys['AP_0'] = 1;
+		ignoredKeys['AP_1'] = 1;
+		ignoredKeys['TR_7'] = 1;
+		ignoredKeys['TR_8'] = 1;
+		ignoredKeys['TR_9'] = 1;
+		ignoredKeys['TR_10'] = 1;
+	}
+	
+	
     for(id in window.ModLog){
+		if( ignoredKeys[id] ) continue; // ignore the ignored keys.
         for(course in window.ModLog[id]){
             var record = window.ModLog[id][course]
             // Execute the function
