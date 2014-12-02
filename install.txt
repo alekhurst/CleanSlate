@@ -10,7 +10,7 @@ Install on a Server
    (3) Copy all items.
    (4) Paste items in the desired folder.
 
-Run on Disk
+Run Locally
 -----------------------------------------------
    (1) Go to the flash drive Home directory.
    (2) Double-click on index.html.
