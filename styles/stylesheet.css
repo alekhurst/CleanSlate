@@ -123,6 +123,9 @@ body {
 		border:none;
 		font-size:1.0em;
 	}
+    #top-bar #clearButton:hover {
+        background-color: #ed9798;
+    }
 
 	
 
