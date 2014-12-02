@@ -1,0 +1,17 @@
+INSTALL MANUAL
+===============================================
+In order for the application to run, you must be
+connected to the Internet.
+
+Install on a Server
+-----------------------------------------------
+   (1) Go to the flash drive Home directory.
+   (2) Select all items.
+   (3) Copy all items.
+   (4) Paste items in the desired folder.
+
+Run on Disk
+-----------------------------------------------
+   (1) Go to the flash drive Home directory.
+   (2) Double-click on index.html.
+   
