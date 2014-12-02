@@ -364,6 +364,9 @@ body {
 				max-height: 150px;
 				overflow-y: auto;
 			}
+			#input-component .added-selections ul li{
+				padding:2px 0;
+			}
 			#input-component .added-selections ul li button{
 				float: right;
 				cursor: pointer;
